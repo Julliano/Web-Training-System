@@ -3,9 +3,7 @@
 from flask.globals import request, current_app
 from flask.helpers import make_response
 
-from simfaz.models.relatorio import Relatorio
-
-from ..models.operacao import Operacao
+from ..models.treino import Treino
 from ..modules import db
 
 

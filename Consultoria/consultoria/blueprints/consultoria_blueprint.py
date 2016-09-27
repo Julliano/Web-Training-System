@@ -20,7 +20,6 @@ from ..controller.usuario_controller import UsuarioController
 from ..models.usuario import Usuario, UsuarioSchema
 from ..modules import login_manager, db, admin_permission
 
-
 consultoria_app = Blueprint('consultoria_app', __name__)
 
 

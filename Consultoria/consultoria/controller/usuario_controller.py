@@ -5,7 +5,6 @@ from flask_login import fresh_login_required, current_user, login_required
 from flask_security.decorators import roles_required
 
 from ..models.grupo import Grupo
-from ..models.notificacoes_cliente import notificacoes_cliente
 from ..models.usuario import Usuario, UsuarioSchema
 from ..modules import db, admin_permission
 

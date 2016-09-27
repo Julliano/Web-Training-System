@@ -2,7 +2,6 @@
 from flask.json import jsonify
 from flask_login import login_user, logout_user, current_user
 
-
 from ..models.usuario import Usuario
 from ..modules import db 
 

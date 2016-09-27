@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//consultoria/blueprints/consultoria_blueprint.py=utf-8
+encoding//consultoria/controller/alteracao_status_controller.py=utf-8
 encoding//consultoria/controller/grupo_controller.py=utf-8
 encoding//consultoria/controller/session_controller.py=utf-8
 encoding//consultoria/controller/usuario_controller.py=utf-8
