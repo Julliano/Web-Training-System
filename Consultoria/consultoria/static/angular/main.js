@@ -3,16 +3,13 @@
 
 	angular.module('consultoria', [ 'ngResource','ngRoute', 'ui.bootstrap', 'ui.router', 'ui-notification', 'angular-loading-bar', 'cgBusy', 'ui.mask', 'uiSwitch' ])
 
-	.config([ '$stateProvider', '$urlRouterProvider' ,'tagsInputConfigProvider', '$provide', '$uibTooltipProvider', 'cfpLoadingBarProvider', config ])
+	.config([ '$stateProvider', '$urlRouterProvider' , '$provide', '$uibTooltipProvider', 'cfpLoadingBarProvider', config ])
 
 	.run(function($http, $rootScope) {
 		init();
 
 		function init() {
 			$rootScope.submitPromise = { message:"Aguarde..." };
-			//$http.get('/csrf').then(function(response) {
-				//$http.defaults.headers.common['X-CSRFToken'] = response.data;
-			//})
 		}
 	});
 
