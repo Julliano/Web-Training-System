@@ -1,0 +1,16 @@
+<div class="inner cover">
+    <form name="form" ng-submit="PresentCtrl.logar()" class="form-signin" method="post">
+        <h2 class="form-signin-heading">Usuário de acesso</h2>
+        <div class="form-group">
+            <input type="email" class="form-control" name="email" placeholder="E-mail" ng-model="PresentCtrl.usuario.email" required>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" name="senha" placeholder="Senha" ng-model="PresentCtrl.usuario.senha" required>
+        </div>
+       <!--  <div class="form-group">
+            <input type="checkbox" class="form-control pull-left" name="lembrar" ng-model="PresentCtrl.usuario.lembrar">Lembrar-me
+        </div> -->
+        <button class="btn btn-lg btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-log-in"></span> Entrar</button>
+    </form>
+    <!-- <uib-alert ng-hide="PresentCtrl.alert.auth" type="error">{{PresentCtrl.alert.msg}}</uib-alert> -->
+</div>

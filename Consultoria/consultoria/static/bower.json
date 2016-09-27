@@ -1,0 +1,25 @@
+{
+  "name": "consultoria",
+  "version": "1.0.0",
+  "authors": [
+    "Julliano Volpato <jullianovosorio@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "jullianovolpato.com.br",
+  "dependencies": {
+    "angular": "~1.4.6",
+    "angular-bootstrap": "~0.14.3",
+    "angular-loading-bar": "^0.9.0",
+    "angular-route": "~1.4.7",
+    "angular-ui-notification": "~0.0.14",
+    "angular-ui-router": "~0.2.15",
+    "bootstrap": "~3.3.5",
+    "font-awesome": "^4.5.0",
+    "angular-ui-mask": "^1.8.3",
+    "angular-ui-switch": "^0.1.1",
+    "angular-busy": "^4.1.3"
+  },
+  "resolutions": {
+    "angular": "~1.4.6"
+  }
+}

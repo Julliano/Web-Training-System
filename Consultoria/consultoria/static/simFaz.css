@@ -1,0 +1,124 @@
+.form-proprietario{
+    background-color: #EAEAEA;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.form-proprietario button{
+	margin-bottom:5px;	
+	float: right;
+	z-index: 9999 !important;
+}
+
+.col-15{
+	width: 12.499999995%;
+}
+
+.arquivosCadOp {
+	margin-bottom: 2%;
+	color: white;
+}
+
+.botaoDeletar {
+	margin-left: 5%;
+}
+
+.pull-right{
+	float: right !important;
+}
+
+.subNivel{
+	background-color: #232222;
+}
+
+.botaoNovo {
+	float: right;
+	margin-right: 15px;
+	margin-bottom: 15px
+}
+
+.fundoBranco{
+	background-color: white;
+}
+
+.cpfValido {
+	border: 2px solid #50C312;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(0, 255, 0, 0.6);
+}
+
+.cpfInvalido {
+	border: 2px solid red;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(255, 0, 0, 0.6);
+}
+
+#footer {
+	background-color: #333 !important;
+}
+
+.botaoSalvarRelatorio {
+	float: right;
+	margin-right: 15px;
+	margin-bottom: 15px;
+	margin-top: 15px;
+}
+
+.buffer {
+	margin-bottom: 5%;
+}
+
+.contaAccordion {
+	background-color: #333;
+}
+
+.csv {
+	margin-bottom: 2%;
+}
+
+.dataFim {
+	margin-left: 9%;
+}
+
+.floatRight {
+	float: right;
+}
+
+.modalOp {
+	color: black;
+	margin-bottom: 0px;
+}
+
+.modalOperacao {
+	margin-bottom: 1%;
+}
+
+.opMargin {
+	margin-bottom: 10px;
+}
+
+.numero-matricula {
+	font-weight: normal !important;
+	border: 1px solid #777;
+	margin-right: 5px;
+	background-color: #333;
+}
+
+.numero-matricula:HOVER {
+	background-color: #777;
+}
+
+.textEditarRelatorio {
+	width: 100%;
+	height: 180px;
+}
+
+.top10 {
+	margin-top: 10%;
+}
+
+.top25 {
+	margin-top: 25px;
+}
+
+.UF {
+	text-transform: uppercase
+}
