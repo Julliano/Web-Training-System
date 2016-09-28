@@ -9,21 +9,31 @@ from sqlalchemy import DateTime
 
 from ..models import BaseSchema
 from ..modules import db, ma
+from .plano import Plano
 from .grupo import Grupo
 from .usuario_grupo import usuario_grupo
-from consultoria.modules import admin_permission
+from .consultoria.modules import admin_permission
 
 
 class Usuario(db.Model, UserMixin):
     __tablename__ = 'usuario'    
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(45), nullable=False)  
-    sobrenome = db.Column(db.String(45), nullable=False)
+    nascimento = db.Column(db.Date, nullable=False)
+    altura = db.Column(db.String(45), nullable=False)
+    sexo = db.Column(db.Boolean, nullable=False, default=False)
+    cpf = db.Column(db.String(45))
     email = db.Column(db.String(60), nullable=False, unique=True)
+    endereco = db.Column(db.String(155), nullable=False)
+    complemento = db.Column(db.String(155), nullable=False)
+    cep = db.Column(db.String(45), nullable=False)
+    bairro = db.Column(db.String(45), nullable=False)
+    cidade = db.Column(db.String(45), nullable=False)
+    estado = db.Column(db.String(45), nullable=False)
     senha = db.Column(db.String(130), nullable=False)
     logado = db.Column(db.Boolean, nullable=False, default=False)
-    atividade = db.Column(db.String(45))  
-    celular = db.Column(db.String(20))
+    duvidas = db.relationship("Duvida", cascade="save-update, merge, delete", backref="usuario")
+    formulario_id = db.Column(db.Integer, db.ForeignKey("formulario.id"), nullable=False)
 
     # Flask-Security SECURITY_TRACKABLE
     last_login_at = db.Column(db.DateTime())

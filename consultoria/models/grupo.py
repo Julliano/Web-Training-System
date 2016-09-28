@@ -5,6 +5,7 @@ from marshmallow_sqlalchemy.convert import field_for
 
 from . import BaseSchema
 from ..modules import db, ma
+from .grupo_privilegio import grupo_privilegio
 from .privilegio import Privilegio, PrivilegioSchema
 
 
