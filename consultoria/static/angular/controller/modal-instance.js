@@ -1,6 +1,6 @@
 (function() {
 	"use strict";
-	angular.module("simfaz").controller("ModalInstanceController", ModalInstanceController);
+	angular.module("consultoria").controller("ModalInstanceController", ModalInstanceController);
 
 	ModalInstanceController.$inject = [ "$uibModalInstance", "$http", "model", "obj" ];
 

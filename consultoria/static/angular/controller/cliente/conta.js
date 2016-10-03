@@ -1,7 +1,7 @@
 (function() {
 	"use strict";
 
-	angular.module("simfaz").controller("ClienteContaController", ClienteContaController);
+	angular.module("consultoria").controller("ClienteContaController", ClienteContaController);
 
 	ClienteContaController.$inject = [ "$http", "LoginService", "Notification" ];
 

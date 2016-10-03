@@ -1,7 +1,7 @@
 (function() {
 	"use strict";
 
-	angular.module("simfaz").controller("NavbarController", NavbarController);
+	angular.module("consultoria").controller("NavbarController", NavbarController);
 
 	NavbarController.$inject = ["filterFilter", "$state", "LoginService", "$http", "$scope", "OperacaoService"];
 

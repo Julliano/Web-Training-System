@@ -12,7 +12,8 @@ from ..modules import db, ma
 from .plano import Plano
 from .grupo import Grupo
 from .usuario_grupo import usuario_grupo
-from .consultoria.modules import admin_permission
+from .duvida import Duvida
+from ..modules import admin_permission
 
 
 class Usuario(db.Model, UserMixin):

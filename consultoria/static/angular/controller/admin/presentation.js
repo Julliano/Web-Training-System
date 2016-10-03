@@ -1,6 +1,6 @@
 (function() {
 	'use strict'
-	angular.module('simfaz').controller('PresentationController', PresentationController)
+	angular.module('consultoria').controller('PresentationController', PresentationController)
 
 	PresentationController.$inject = [ "LoginService"]
 

@@ -1,7 +1,7 @@
 (function() {
 	"use strict";
 
-	angular.module("simfaz").service("LoginService", LoginService);
+	angular.module("consultoria").service("LoginService", LoginService);
 
 	LoginService.$inject = [ "$q", "$rootScope", "$state", "$http", "Notification" ];
 

@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 
-	angular.module('consultoria', [ 'ngResource','ngRoute', 'ui.bootstrap', 'ui.router', 'ui-notification', 'angular-loading-bar', 'cgBusy', 'ui.mask', 'uiSwitch' ])
+	angular.module('consultoria', [ 'ngRoute', 'ui.bootstrap', 'ui.router', 'ui-notification', 'angular-loading-bar', 'cgBusy', 'ui.mask', 'uiSwitch' ])
 
 	.config([ '$stateProvider', '$urlRouterProvider' , '$provide', '$uibTooltipProvider', 'cfpLoadingBarProvider', config ])
 

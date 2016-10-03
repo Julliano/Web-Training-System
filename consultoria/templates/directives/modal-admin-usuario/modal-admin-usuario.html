@@ -1,0 +1,62 @@
+<div class="fundo-branco container-fluid" cg-busy="ModalAdmUsuarioCtrl.submitPromise">
+<div class="modal-header">
+	<button type="button" class="close" aria-label="Close" ng-click="ModalAdmUsuarioCtrl.cancelar()">
+		<span aria-hidden>&times;</span>
+	</button>
+	<h3 class="modal-title">Cadastro de Usuario</h3>
+</div>
+<form novalidate class="form" name="adminUsuarioForm">
+	<div class="modal-body">
+		<div class="form-group">
+			<label class="text-form">Nome</label>
+			<input class="form-control" type="text" ng-model="ModalAdmUsuarioCtrl.usuario.nome" required/>
+		</div>
+		<div class="form-group">
+			<label class="text-form">Sobrenome</label>			
+			<input class="form-control" type="text" ng-model="ModalAdmUsuarioCtrl.usuario.sobrenome" required/>
+		</div>
+		<div class="form-group">
+			<label class="text-form">E-mail</label>
+			<input class="form-control" type="email" ng-model="ModalAdmUsuarioCtrl.usuario.email" required/>
+		</div>
+		<div class="form-group">
+			<label class="text-form">Instituição</label>
+			<select class="form-control" 	
+				ng-options="instituicao as instituicao.nome for instituicao in ModalAdmUsuarioCtrl.instituicoes track by instituicao.id" ng-model="ModalAdmUsuarioCtrl.usuario.instituicao" ng-disabled="ModalAdmUsuarioCtrl.usuario.id" required>
+			</select>
+		</div>
+		<div class="form-group">
+			<label class="text-form">Permissão no sistema: </label>
+			<div class="btn-group">
+		        <label ng-repeat="grupo in ModalAdmUsuarioCtrl.grupos track by grupo.id"
+		               class="btn btn-primary" ng-model="ModalAdmUsuarioCtrl.usuario.grupoSelecionado" uib-btn-radio="grupo.id" required>{{grupo.info}}
+		        </label>		        		        
+		    </div>		  
+		</div>
+		<div class="form-group">
+			<label class="text-form">Cargo</label>
+			<input class="form-control" type="text" ng-model="ModalAdmUsuarioCtrl.usuario.atividade" />
+		</div>
+		<div class="form-group">
+			<label class="text-form">Telefone</label>
+			<input class="form-control" type="text" ng-model="ModalAdmUsuarioCtrl.usuario.telefone" />
+		</div>
+		<div class="form-group">
+			<label class="text-form">Celular</label>
+			<input class="form-control" type="text" ng-model="ModalAdmUsuarioCtrl.usuario.celular" />
+		</div>
+		<div class="form-group">
+			<label class="text-form">Senha</label>
+			<input class="form-control" type="password" ng-model="ModalAdmUsuarioCtrl.usuario.senha" type="password"/>
+		</div>		
+		<div class="form-group">
+			<label class="text-form">Confirma senha</label>
+			<input class="form-control" type="password" ng-model="ModalAdmUsuarioCtrl.usuario.senha_verify" type="password" compara-com="ModalAdmUsuarioCtrl.usuario.senha" compara-senha/>
+		</div>	
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-success" type="submit" ng-click="ModalAdmUsuarioCtrl.salvar()" ng-disabled="!adminUsuarioForm.$valid">Salvar</button>
+		<button class="btn btn-primary" type="button" ng-click="ModalAdmUsuarioCtrl.cancelar()">Cancelar</button>
+	</div>
+</form>
+</div> 

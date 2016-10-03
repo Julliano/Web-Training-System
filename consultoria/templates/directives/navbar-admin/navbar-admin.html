@@ -1,0 +1,51 @@
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" ng-click="NavbarCtrl.collapse = !NavbarCtrl.collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<span class="text-highlight font-days navbar-brand">SiMFaz</span>
+		</div>
+		<div uib-collapse="NavbarCtrl.collapse" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav" style="margin-left: 10px;">				
+				<li ui-sref-active="active" ng-show="NavbarCtrl.pesquisa()" ><a ui-sref="admin.consultar"><span class="fa fa-binoculars"></span>Consultar</a></li>				
+				<li ui-sref-active="active" ng-hide="NavbarCtrl.pesquisa()"><a ui-sref="admin.consultar"><span class="fa fa-binoculars"></span>Voltar</a></li>				
+				<li ui-sref-active="active" uib-dropdown>
+					<a uib-dropdown-toggle data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-list-alt"></span>Cadastrar Operação<span class="caret"></span></a>
+					<ul uib-dropdown-menu role="menu" aria-labelledby="single-button">
+						<li><a ui-sref="admin.cadastrarOpMonitoramento">Monitoramento</a></li>
+						<li class="divider"></li>
+						<li><a ui-sref="admin.cadastrarOpBase">Diagnóstico</a></li>
+					</ul>
+				<li ui-sref-active="active"><a ui-sref="admin.instituicoes"><span class="fa fa-building"></span>Instituições</a></li>				
+				<li ui-sref-active="active"><a ui-sref="admin.usuarios"><span class="fa fa-users"></span>Usuarios</a></li>
+				<li ng-show="NavbarCtrl.isAvaliar()" ui-sref-active="active"><a ui-sref="admin.relatorios"><span class="fa fa-eye"></span>Avaliar</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right" role="tablist">
+				<li role="presentation" ><a ><span class="glyphicon glyphicon-bell" title="{{NavbarCtrl.adminTotalPendencias}} Operações Pendentes"></span><span class="badge" title="{{NavbarCtrl.adminTotalPendencias}} Operações Pendentes">{{NavbarCtrl.adminTotalPendencias}}</span></a></li>
+				{% if analista %}
+				<li uib-dropdown uib-dropdown-toggle>
+					<a href="" ><span class="fa fa-eye"></span>Ver como<span class="caret"></span></a>
+						<ul uib-dropdown-menu role="menu" aria-labelledby="single-button">
+							<li><a ui-sref="admin.consultar">Analista</a></li>
+							<li class="divider"></li>
+							<li><a ui-sref="app.consultar">Cliente</a></li>
+						</ul>
+				</li>
+				{% endif %}
+				<li uib-dropdown uib-dropdown-toggle>
+					<a href=""><span class="fa fa-user-plus"></span>{{NavbarCtrl.usuario.nome}} {{NavbarCtrl.usuario.sobrenome}}<span class="caret"></span></a>
+					<ul uib-dropdown-menu>
+						<li><a ui-sref="app.conta"><span class="glyphicon glyphicon-cog"></span>Conta</a></li>
+						<li class="divider"></li>
+						<li><a href="" ng-click="NavbarCtrl.logout()"><span class="glyphicon glyphicon-log-out"></span>Sair</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+ 

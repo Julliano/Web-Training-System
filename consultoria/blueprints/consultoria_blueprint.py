@@ -17,7 +17,7 @@ from ..controller.grupo_controller import GrupoController
 from ..controller.session_controller import SessionController
 from ..controller.usuario_controller import UsuarioController
 from ..models.usuario import Usuario, UsuarioSchema
-from ..modules import login_manager, db
+from ..modules import login_manager, db, admin_permission
 
 
 consultoria_app = Blueprint('consultoria_app', __name__)
@@ -87,7 +87,7 @@ def templates_app(filename):
 
 @consultoria_app.route('/templates/<path:filename>')
 def templates_directive(filename):
-    return render_template(filename, analista = analista_permission.can())
+    return render_template(filename, admin = admin_permission.can())
 
 @consultoria_app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -115,7 +115,7 @@ def usuarios(id=None):
 
 @consultoria_app.route('/admin/usuarios/', methods=['GET', "POST", "PUT", "DELETE"])
 @consultoria_app.route('/admin/usuarios/<int:id>', methods=["GET", "DELETE"])
-@analista_permission.require(http_exception=403)
+@admin_permission.require(http_exception=403)
 def admin_usuarios(id=None):
     if request.method == "PUT":
         return UsuarioController().admin_editar(request.json or request.form)
