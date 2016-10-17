@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 
-	angular.module('consultoria', [ 'ngRoute', 'ui.bootstrap', 'ui.router', 'ui-notification', 'ui.mask' ])
+	angular.module('consultoria', [ 'ngRoute', 'ui.bootstrap', 'ui.router', 'ui-notification', 'ui.mask', 'duScroll' ])
 
 	.config([ '$stateProvider', '$urlRouterProvider' , '$provide', '$uibTooltipProvider', config ])
 
@@ -48,18 +48,6 @@
 		}).state('index.start', {
 			url : '/start',
 			templateUrl : '/templates/presentation/start.html'
-		}).state('index.signin', {
-			url : '/signin',
-			templateUrl : '/templates/presentation/signin.html',
-			resolve : {
-				automatic_login : function(LoginService, $state) {
-					LoginService.logged().then(function(response) {
-						if (response) {
-							$state.go("app.consultar")
-						}
-					})
-				}
-			}
 		}).state('app', {
 			url : '/app',
 			templateUrl : '/app/cliente/base.html',

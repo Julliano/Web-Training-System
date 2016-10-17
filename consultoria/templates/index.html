@@ -7,7 +7,9 @@
 <script src="https://www.google.com/jsapi"></script>
 <script src="/static/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="/static/bower_components/angular/angular.min.js"></script>
+<script src="/static/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 <script src="/static/bower_components/angular-route/angular-route.min.js"></script>
+<script src="/static/bower_components/angular-scroll/angular-scroll.js"></script>
 <script src="/static/bower_components/angular-ui-notification/dist/angular-ui-notification.min.js"></script>
 <script src="/static/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 <script src="/static/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
@@ -27,7 +29,6 @@
 <!-- END -->
 
 <!-- Angular Services -->
-<script src="/static/angular/service/locale-service.js"></script>
 <script src="/static/angular/service/login-service.js"></script>
 <!-- END -->
 
@@ -35,6 +36,7 @@
 <script src="/templates/directives/navbar-cliente/navbar-cliente.js"></script>
 <script src="/templates/directives/navbar-admin/navbar-admin.js"></script>
 <script src="/templates/directives/modal-admin-usuario/modal-admin-usuario.js"></script>
+<script src="/templates/directives/modal-login/modal-login.js"></script>
 <script src="/templates/directives/compara-senha/compara-senha.js"></script>
 <script src="/templates/directives/sf-cpf/sf-cpf.js"></script>
 <!-- END -->
@@ -47,10 +49,17 @@
 <link rel="stylesheet" href="/static/bower_components/angular-busy/dist/angular-busy.min.css" />
 <link rel="stylesheet" href="/static/style.css" />
 <link rel="stylesheet" href="/static/cover.css" />
-<link rel="stylesheet" href="/static/consultoria.css" />
+<link rel="stylesheet" href="/static/consultoria.css"/>
+<link rel="stylesheet" href="/static/grayscale.css"/>
+
+
+<script src="/static/js/grayscale.js"></script>
+<script src="/static/js/jquery.easing.min.js"></script>
+<script src="/static/js/jquery.js"></script>
+
 
 </head> 
-<body >
+<body ng-app="consultoria">
 	
 	<div  ui-view class="full-screen" cg-busy="submitPromise"></div>
 
