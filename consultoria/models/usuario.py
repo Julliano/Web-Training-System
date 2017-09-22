@@ -1,25 +1,24 @@
 # coding: utf-8
 from flask.helpers import url_for
 from flask_login import make_secure_token
-from flask_security import UserMixin
 from flask_security.utils import encrypt_password, verify_password
 from marshmallow import fields
 from marshmallow.decorators import pre_load
 from sqlalchemy import DateTime
 
-from ..models import BaseSchema
-from ..modules import db, ma
-from .plano import Plano
-from .grupo import Grupo
-from .usuario_grupo import usuario_grupo
-from .duvida import Duvida
-from ..modules import admin_permission
+from models import BaseSchema
+from modules import db, ma
+# from usuario_grupo import usuario_grupo
+from duvida import Duvida
+from modules import admin_permission
 
 
-class Usuario(db.Model, UserMixin):
-    __tablename__ = 'usuario'    
+class Usuario(db.Model):
+    __tablename__ = 'usuario'
+    __table_args__ = {'extend_existing': True}     
     id = db.Column(db.Integer, primary_key=True)
-    nome = db.Column(db.String(45), nullable=False)  
+    nome = db.Column(db.String(45), nullable=False)
+    sobrenome = db.Column(db.String(50), nullable=False)   
     nascimento = db.Column(db.Date, nullable=False)
     altura = db.Column(db.String(45), nullable=False)
     sexo = db.Column(db.Boolean, nullable=False, default=False)
@@ -30,11 +29,12 @@ class Usuario(db.Model, UserMixin):
     cep = db.Column(db.String(45), nullable=False)
     bairro = db.Column(db.String(45), nullable=False)
     cidade = db.Column(db.String(45), nullable=False)
-    estado = db.Column(db.String(45), nullable=False)
+    uf = db.Column(db.String(45), nullable=False)
     senha = db.Column(db.String(130), nullable=False)
     logado = db.Column(db.Boolean, nullable=False, default=False)
     duvidas = db.relationship("Duvida", cascade="save-update, merge, delete", backref="usuario")
     formulario_id = db.Column(db.Integer, db.ForeignKey("formulario.id"), nullable=False)
+    grupo_id = db.Column(db.Integer, db.ForeignKey("grupo.id"), nullable=False)
 
     # Flask-Security SECURITY_TRACKABLE
     last_login_at = db.Column(db.DateTime())
@@ -45,11 +45,11 @@ class Usuario(db.Model, UserMixin):
     last_login_ip = db.Column(db.String(45))    
     current_login_ip = db.Column(db.String(45))
     
-    #Relationships   
-    grupos = db.relationship("Grupo",
-                               secondary="usuario_grupo",
-                               backref=db.backref("usuarios")                               
-                               )
+#     #Relationships   
+#     grupos = db.relationship("Grupo",
+#             secondary="usuario_grupo",
+#             backref=db.backref("usuarios")                               
+#         )
         
         
     def __repr__(self):
@@ -59,9 +59,9 @@ class Usuario(db.Model, UserMixin):
     def url(self):
         return url_for('.usuarios', id=self.id)
     
-    @property
-    def roles(self):
-        return self.grupos
+#     @property
+#     def roles(self):
+#         return self.grupos
     
     @property
     def is_authenticated(self):        
@@ -110,7 +110,7 @@ class UsuarioSchema(BaseSchema):
         if 'email' in data:
             data['email'] = data['email'].lower()            
     
-    grupos = ma.Nested("GrupoSchema", many=True)
+#     grupos = ma.Nested("GrupoSchema", many=True)
     is_admin = fields.Method("is_admin", dump_only=True)
     
     def is_admin(self, data):

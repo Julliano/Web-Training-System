@@ -13,11 +13,11 @@ from flask_security import login_required
 from sqlalchemy.sql.functions import func
 from werkzeug import redirect
 
-from ..controller.grupo_controller import GrupoController
-from ..controller.session_controller import SessionController
-from ..controller.usuario_controller import UsuarioController
-from ..models.usuario import Usuario, UsuarioSchema
-from ..modules import login_manager, db, admin_permission
+from controller.grupo_controller import GrupoController
+from controller.session_controller import SessionController
+from controller.usuario_controller import UsuarioController
+from models.usuario import Usuario, UsuarioSchema
+from modules import login_manager, db, admin_permission
 
 
 consultoria_app = Blueprint('consultoria_app', __name__)

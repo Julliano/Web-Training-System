@@ -1,15 +1,17 @@
 # coding: utf-8
-from flask_security import UserMixin
+from datetime import date
 
-from ..models import BaseSchema
-from ..modules import db, ma
+from models import BaseSchema
+from modules import db, ma
 
 
-class Plano(db.Model, UserMixin):
+class Plano(db.Model):
     __tablename__ = 'plano'    
     id = db.Column(db.Integer, primary_key=True)
-    titulo = db.Column(db.String(45), nullable=False)  
-    descricao = db.Column(db.String(45), nullable=False)  
+    data_compra = db.Column(db.Date, default=date.today)
+    titulo = db.Column(db.String(255), nullable=False)
+    n_treinos = db.Column(db.Float)  
+    valor = db.Column(db.Float)  
     
 
 class PlanoSchema(BaseSchema):

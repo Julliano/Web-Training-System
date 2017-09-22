@@ -1,12 +1,11 @@
 from datetime import date
-
 from marshmallow import fields
 from marshmallow_sqlalchemy.convert import field_for
 from sqlalchemy.orm import relationship
 
 from . import BaseSchema
-from ..modules import db, ma
-from .plano import Plano, PlanoSchema
+from modules import db, ma
+from plano import Plano, PlanoSchema
 
 class PlanoUsuario(db.Model):
     __tablename__ = "plano_usuario"

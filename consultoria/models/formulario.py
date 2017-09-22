@@ -1,19 +1,21 @@
 # coding: utf-8
 from datetime import date
-from flask_security import UserMixin
-
-from ..models import BaseSchema
-from ..modules import db, ma
+from models import BaseSchema
+from modules import db, ma
 
 
-class Formulario(db.Model, UserMixin):
+class Formulario(db.Model):
     __tablename__ = 'formulario'    
     id = db.Column(db.Integer, primary_key=True)
     data_cadastro = db.Column(db.Date, default=date.today)
     status = db.Column(db.String(45), default="pendente")
     peso = db.Column(db.Float)
-    gordura_corporal = db.Column(db.Float)
+    bf = db.Column(db.Float)
+    cardapio = db.Column(db.Text)
     disponibilidade = db.Column(db.ARRAY(db.String))
+    extra = db.Column(db.Boolean, nullable=False, default=False)
+    extra_disponibilidade = db.Column(db.ARRAY(db.String))
+    treinando = db.Column(db.Boolean, nullable=False, default=False)
     experiencia = db.Column(db.String(25))
     fumante = db.Column(db.Boolean, nullable=False, default=False)
     bebe = db.Column(db.Boolean, nullable=False, default=False)
@@ -23,11 +25,11 @@ class Formulario(db.Model, UserMixin):
     exerOdeia = db.Column(db.Text)
     aerobico = db.Column(db.Boolean, nullable=False, default=False)
     aerobicoPreferido = db.Column(db.String(25))
-    alimentacao = db.Column(db.Text)
-    objetivo = db.Column(db.Text)
-    articulacao = db.Column(db.Text)
     patologia = db.Column(db.Text)
+    articulacao = db.Column(db.Text)
     ultimoTreino = db.Column(db.Text)
+    objetivo = db.Column(db.Text)
+    obs = db.Column(db.Text)
     
 class FormularioSchema(BaseSchema):
     class Meta(BaseSchema.Meta):

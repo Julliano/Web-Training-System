@@ -6,11 +6,11 @@ from flask_security.core import Security
 from flask_security.datastore import SQLAlchemyUserDatastore
 from itsdangerous import URLSafeSerializer
 
-from .blueprints.consultoria_blueprint import consultoria_app 
-from .modules import db, ma, migrate, manager, login_manager, csrf
+from blueprints.consultoria_blueprint import consultoria_app 
+from modules import db, ma, migrate, manager, login_manager, csrf
 
-from consultoria.models.grupo import Grupo
-from consultoria.models.usuario import Usuario
+from models.grupo import Grupo
+from models.usuario import Usuario
 
 def create_app(mode="production"):
     instance_path = path.join(

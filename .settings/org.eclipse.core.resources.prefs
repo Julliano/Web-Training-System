@@ -1,10 +1,14 @@
 eclipse.preferences.version=1
 encoding//consultoria/blueprints/consultoria_blueprint.py=utf-8
+encoding//consultoria/controller/alteracao_status_controller.py=utf-8
 encoding//consultoria/controller/grupo_controller.py=utf-8
+encoding//consultoria/controller/session_controller.py=utf-8
+encoding//consultoria/controller/usuario_controller.py=utf-8
 encoding//consultoria/models/duvida.py=utf-8
 encoding//consultoria/models/formulario.py=utf-8
 encoding//consultoria/models/grupo.py=utf-8
 encoding//consultoria/models/plano.py=utf-8
+encoding//consultoria/models/profissional.py=utf-8
 encoding//consultoria/models/usuario.py=utf-8
 encoding//consultoria/models/usuario_grupo.py=utf-8
 encoding//consultoria/modules.py=utf-8

@@ -2,8 +2,8 @@
 from flask import jsonify
 from flask_security.decorators import roles_accepted
 
-from ..models.grupo import GrupoSchema, Grupo
-from ..modules import db
+from models.grupo import GrupoSchema, Grupo
+from modules import db
 
 
 class GrupoController():
