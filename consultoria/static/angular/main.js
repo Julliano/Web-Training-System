@@ -36,8 +36,8 @@
 		 });
 		
 		// For unmatched routes
-		$urlRouterProvider.otherwise('/app/conta');
-		//$urlRouterProvider.when('/app/operacoes', '/app/consultar');
+		$urlRouterProvider.otherwise('/index/start');
+		$urlRouterProvider.when('/app/', '/app/conta');
 
 		// Application routes
 		$stateProvider.state('index', {
@@ -52,6 +52,7 @@
 			url : '/app',
 			templateUrl : '/app/cliente/base.html',
 			resolve : {
+				LoginService : "LoginService",
 				session : session
 			}
 		}).state('app.planos', {

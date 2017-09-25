@@ -6,16 +6,16 @@ from marshmallow import fields
 from marshmallow.decorators import pre_load
 from sqlalchemy import DateTime
 
-from models import BaseSchema
-from modules import db, ma
+from ..models import BaseSchema
+from ..modules import db, ma
 # from usuario_grupo import usuario_grupo
-from duvida import Duvida
-from modules import admin_permission
+from .duvida import Duvida
+from .plano import Plano
+from ..modules import admin_permission
 
 
 class Usuario(db.Model):
     __tablename__ = 'usuario'
-    __table_args__ = {'extend_existing': True}     
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(45), nullable=False)
     sobrenome = db.Column(db.String(50), nullable=False)   
@@ -34,6 +34,8 @@ class Usuario(db.Model):
     logado = db.Column(db.Boolean, nullable=False, default=False)
     formulario_id = db.Column(db.Integer, db.ForeignKey("formulario.id"), nullable=False)
     grupo_id = db.Column(db.Integer, db.ForeignKey("grupo.id"), nullable=False)
+    planos = db.relationship("Plano", cascade="save-update, merge, delete", backref="usuario")
+    duvidas = db.relationship("Duvida", cascade="save-update, merge, delete", backref="usuario")
 
     # Flask-Security SECURITY_TRACKABLE
     last_login_at = db.Column(db.DateTime())

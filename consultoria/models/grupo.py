@@ -2,12 +2,11 @@
 from flask.helpers import url_for
 from marshmallow_sqlalchemy.convert import field_for
 
-from modules import db, ma
-from models import BaseSchema
+from ..modules import db, ma
+from ..models import BaseSchema
 
 class Grupo(db.Model):
     __tablename__ = "grupo"
-    __table_args__ = {'extend_existing': True} 
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(45), nullable=False)  
     info = db.Column(db.String(255))

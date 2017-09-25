@@ -8,7 +8,6 @@ from itsdangerous import URLSafeSerializer
 
 from blueprints.consultoria_blueprint import consultoria_app 
 from modules import db, ma, migrate, manager, login_manager, csrf
-
 from models.grupo import Grupo
 from models.usuario import Usuario
 
@@ -35,6 +34,9 @@ def create_app(mode="development"):
      
     app.register_blueprint(consultoria_app)
     db.init_app(app)
+    ctx = app.app_context()
+    ctx.push()
+    db.create_all()
     login_manager.init_app(app)
     login_manager.login_view = "login"    
     ma.init_app(app)

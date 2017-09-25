@@ -3,9 +3,9 @@
 from flask.globals import request, current_app
 from flask.helpers import make_response
 
-from models.plano import Plano
-from models.treino import Treino
-from modules import db
+from ..models.plano import Plano
+from ..models.treino import Treino
+from ..modules import db
 
 
 class AltereacaoStatusController():

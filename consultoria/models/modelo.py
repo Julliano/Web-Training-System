@@ -1,8 +1,8 @@
 # coding: utf-8
 from datetime import date
 
-from models import BaseSchema
-from modules import db, ma
+from ..models import BaseSchema
+from ..modules import db, ma
 
 
 class ModeloTreino(db.Model):
