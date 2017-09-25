@@ -12,7 +12,7 @@ from modules import db, ma, migrate, manager, login_manager, csrf
 from models.grupo import Grupo
 from models.usuario import Usuario
 
-def create_app(mode="production"):
+def create_app(mode="development"):
     instance_path = path.join(
         path.abspath(path.dirname(__file__)), "%s_instance" % mode
     )

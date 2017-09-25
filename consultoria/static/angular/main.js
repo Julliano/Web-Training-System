@@ -19,7 +19,7 @@
 			return LoginService.logged().then(function(response) {				
 				return response;
 			}, function(response) {
-				$state.go("index.signin");
+//				$state.go("index.signin");
 				return false;
 			});
 		};
@@ -36,7 +36,7 @@
 		 });
 		
 		// For unmatched routes
-		$urlRouterProvider.otherwise('/index/start');
+		$urlRouterProvider.otherwise('/app/conta');
 		//$urlRouterProvider.when('/app/operacoes', '/app/consultar');
 
 		// Application routes
@@ -54,14 +54,21 @@
 			resolve : {
 				session : session
 			}
-		}).state('app.consultar', {
-			url : '/consultar',
-			templateUrl : '/app/cliente/consultar.html',
-			controller : 'ClienteConsultaController',
-			controllerAs : 'CliConCtrl'
-			/*resolve : {
-				operacoes : operacoes
-			}*/
+		}).state('app.planos', {
+			url : '/planos',
+			templateUrl : '/app/cliente/planos.html',
+			controller : 'ClientePlanoController',
+			controllerAs : 'CliPlanCtrl'
+		}).state('app.treinos', {
+			url : '/treinos',
+			templateUrl : '/app/cliente/treinos.html',
+			controller : 'ClienteTreinoController',
+			controllerAs : 'CliTreCtrl'
+		}).state('app.duvidas', {
+			url : '/duvidas',
+			templateUrl : '/app/cliente/duvidas.html',
+			controller : 'ClienteDuvidaController',
+			controllerAs : 'CliDuvidaCtrl'
 		}).state('app.conta', {
 			url : '/conta',
 			templateUrl : '/app/cliente/conta.html',
@@ -73,11 +80,6 @@
 			resolve : {
 				session : session
 			}
-		}).state('admin.consultar', {
-			url : '/consultar',
-			templateUrl : '/app/admin/consultar.html',
-			controller : 'ConsultarController',
-			controllerAs : 'ConsultaCtrl'
 		}).state('admin.usuarios', {
 			url : '/usuarios',
 			templateUrl : '/app/admin/usuarios.html',

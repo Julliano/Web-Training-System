@@ -32,7 +32,6 @@ class Usuario(db.Model):
     uf = db.Column(db.String(45), nullable=False)
     senha = db.Column(db.String(130), nullable=False)
     logado = db.Column(db.Boolean, nullable=False, default=False)
-    duvidas = db.relationship("Duvida", cascade="save-update, merge, delete", backref="usuario")
     formulario_id = db.Column(db.Integer, db.ForeignKey("formulario.id"), nullable=False)
     grupo_id = db.Column(db.Integer, db.ForeignKey("grupo.id"), nullable=False)
 

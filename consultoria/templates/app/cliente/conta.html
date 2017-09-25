@@ -1,0 +1,66 @@
+<div class="container" style="margin-bottom: 35px;">
+	<div class="row">
+		<div class="col-md-12">
+			<p class="text-highlight font-days">SiMFaz</p>
+			<p class="text-spam">Sistema de Monitoramento de Fazendas</p>
+		</div>
+	</div>
+	<hr>
+	<div class="row">
+		<form novalidate class="form" name="contaForm">
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3">
+					<div class="form-group">
+						<label class="text-form">Nome</label>
+						<input type="text" class="form-control" ng-model="CliContaCtrl.usuario.nome" required>
+					</div>
+					<div class="form-group">
+						<label class="text-form">Sobrenome</label>
+						<input type="text" class="form-control" ng-model="CliContaCtrl.usuario.sobrenome" required>
+					</div>
+					<div class="form-group">
+						<label class="text-form">E-mail (Login)</label>
+						<input type="email" class="form-control" ng-model="CliContaCtrl.usuario.email" required>
+					</div>
+					<div class="form-group">
+						<label class="text-form">Empresa</label>
+						<input type="text" class="form-control" ng-model="CliContaCtrl.usuario.instituicao.nome" disabled>
+					</div>
+					<div class="form-group">
+						<label class="text-form">Cargo</label>
+						<input type="text" class="form-control" ng-model="CliContaCtrl.usuario.atividade">
+					</div>
+					<div class="form-group">
+						<label class="text-form">Telefone</label>
+						<input type="text" class="form-control" ng-model="CliContaCtrl.usuario.telefone">
+					</div>
+					<div class="form-group">
+						<label class="text-form">Celular</label>
+						<input type="text" class="form-control" ng-model="CliContaCtrl.usuario.celular">
+					</div>
+					<div class="form-group" style="margin-top: 5px;">
+						<label class="text-form">Nova senha</label>
+						<input type="password" class="form-control" ng-model="CliContaCtrl.usuario.novaSenha">
+					</div>
+					<div class="form-group">
+						<label class="text-form">Confirma senha</label>
+						<input type="password" class="form-control" ng-model="confirmaSenha" compara-com="CliContaCtrl.usuario.novaSenha" compara-senha>
+					</div>
+					<div class="form-group">
+						<label class="text-form">Senha atual</label>
+						<div class="input-group">
+							<input type="password" class="form-control" ng-model="CliContaCtrl.usuario.senhaAtual" required>
+							<div class="input-group-btn">
+								<button type="submit" ng-click="CliContaCtrl.salvar()" ng-disabled="!contaForm.$valid" class="btn btn-info">Salvar alterações</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12 col-md-offset-1">
+					<a ui-sref="app.consultar" style="color: white;"><small><span class="fa fa-undo"></span> Voltar</small></a>			
+				</div>
+			</div>			
+		</form>
+	</div>
+	<hr>
+</div>

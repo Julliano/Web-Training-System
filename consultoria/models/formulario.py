@@ -1,7 +1,9 @@
 # coding: utf-8
 from datetime import date
+
 from models import BaseSchema
 from modules import db, ma
+from sqlalchemy.types import ARRAY
 
 
 class Formulario(db.Model):
@@ -12,9 +14,9 @@ class Formulario(db.Model):
     peso = db.Column(db.Float)
     bf = db.Column(db.Float)
     cardapio = db.Column(db.Text)
-    disponibilidade = db.Column(db.ARRAY(db.String))
+    disponibilidade = db.Column(db.ARRAY(db.String), default=[])
     extra = db.Column(db.Boolean, nullable=False, default=False)
-    extra_disponibilidade = db.Column(db.ARRAY(db.String))
+    extra_disponibilidade = db.Column(db.ARRAY(db.String), default=[])
     treinando = db.Column(db.Boolean, nullable=False, default=False)
     experiencia = db.Column(db.String(25))
     fumante = db.Column(db.Boolean, nullable=False, default=False)
