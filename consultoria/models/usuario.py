@@ -103,6 +103,7 @@ class UsuarioSchema(BaseSchema):
     class Meta(BaseSchema.Meta):
         model = Usuario
         load_only = ("senha",)
+        exclude = ("senhaAtual", "novaSenha")
     
     @pre_load
     def pre_load(self, data):

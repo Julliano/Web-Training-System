@@ -15,7 +15,7 @@ class SessionController:
                 usuario.logado = True
                 db.session.add(usuario)
                 db.session.commit()
-                login_user(usuario, remember=data['lembrar'])
+#                 login_user(usuario, remember=data['lembrar'])
                 return jsonify(auth=True)            
             return jsonify(auth=False, message="Usuário ou senha inválidos")
         except KeyError as e:

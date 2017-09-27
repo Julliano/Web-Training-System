@@ -19,7 +19,7 @@
 			return LoginService.logged().then(function(response) {				
 				return response;
 			}, function(response) {
-//				$state.go("index.signin");
+				$state.go("app.conta");
 				return false;
 			});
 		};
@@ -37,7 +37,7 @@
 		
 		// For unmatched routes
 		$urlRouterProvider.otherwise('/index/start');
-		$urlRouterProvider.when('/app/', '/app/conta');
+//		$urlRouterProvider.when('/app/', '/app/conta');
 
 		// Application routes
 		$stateProvider.state('index', {

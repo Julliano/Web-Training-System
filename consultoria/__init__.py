@@ -1,5 +1,5 @@
+# coding: utf-8
 from os import path
-
 from flask import Flask
 from flask_migrate import MigrateCommand
 from flask_security.core import Security
@@ -7,11 +7,14 @@ from flask_security.datastore import SQLAlchemyUserDatastore
 from itsdangerous import URLSafeSerializer
 
 from blueprints.consultoria_blueprint import consultoria_app 
+from consultoria.controller.grupo_controller import GrupoController
+from consultoria.models.usuario import UsuarioSchema
 from modules import db, ma, migrate, manager, login_manager, csrf
-from models.grupo import Grupo
-from models.usuario import Usuario
+
 
 def create_app(mode="development"):
+    from models.grupo import Grupo
+    from models.usuario import Usuario
     instance_path = path.join(
         path.abspath(path.dirname(__file__)), "%s_instance" % mode
     )
@@ -37,6 +40,10 @@ def create_app(mode="development"):
     ctx = app.app_context()
     ctx.push()
     db.create_all()
+#     usuario, errors = UsuarioSchema().load({'nome':'Admin', 'grupo_id':1, 'sobrenome':'Agrosatélite', 'email':'admin@agrosatelite.com.br','atividade':'Admin','logado':False, 'senha':123}, partial=True)
+#     usuario.senha = usuario.hash_pass(123)
+#     db.session.add(usuario) 
+#     db.session.commit()
     login_manager.init_app(app)
     login_manager.login_view = "login"    
     ma.init_app(app)

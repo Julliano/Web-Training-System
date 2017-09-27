@@ -25,7 +25,7 @@
 		function logar() {
 			LoginService.login(vm.usuario).then(function(response){
 				if(response.auth){
-					$window.location.href = '/app/conta';
+					$window.location.href = '/app';
 				}
 			});
 		}

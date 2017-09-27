@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//consultoria/__init__.py=utf-8
 encoding//consultoria/blueprints/consultoria_blueprint.py=utf-8
 encoding//consultoria/controller/alteracao_status_controller.py=utf-8
 encoding//consultoria/controller/grupo_controller.py=utf-8
@@ -12,4 +13,6 @@ encoding//consultoria/models/plano.py=utf-8
 encoding//consultoria/models/usuario.py=utf-8
 encoding//consultoria/models/usuario_grupo.py=utf-8
 encoding//consultoria/modules.py=utf-8
+encoding//env/Lib/site-packages/flask_login.py=utf-8
+encoding//env/Lib/site-packages/flask_security/utils.py=utf-8
 encoding/manage.py=utf-8
