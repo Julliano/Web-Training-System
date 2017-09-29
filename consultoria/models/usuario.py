@@ -8,8 +8,7 @@ from sqlalchemy import DateTime
 
 from ..models import BaseSchema
 from ..modules import db, ma
-# from usuario_grupo import usuario_grupo
-from .duvida import Duvida
+from usuario_grupo import usuario_grupo
 from .plano import Plano
 from ..modules import admin_permission
 
@@ -35,7 +34,6 @@ class Usuario(db.Model):
     formulario_id = db.Column(db.Integer, db.ForeignKey("formulario.id"), nullable=False)
     grupo_id = db.Column(db.Integer, db.ForeignKey("grupo.id"), nullable=False)
     planos = db.relationship("Plano", cascade="save-update, merge, delete", backref="usuario")
-    duvidas = db.relationship("Duvida", cascade="save-update, merge, delete", backref="usuario")
 
     # Flask-Security SECURITY_TRACKABLE
     last_login_at = db.Column(db.DateTime())
@@ -46,11 +44,11 @@ class Usuario(db.Model):
     last_login_ip = db.Column(db.String(45))    
     current_login_ip = db.Column(db.String(45))
     
-#     #Relationships   
-#     grupos = db.relationship("Grupo",
-#             secondary="usuario_grupo",
-#             backref=db.backref("usuarios")                               
-#         )
+    #Relationships   
+    grupos = db.relationship("Grupo",
+            secondary="usuario_grupo",
+            backref=db.backref("usuarios")                               
+        )
         
         
     def __repr__(self):
@@ -60,9 +58,9 @@ class Usuario(db.Model):
     def url(self):
         return url_for('.usuarios', id=self.id)
     
-#     @property
-#     def roles(self):
-#         return self.grupos
+    @property
+    def roles(self):
+        return self.grupos
     
     @property
     def is_authenticated(self):        
@@ -79,6 +77,9 @@ class Usuario(db.Model):
     @property
     def password(self):
         return self.senha
+    
+    def get_id(self):
+        return self.id
     
     #===========================================================================
     # def get_auth_token(self):

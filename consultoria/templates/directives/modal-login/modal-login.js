@@ -3,9 +3,9 @@
 
 	angular.module("consultoria").controller("ModalLoginController", ModalLoginController);
 
-	ModalLoginController.$inject = ["$uibModalInstance", "LoginService", "$window"];
+	ModalLoginController.$inject = ["$uibModalInstance", "LoginService", "$window", "$state"];
 
-	function ModalLoginController($uibModalInstance, LoginService, $window) {
+	function ModalLoginController($uibModalInstance, LoginService, $window, $state) {
 		var vm = this;
 		vm.trendy = "OK";
 		vm.agro = "Agrosatélite"
@@ -25,7 +25,8 @@
 		function logar() {
 			LoginService.login(vm.usuario).then(function(response){
 				if(response.auth){
-					$window.location.href = '/app';
+					$state.go("app.conta")
+//					$window.location.href = '/app';
 				}
 			});
 		}

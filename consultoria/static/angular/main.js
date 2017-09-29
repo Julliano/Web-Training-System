@@ -18,8 +18,9 @@
 		var session = function(LoginService, $stateParams, $state) {
 			return LoginService.logged().then(function(response) {				
 				return response;
-			}, function(response) {
 				$state.go("app.conta");
+			}, function(response) {
+				console.log(response)
 				return false;
 			});
 		};
