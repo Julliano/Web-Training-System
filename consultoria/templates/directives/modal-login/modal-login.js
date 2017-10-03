@@ -25,8 +25,8 @@
 		function logar() {
 			LoginService.login(vm.usuario).then(function(response){
 				if(response.auth){
-					$state.go("app.conta")
-//					$window.location.href = '/app';
+					$uibModalInstance.dismiss();
+					$state.go("app.treinos")
 				}
 			});
 		}

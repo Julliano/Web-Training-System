@@ -1,0 +1,25 @@
+<div class="container-fluid">
+<h3>Treinos</h3>
+	<div class="panel-body">
+		<div class="dataTable_wrapper">
+			<table class="table table-bordered" id="table-usuarios">
+				<thead>
+					<tr>
+						<td>Data entrega</td>
+						<td>Treino</td>
+						<td>Plano</td>
+						<td>Sessão</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="treino in TreinoCtrl.treinos" class="odd gradeX">
+						<td>{{treino.data_entrega}}</td>
+						<td>{{treino.modelo.titulo}}</td>
+						<td>{{treino.plano.titulo}}</td>
+						<td>{{treino.sessao}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

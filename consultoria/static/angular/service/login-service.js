@@ -85,10 +85,10 @@
 			if (response.data.auth) {
 				$rootScope.session = true;
 				logged().then(function(){
-					if(_usuario.grupos[0]['nome'] == "cliente"){
-						$state.go("app.consultar");
+					if(_usuario.grupos[0]['nome'] == "admin"){
+						$state.go("admin.treino");
 					} else {
-						$state.go("admin.consultar");
+						$state.go("app.treino");
 					}					
 				})
 				return response.data;

@@ -1,0 +1,35 @@
+<div class="container-fluid">
+<h3>Montagem de plano</h3>
+	<div class="input-group">
+		<input class="form-control" type="text" ng-model="PlanoCtrl.filtroPlano">
+	</div>
+	<button class="btn btn-success botaoNovo" type="button" ng-click="PlanoCtrl.modalPlano(null)">
+			<span class="glyphicon glyphicon-plus"></span> Plano
+	</button>
+	<div class="panel-body">
+		<div class="dataTable_wrapper">
+			<table class="table table-bordered" id="table-usuarios">
+				<thead>
+					<tr>
+						<td>Titulo</td>
+						<td>Nº Treinos</td>
+						<td>Valor</td>
+						<td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="plano in PlanoCtrl.planos | filter: PlanoCtrl.filtroPlano">
+						<td>{{plano.titulo}}</td>
+						<td>{{plano.n_treinos}}</td>
+						<td>{{plano.valor}}</td>
+						<td class="col-md-1">
+							<button class="btn btn-primary btn-xs" ng-click="PlanoCtrl.modalPlano(instituicao)">
+								<spam class="glyphicon glyphicon-pencil"></spam>
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

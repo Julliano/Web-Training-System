@@ -1,0 +1,31 @@
+<div class="container-fluid">
+<h3>Montagem de treinos</h3>
+	<div class="input-group">
+		<input class="form-control" type="text" ng-model="TreinoCtrl.filtroUsuario">
+	</div>
+	<div class="panel-body">
+		<div class="dataTable_wrapper">
+			<table class="table table-bordered" id="table-usuarios">
+				<thead>
+					<tr>
+						<td>Previsao</td>
+						<td>Cliente</td>
+						<td>Email</td>
+						<td>Pedido</td>
+						<td>Sessão</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="treino in TreinoCtrl.usuarios | filter:TreinoCtrl.filtroUsuario" ng-class="{'usuario-inativo':!usuario.ativo}"
+					 class="odd gradeX" ng-click="TreinoCtrl.selecionarUsuario(usuario)">
+						<td>{{treino.previsao}}</td>
+						<td>{{treino.plano.usuario.nome}}</td>
+						<td>{{treino.plano.usuario.email}}</td>
+						<td>{{treino.id}}</td>
+						<td>{{treino.sessao}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

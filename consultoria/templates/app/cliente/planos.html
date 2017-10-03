@@ -1,0 +1,25 @@
+<div class="container-fluid">
+<h3>Planos adquiridos</h3>
+	<div class="panel-body">
+		<div class="dataTable_wrapper">
+			<table class="table table-bordered" id="table-usuarios">
+				<thead>
+					<tr>
+						<td>Data aquisição</td>
+						<td>Descrição</td>
+						<td>Valor</td>
+						<td>Status</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="plano in PlanoCtrl.planos" class="odd gradeX">
+						<td>{{plano.data_compra}}</td>
+						<td>{{plano.titulo}}</td>
+						<td>{{plano.valor}}</td>
+						<td>{{plano.pagamento}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

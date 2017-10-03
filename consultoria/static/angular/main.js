@@ -18,7 +18,7 @@
 		var session = function(LoginService, $stateParams, $state) {
 			return LoginService.logged().then(function(response) {				
 				return response;
-				$state.go("app.conta");
+//				$state.go("app.conta");
 			}, function(response) {
 				console.log(response)
 				return false;
@@ -59,13 +59,13 @@
 		}).state('app.planos', {
 			url : '/planos',
 			templateUrl : '/app/cliente/planos.html',
-			controller : 'ClientePlanoController',
-			controllerAs : 'CliPlanCtrl'
+			controller : 'PlanoController',
+			controllerAs : 'PlanoCtrl'
 		}).state('app.treinos', {
 			url : '/treinos',
 			templateUrl : '/app/cliente/treinos.html',
-			controller : 'ClienteTreinoController',
-			controllerAs : 'CliTreCtrl'
+			controller : 'TreinoController',
+			controllerAs : 'TreinoCtrl'
 		}).state('app.duvidas', {
 			url : '/duvidas',
 			templateUrl : '/app/cliente/duvidas.html',
@@ -87,6 +87,16 @@
 			templateUrl : '/app/admin/usuarios.html',
 			controller : 'AdminUsuarioController',
 			controllerAs : 'UsuarioCtrl'
+		}).state('admin.treino', {
+			url : '/treinos',
+			templateUrl : '/app/admin/treinos.html',
+			controller : 'TreinoAdminController',
+			controllerAs : 'TreinoCtrl'
+		}).state('admin.plano', {
+			url : '/planos',
+			templateUrl : '/app/admin/planos.html',
+			controller : 'PlanoAdminController',
+			controllerAs : 'PlanoCtrl'
 		});
 	}
 

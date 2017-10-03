@@ -14,7 +14,9 @@ class Plano(db.Model):
     n_treinos = db.Column(db.Float)  
     valor = db.Column(db.Float)
     treinos = db.relationship("Treino", cascade="save-update, merge, delete", backref="plano")
+    pagamento = db.Column(db.Boolean, nullable=False, default=False)
     usuario_id = db.Column(db.Integer, db.ForeignKey("usuario.id"), nullable=False)
+    formulario_id = db.Column(db.Integer, db.ForeignKey("formulario.id"), nullable=False)
     
 
 class PlanoSchema(BaseSchema):

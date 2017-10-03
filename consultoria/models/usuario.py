@@ -31,7 +31,6 @@ class Usuario(db.Model):
     uf = db.Column(db.String(45), nullable=False)
     senha = db.Column(db.String(130), nullable=False)
     logado = db.Column(db.Boolean, nullable=False, default=False)
-    formulario_id = db.Column(db.Integer, db.ForeignKey("formulario.id"), nullable=False)
     grupo_id = db.Column(db.Integer, db.ForeignKey("grupo.id"), nullable=False)
     planos = db.relationship("Plano", cascade="save-update, merge, delete", backref="usuario")
 
@@ -105,6 +104,8 @@ class UsuarioSchema(BaseSchema):
         model = Usuario
         load_only = ("senha",)
         exclude = ("senhaAtual", "novaSenha")
+
+    grupos = ma.Nested("GrupoSchema", many=True)
     
     @pre_load
     def pre_load(self, data):

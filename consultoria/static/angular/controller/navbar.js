@@ -3,17 +3,12 @@
 
 	angular.module("consultoria").controller("NavbarController", NavbarController);
 
-	NavbarController.$inject = ["filterFilter", "$state", "LoginService", "$http", "$scope", "OperacaoService"];
+	NavbarController.$inject = ["$state", "LoginService", "$http", "$scope"];
 
 	/** @ngInject */
-	function NavbarController(filterFilter, $state, LoginService, $http, $scope, OperacaoService) {
+	function NavbarController($state, LoginService, $http, $scope) {
 		var vm = this;
 		vm.usuario = LoginService.getUsuario();
-		vm.collapse = true;
-		vm.isAvaliar = isAvaliar;
-		vm.count = 1;
-		vm.pesquisa = pesquisa;
-		vm.pesquisaApp = pesquisaApp;
 
 		vm.login = function(passwd) {
 			LoginService.login(vm.email, passwd)
@@ -23,39 +18,28 @@
 			LoginService.logout()
 		}
 		
-		vm.usuario_observer = usuario_observer;
+//		vm.usuario_observer = usuario_observer;
 		vm.atualizaTotalPendencias = getTotalPendencias;
 		
 		init();
 
 		function init() {			
-			LoginService.addObserver('total_change',usuario_observer);
+//			LoginService.addObserver('total_change',usuario_observer);
 			if($state.includes('admin')){
-				getTotalPendencias();
-				OperacaoService.addObserver(getTotalPendencias)
+//				getTotalDuvidas();
+//				OperacaoService.addObserver(getTotalDuvidas)
 			}
 		}
 		
 		function getTotalPendencias(){			
-			$http.get('/contar_pendencias/').then(function(response){					
-				vm.adminTotalPendencias = response.data
+			$http.get('/contar_duvidas/').then(function(response){					
+				vm.adminTotalDuvidas = response.data
 			})
 		}
-		function usuario_observer(total){
-			vm.usuario.total_notificacoes = total; 
-		}
-
-		function isAvaliar() {
-			return $state.current.name == "admin.relatorios";
-		}
 		
-		function pesquisa() { 
-			return $state.current.name == "admin.consultar"
-		}
+//		function usuario_observer(total){
+//			vm.usuario.total_notificacoes = total; 
+//		}
 
-		function pesquisaApp() { 
-			return $state.current.name == "app.consultar"
-		}
-		
 	}
 })();

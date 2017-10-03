@@ -1,55 +1,26 @@
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	<div class="container-fluid">
 		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" ng-click="NavbarCtrl.collapse = !NavbarCtrl.collapse">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<span class="text-highlight font-days navbar-brand">SiMFaz</span>
+			<span class="text-highlight font-days navbar-brand">Julliano</span>
 		</div>
-		<div uib-collapse="NavbarCtrl.collapse" class="navbar-collapse collapse" >
-			<ul class="nav navbar-nav" style="margin-left: 10px;">
-				<li ui-sref-active="active" ng-show="NavbarCtrl.pesquisaApp()" ><a ui-sref="app.consultar"><span class="glyphicon glyphicon-search"></span>Consultar</a></li>				
-				<li ui-sref-active="active" ng-hide="NavbarCtrl.pesquisaApp()"><a ui-sref="app.consultar"><span class="glyphicon glyphicon-search"></span>Voltar</a></li>		
-				<li ui-sref-active="active" uib-dropdown ng-show="NavbarCtrl.usuario.instituicao.nome != 'Banco BBM S/A'">
-					<a uib-dropdown-toggle data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-list-alt"></span>Cadastrar Operação<span class="caret"></span></a>
-					<ul uib-dropdown-menu role="menu" aria-labelledby="single-button">
-						<li><a ui-sref="app.cadastrarOpMonitoramento">Monitoramento</a></li>
-						<li class="divider"></li>
-						<li><a ui-sref="app.cadastrarOpBase">Diagnóstico</a></li>
-					</ul>
-				</li>
+		<div uib-collapse="NavbarCtrl.collapse" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav" style="margin-left: 10px;">				
+				<li ui-sref-active="active" ><a ui-sref="app.plano">Planos</a></li>				
+				<li ui-sref-active="active"><a ui-sref="app.treino">Treinos</a></li>				
+				<li role="presentation"><a ui-sref="app.duvida">Dúvidas</a></li>
+				<li ui-sref-active="active"><a ui-sref="app.duvidasFreq">Dúvidas frequentes</a></li>
 			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li>
-					<a>
-						<span class="glyphicon glyphicon-bell" title="{{NavbarCtrl.pendenciaCliente.count}} Novo(s) relatório(s) cadastrado(s)"></span>
-						<span ng-show="NavbarCtrl.usuario.total_notificacoes > 0" class="badge" title="{{NavbarCtrl.usuario.total_notificacoes}} Novo(s) relatório(s) cadastrado(s) ">{{NavbarCtrl.usuario.total_notificacoes}}</span>
-					</a>
-				</li>
-				{% if analista %}
-				<li uib-dropdown>
-					<a uib-dropdown-toggle data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-						<span class="fa fa-eye"></span>Ver como<span class="caret"></span>
-					</a>
-					<ul uib-dropdown-menu role="menu" aria-labelledby="single-button">
-						<li><a ui-sref="admin.consultar">Analista</a></li>
-						<li class="divider"></li>
-						<li><a ui-sref="app.consultar">Cliente</a></li>
-					</ul> 
-				</li>
-				{% endif %}				
+			<ul class="nav navbar-nav navbar-right" role="tablist">
 				<li uib-dropdown uib-dropdown-toggle>
-					<a href="">{{NavbarCtrl.usuario.nome}} {{NavbarCtrl.usuario.sobrenome}} <span class="caret"></span></a>
+					<a href=""><span class="fa fa-user"></span>{{NavbarCtrl.usuario.nome}}<span class="caret"></span></a>
 					<ul uib-dropdown-menu>
 						<li><a ui-sref="app.conta"><span class="glyphicon glyphicon-cog"></span>Conta</a></li>
 						<li class="divider"></li>
 						<li><a href="" ng-click="NavbarCtrl.logout()"><span class="glyphicon glyphicon-log-out"></span>Sair</a></li>
 					</ul>
-				</li>				
+				</li>
 			</ul>
 		</div>
-	</div>	
+	</div>
 </div>
+ 
