@@ -1,12 +1,12 @@
 (function() {
 	"use strict";
 
-	angular.module("consultoria").controller("TreinoController", TreinoController);
+	angular.module("consultoria").controller("ClienteTreinoController", ClienteTreinoController);
 
-	TreinoController.$inject = [ "$http", "LoginService", "Notification" ];
+	ClienteTreinoController.$inject = [ "$http", "LoginService", "Notification" ];
 
 	/* @ngInject */
-	function TreinoController($http, LoginService, Notification) {
+	function ClienteTreinoController($http, LoginService, Notification) {
 		var vm = this;
 		vm.usuario = LoginService.getUsuario();
 

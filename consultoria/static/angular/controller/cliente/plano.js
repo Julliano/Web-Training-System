@@ -1,12 +1,12 @@
 (function() {
 	"use strict";
 
-	angular.module("consultoria").controller("PlanoController", PlanoController);
+	angular.module("consultoria").controller("ClientePlanoController", ClientePlanoController);
 
-	PlanoController.$inject = [ "$http", "LoginService", "Notification" ];
+	ClientePlanoController.$inject = [ "$http", "LoginService", "Notification" ];
 
 	/* @ngInject */
-	function PlanoController($http, LoginService, Notification) {
+	function ClientePlanoController($http, LoginService, Notification) {
 		var vm = this;
 		vm.usuario = LoginService.getUsuario();
 

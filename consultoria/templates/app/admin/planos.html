@@ -1,35 +1,33 @@
-<div class="container-fluid">
-<h3>Montagem de plano</h3>
-	<div class="input-group">
-		<input class="form-control" type="text" ng-model="PlanoCtrl.filtroPlano">
+<p class="tituloPagina">MONTAGEM DE PLANOS</p>
+<div class="container">
+	<div class="input-group" style="padding-bottom: 20px;">
+		<input class="form-control" type="text" ng-model="PlanoAdmCtrl.filtroPlano">
 	</div>
-	<button class="btn btn-success botaoNovo" type="button" ng-click="PlanoCtrl.modalPlano(null)">
+	<button class="btn btn-success botaoNovo" type="button" ng-click="PlanoAdmCtrl.modalPlano(null)">
 			<span class="glyphicon glyphicon-plus"></span> Plano
 	</button>
-	<div class="panel-body">
-		<div class="dataTable_wrapper">
-			<table class="table table-bordered" id="table-usuarios">
-				<thead>
-					<tr>
-						<td>Titulo</td>
-						<td>Nº Treinos</td>
-						<td>Valor</td>
-						<td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="plano in PlanoCtrl.planos | filter: PlanoCtrl.filtroPlano">
-						<td>{{plano.titulo}}</td>
-						<td>{{plano.n_treinos}}</td>
-						<td>{{plano.valor}}</td>
-						<td class="col-md-1">
-							<button class="btn btn-primary btn-xs" ng-click="PlanoCtrl.modalPlano(instituicao)">
-								<spam class="glyphicon glyphicon-pencil"></spam>
-							</button>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+	<div class="fundoBranco">
+		<table class="table" id="table-usuarios">
+			<thead>
+				<tr>
+					<th class="col-md-6">Titulo</th>
+					<th class="col-md-2">Nº Treinos</th>
+					<th class="col-md-2">Valor</th>
+					<th class="col-md-2">Editar</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="plano in PlanoAdmCtrl.planos | filter: PlanoAdmCtrl.filtroPlano">
+					<th>{{plano.titulo}}</th>
+					<th>{{plano.n_treinos}}</th>
+					<th>{{plano.valor}}</th>
+					<th>
+						<button class="btn btn-primary btn-xs" ng-click="PlanoAdmCtrl.modalPlano(instituicao)">
+							<spam class="glyphicon glyphicon-pencil"></spam>
+						</button>
+					</th>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 </div>

@@ -59,13 +59,13 @@
 		}).state('app.planos', {
 			url : '/planos',
 			templateUrl : '/app/cliente/planos.html',
-			controller : 'PlanoController',
-			controllerAs : 'PlanoCtrl'
+			controller : 'ClientePlanoController',
+			controllerAs : 'CliPlanoCtrl'
 		}).state('app.treinos', {
 			url : '/treinos',
 			templateUrl : '/app/cliente/treinos.html',
-			controller : 'TreinoController',
-			controllerAs : 'TreinoCtrl'
+			controller : 'ClienteTreinoController',
+			controllerAs : 'CliTreinoCtrl'
 		}).state('app.duvidas', {
 			url : '/duvidas',
 			templateUrl : '/app/cliente/duvidas.html',
@@ -86,17 +86,27 @@
 			url : '/usuarios',
 			templateUrl : '/app/admin/usuarios.html',
 			controller : 'AdminUsuarioController',
-			controllerAs : 'UsuarioCtrl'
+			controllerAs : 'UsuarioAdmCtrl'
 		}).state('admin.treino', {
 			url : '/treinos',
 			templateUrl : '/app/admin/treinos.html',
 			controller : 'TreinoAdminController',
-			controllerAs : 'TreinoCtrl'
+			controllerAs : 'TreinoAdmCtrl'
 		}).state('admin.plano', {
 			url : '/planos',
 			templateUrl : '/app/admin/planos.html',
 			controller : 'PlanoAdminController',
-			controllerAs : 'PlanoCtrl'
+			controllerAs : 'PlanoAdmCtrl'
+		}).state('admin.duvida', {
+			url : '/duvidas',
+			templateUrl : '/app/admin/duvidas.html',
+			controller : 'DuvidaAdminController',
+			controllerAs : 'DuvidaAdmCtrl'
+		}).state('admin.modelo', {
+			url : '/modelos',
+			templateUrl : '/app/admin/modelos.html',
+			controller : 'ModeloAdminController',
+			controllerAs : 'ModeloAdmCtrl'
 		});
 	}
 

@@ -1,31 +1,29 @@
-<div class="container-fluid">
-<h3>Montagem de treinos</h3>
-	<div class="input-group">
-		<input class="form-control" type="text" ng-model="TreinoCtrl.filtroUsuario">
+<p class="tituloPagina">ENTREGA DE TREINOS</p>
+<div class="container">
+	<div class="input-group" style="padding-bottom: 20px;">
+		<input class="form-control" type="text" ng-model="TreinoAdmCtrl.filtroUsuario">
 	</div>
-	<div class="panel-body">
-		<div class="dataTable_wrapper">
-			<table class="table table-bordered" id="table-usuarios">
-				<thead>
-					<tr>
-						<td>Previsao</td>
-						<td>Cliente</td>
-						<td>Email</td>
-						<td>Pedido</td>
-						<td>Sessão</td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="treino in TreinoCtrl.usuarios | filter:TreinoCtrl.filtroUsuario" ng-class="{'usuario-inativo':!usuario.ativo}"
-					 class="odd gradeX" ng-click="TreinoCtrl.selecionarUsuario(usuario)">
-						<td>{{treino.previsao}}</td>
-						<td>{{treino.plano.usuario.nome}}</td>
-						<td>{{treino.plano.usuario.email}}</td>
-						<td>{{treino.id}}</td>
-						<td>{{treino.sessao}}</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+	<div class="fundoBranco">
+		<table class="table" id="table-usuarios">
+			<thead>
+				<tr>
+					<th class="col-md-2">Previsao</th>
+					<th class="col-md-3">Cliente</th>
+					<th class="col-md-3">Email</th>
+					<th class="col-md-3">Pedido</th>
+					<th class="col-md-1">Sessão</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="treino in TreinoAdmCtrl.usuarios | filter:TreinoAdmCtrl.filtroUsuario" ng-class="{'usuario-inativo':!usuario.ativo}"
+				 class="odd gradeX" ng-click="TreinoAdmCtrl.selecionarUsuario(usuario)">
+					<th>{{treino.previsao}}</th>
+					<th>{{treino.plano.usuario.nome}}</th>
+					<th>{{treino.plano.usuario.email}}</th>
+					<th>{{treino.id}}</th>
+					<th>{{treino.sessao}}</th>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 </div>

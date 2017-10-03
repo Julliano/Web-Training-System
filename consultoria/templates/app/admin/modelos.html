@@ -1,0 +1,25 @@
+<p class="tituloPagina">MONTAGEM DE MODELOS</p>
+<div class="container">
+	<div class="input-group" style="padding-bottom: 20px;">
+		<input class="form-control" type="text" ng-model="ModeloAdmCtrl.filtroModelo">
+	</div>
+	<button class="btn btn-success botaoNovo" type="button" ng-click="ModeloAdmCtrl.modalModelo(null)">
+			<span class="glyphicon glyphicon-plus"></span> Modelo
+	</button>
+	<div class="fundoBranco">
+		<table class="table" id="table-usuarios">
+			<thead>
+				<tr>
+					<th class="col-md-4">Título</th>
+					<th class="col-md-8">Descriminação</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="modelo in ModeloAdmCtrl.modelos | filter:ModeloAdmCtrl.filtroModelo">
+					<th>{{modelo.titulo}}</th>
+					<th>{{modelo.explicacao}}</th>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

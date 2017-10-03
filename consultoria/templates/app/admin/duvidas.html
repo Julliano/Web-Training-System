@@ -1,0 +1,24 @@
+<p class="tituloPagina">DÚVIDAS DOS CLIENTES</p>
+<div class="container">
+	<div class="input-group" style="padding-bottom: 20px;">
+		<input class="form-control" type="text" ng-model="DuvidaAdmCtrl.filtroDuvida">
+	</div>
+	<div class="fundoBranco">
+		<table class="table table-striped" id="table-usuarios">
+			<thead>
+				<tr>
+					<th class="col-md-5">Assunto</th>
+					<th class="col-md-4">Descrição</th>
+					<th class="col-md-3">Data</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="duvida in DuvidaAdmCtrl.duvidas | filter:DuvidaAdmCtrl.filtroDuvida">
+					<th>{{duvida.titulo}}</th>
+					<th>{{duvida.descricao}}</th>
+					<th>{{duvida.data}}</th>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
