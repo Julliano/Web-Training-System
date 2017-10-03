@@ -22,6 +22,7 @@ class Usuario(db.Model):
     altura = db.Column(db.String(45), nullable=False)
     sexo = db.Column(db.Boolean, nullable=False, default=False)
     cpf = db.Column(db.String(45))
+    idade = db.Column(db.String(5))
     email = db.Column(db.String(60), nullable=False, unique=True)
     endereco = db.Column(db.String(155), nullable=False)
     complemento = db.Column(db.String(155), nullable=False)

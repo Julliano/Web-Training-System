@@ -1,0 +1,30 @@
+<p class="tituloPagina">USUÁRIOS</p>
+<div class="container">
+	<div class="input-group" style="padding-bottom: 20px;">
+		<input class="form-control" type="text" ng-model="UsuarioAdmCtrl.filtroUsuario">
+	</div>
+	<div class="fundoBranco">
+		<table class="table table-striped" id="table-usuarios">
+			<thead>
+				<tr>
+					<th class="col-md-2">Nome</th>
+					<th class="col-md-3">Sobrenome</th>
+					<th class="col-md-3">Email</th>
+					<th class="col-md-2">Cidade</th>
+					<th class="col-md-1">UF</th>
+					<th class="col-md-1">Idade</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="usuario in UsuarioAdmCtrl.usuarios | filter:UsuarioAdmCtrl.filtroUsuario">
+					<th>{{usuario.nome}}</th>
+					<th>{{usuario.sobrenome}}</th>
+					<th>{{usuario.email}}</th>
+					<th>{{usuario.cidade}}</th>
+					<th>{{usuario.uf}}</th>
+					<th>{{usuario.idade}}</th>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

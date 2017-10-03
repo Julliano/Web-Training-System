@@ -1,7 +1,7 @@
 <p class="tituloPagina">ENTREGA DE TREINOS</p>
 <div class="container">
 	<div class="input-group" style="padding-bottom: 20px;">
-		<input class="form-control" type="text" ng-model="TreinoAdmCtrl.filtroUsuario">
+		<input class="form-control" type="text" ng-model="TreinoAdmCtrl.filtroTreino">
 	</div>
 	<div class="fundoBranco">
 		<table class="table" id="table-usuarios">
@@ -15,8 +15,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="treino in TreinoAdmCtrl.usuarios | filter:TreinoAdmCtrl.filtroUsuario" ng-class="{'usuario-inativo':!usuario.ativo}"
-				 class="odd gradeX" ng-click="TreinoAdmCtrl.selecionarUsuario(usuario)">
+				<tr ng-repeat="treino in TreinoAdmCtrl.treinos | filter:TreinoAdmCtrl.filtroTreino">
 					<th>{{treino.previsao}}</th>
 					<th>{{treino.plano.usuario.nome}}</th>
 					<th>{{treino.plano.usuario.email}}</th>

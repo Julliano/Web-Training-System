@@ -5,9 +5,9 @@
 			AdminUsuarioController)
 
 	/** @ngInject */
-	AdminUsuarioController.$inject = [ "$http", "$uibModal", "InstituicaoService", "Notification" ];
+	AdminUsuarioController.$inject = [ "$http", "$uibModal", "Notification" ];
 
-	function AdminUsuarioController($http, $uibModal, InstituicaoService, Notification) {
+	function AdminUsuarioController($http, $uibModal, Notification) {
 		var configModalConfirma = configModalConfirma();
 		var vm = this;
 		vm.listar = listar;
@@ -51,7 +51,7 @@
 									return response.data
 								})
 							},
-							instituicoes : InstituicaoService.listar()
+//							instituicoes : InstituicaoService.listar()
 						}
 					});
 

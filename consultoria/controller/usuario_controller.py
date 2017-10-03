@@ -23,7 +23,7 @@ class UsuarioController:
         
     @admin_permission.require(http_exception=403)
     def listar(self):
-        schema = UsuarioSchema(only=('id','nome', 'sobrenome','email','instituicao', 'grupos'))
+        schema = UsuarioSchema(only=('id','nome', 'sobrenome','email','grupos'))
         lista = Usuario().query.filter().all()        
         return schema.jsonify(lista, True)
     
