@@ -49,6 +49,11 @@
 		}).state('index.start', {
 			url : '/start',
 			templateUrl : '/templates/presentation/start.html'
+		}).state('cadastrar', {
+			url : '/novoUsuario',
+			templateUrl : '/templates/app/cadastrar.html',
+			controller : 'CadastrarController',
+			controllerAs : 'CadastrarCtrl'
 		}).state('app', {
 			url : '/app',
 			templateUrl : '/app/cliente/base.html',
