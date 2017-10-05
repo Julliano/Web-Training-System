@@ -1,0 +1,111 @@
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="container-fluid container">
+		<div class="navbar-header">
+			<span class="text-highlight font-days navbar-brand">Julliano</span>
+		</div>
+	</div>
+</div>
+<p class="tituloPagina" style="margin-top: 50px;">CADASTRO DE USUÁRIO</p>
+<form novalidate class="form" name="cadastroForm">
+	<div class="container fundoBranco">
+		<div class="row">
+			<div class="col-md-3">
+				<label style="font-weight: 500;">Nome: *</label>
+				<input type="text" class="form-control form-group" ng-model="CadastrarCtrl.nome" required>
+			</div>
+			<div class="col-md-3">
+				<label style="font-weight: 500;">Sobrenome: *</label>
+				<input type="text" class="form-control form-group" ng-model="CadastrarCtrl.sobrenome" required>
+			</div>
+			<div class="col-md-3">
+				<label style="font-weight: 500;">CPF: *</label>
+				<input type="number" class="form-control form-group" ng-model="CadastrarCtrl.cpf" required>
+			</div>
+			<div class="col-md-3">
+				<label class="col-md-12 col-lg-12" style="font-weight: 500;">Sexo *</label>
+				<div>
+					<label class="col-md-3 col-lg-3" style="font-weight: 500;">
+				  		<input type="radio" ng-model="CadastrarCtrl.sexo" value="false" required> F
+					</label>
+					<label class="col-md-3 col-lg-3 row" style="font-weight: 500;">
+				  		<input type="radio" ng-model="CadastrarCtrl.sexo" value="true" required> M
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<label style="font-weight: 500;">Altura: *</label>
+				<input type="number" class="form-control form-group" ng-model="CadastrarCtrl.altura" required>
+			</div>
+			<div class="col-md-3">
+				<label style="font-weight: 500;">Nascimento: *</label>
+				<input type="text" class="form-control form-group" ng-model="CadastrarCtrl.nascimento" required>
+			</div>
+			<div class="col-md-3">
+				<label style="font-weight: 500;">Telefone: *</label>
+				<input type="text" class="form-control form-group" ng-model="CadastrarCtrl.telefone" required>
+			</div>
+			<div class="col-md-3">
+				<label class="col-md-12 col-lg-12" style="font-weight: 500;">Reside no Brasil</label>
+				<div>
+					<label class="col-md-4 col-lg-4" style="font-weight: 500;">
+				  		<input type="radio" ng-model="CadastrarCtrl.brasil" value="true">				  		Sim
+					</label>
+					<label class="col-md-4 col-lg-4 row" style="font-weight: 500;">
+				  		<input type="radio" ng-model="CadastrarCtrl.brasil" value="false">				  		Não
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<label style="font-weight: 500;">CEP:</label>
+				<input type="number" class="form-control form-group" ng-model="CadastrarCtrl.cep">
+			</div>
+			<div class="col-md-5">
+				<label style="font-weight: 500;">Endereço: *</label>
+				<input type="text" class="form-control form-group" ng-model="CadastrarCtrl.endereco" required>
+			</div>
+			<div class="col-md-4">
+				<label style="font-weight: 500;">Complemento: *</label>
+				<input type="text" class="form-control form-group" ng-model="CadastrarCtrl.complemento" required>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<label style="font-weight: 500;">Bairro: *</label>
+				<input type="text" class="form-control form-group" ng-model="CadastrarCtrl.bairro" required>
+			</div>
+			<div class="col-md-4">
+				<label style="font-weight: 500;">Cidade: *</label>
+				<input type="text" class="form-control form-group" ng-model="CadastrarCtrl.cidade" required>
+			</div>
+			<div class="col-md-4">
+				<label style="font-weight: 500;">Estado: *</label>
+				<select class="form-control" ng-options="estado for estado in CadastrarCtrl.estados" ng-model="CadastrarCtrl.uf" required></select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<label style="font-weight: 500;">Email: *</label>
+				<input type="text" class="form-control form-group" ng-model="CadastrarCtrl.email" required>
+			</div>
+			<div class="col-md-3">
+				<label style="font-weight: 500;">Senha: *</label>
+				<input type="password" class="form-control form-group" ng-model="CadastrarCtrl.senha" required>
+			</div>
+			<div class="col-md-3">
+				<label style="font-weight: 500;">Confirmar senha: *</label>
+				<input type="password" class="form-control" ng-model="confirmaSenha" compara-com="CadastrarCtrl.senha" compara-senha required>
+			</div>
+		</div>
+		<div>
+			<input type="checkbox" ng-model="CadastrarCtrl.termo" value="true" required> Eu li e concordo com os termos desse <a style="color: blue;text-decoration: underline;">contrato</a>.
+		</div>q
+		<div style="float: right;">
+			<button type="submit" ui-sref="index.start" class="btn btn-primary">Voltar</button>
+			<button type="submit" ng-click="CadastrarCtrl.salvar()" ng-disabled="!cadastroForm.$valid" class="btn btn-success">Cadastrar</button>
+		</div>
+	</div>
+</form>

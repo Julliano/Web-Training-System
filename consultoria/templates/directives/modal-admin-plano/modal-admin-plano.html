@@ -1,0 +1,28 @@
+<div class="fundo-branco container-fluid" cg-busy="ModalAdmPlanoCtrl.submitPromise">
+<div class="modal-header">
+	<button type="button" class="close" aria-label="Close" ng-click="ModalAdmPlanoCtrl.cancelar()">
+		<span aria-hidden>&times;</span>
+	</button>
+	<h3 class="modal-title">Cadastro de Plano</h3>
+</div>
+<form novalidate class="form" name="adminPlanoForm">
+	<div class="modal-body">
+		<div class="form-group">
+			<label class="text-form">Título</label>
+			<input class="form-control" type="text" ng-model="ModalAdmPlanoCtrl.plano.titulo" required/>
+		</div>
+		<div class="form-group">
+			<label class="text-form">Nº de Treinos</label>			
+			<input class="form-control" type="number" ng-model="ModalAdmPlanoCtrl.plano.n_treino" required/>
+		</div>
+		<div class="form-group">
+			<label class="text-form">Valor</label>
+			<input class="form-control" type="number" step="0.1" ng-model="ModalAdmPlanoCtrl.plano.valor" required/>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-success" type="submit" ng-click="ModalAdmPlanoCtrl.salvar()" ng-disabled="!adminPlanoForm.$valid">Salvar</button>
+		<button class="btn btn-primary" type="button" ng-click="ModalAdmPlanoCtrl.cancelar()">Cancelar</button>
+	</div>
+</form>
+</div> 

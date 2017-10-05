@@ -16,6 +16,7 @@ from werkzeug import redirect
 from ..controller.grupo_controller import GrupoController
 from ..controller.session_controller import SessionController
 from ..controller.usuario_controller import UsuarioController
+from ..controller.plano_controller import PlanoController
 from ..models.usuario import Usuario, UsuarioSchema
 from ..models.duvida import Duvida
 from ..models.formulario import Formulario
@@ -126,6 +127,14 @@ def admin_usuarios(id=None):
     if request.method == "PUT":
         return UsuarioController().admin_editar(request.json or request.form)
     return crud_request(UsuarioController(), id)
+
+@consultoria_app.route('/admin/planos/', methods=['GET', "POST", "PUT", "DELETE"])
+@consultoria_app.route('/admin/planos/<int:id>', methods=["GET", "DELETE"])
+@admin_permission.require(http_exception=403)
+def admin_planos(id=None):
+    if request.method == "PUT":
+        return PlanoController().admin_editar(request.json or request.form)
+    return crud_request(PlanoController(), id)
 
 @consultoria_app.route('/contar_pendencias/')
 def pendencia():
