@@ -22,7 +22,7 @@ class PlanoController:
         
     @admin_permission.require(http_exception=403)
     def listar(self):
-        schema = PlanoSchema(only=('id','nome', 'sobrenome','email','grupos'))
+        schema = PlanoSchema()
         lista = Plano().query.filter().all()        
         return schema.jsonify(lista, True)
     
@@ -36,15 +36,7 @@ class PlanoController:
         if planoSchema.errors.__len__() > 0:
             return make_response(planoSchema.errors[0], 500)
         plano = planoSchema.data        
-        if 'senhaAtual' not in data:
-            return make_response("Informe a senha atual", 500)        
-        if plano.is_correct_passwd(data['senhaAtual']) or plano.is_correct_crypt_passwd(data['senhaAtual']):
-            if 'novaSenha' in data:
-                plano.senha = plano.hash_pass(data['novaSenha'])
-            db.session.add(plano)
-            db.session.commit()                
-            return make_response("Informações alteradas com sucesso", 200)
-        return make_response("Senha atual incorreta",500)
+        return make_response("Informações alteradas com sucesso", 200)
     
     @admin_permission.require(http_exception=403)
     def admin_editar(self, data):
@@ -52,7 +44,6 @@ class PlanoController:
         if planoSchema.errors.__len__() > 0:
             return make_response(planoSchema.errors[0], 500)        
         plano = planoSchema.data
-        self.handle_grupos(plano,data['grupoSelecionado'])
         db.session.add(plano)
         db.session.commit()                
         return make_response("Informações alteradas com sucesso", 200)

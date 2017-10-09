@@ -17,6 +17,7 @@ from ..controller.grupo_controller import GrupoController
 from ..controller.session_controller import SessionController
 from ..controller.usuario_controller import UsuarioController
 from ..controller.plano_controller import PlanoController
+from ..controller.duvidas_controller import DuvidasController
 from ..models.usuario import Usuario, UsuarioSchema
 from ..models.duvida import Duvida
 from ..models.formulario import Formulario
@@ -24,6 +25,9 @@ from ..models.grupo import Grupo
 from ..models.modelo import ModeloTreino
 from ..models.plano import Plano
 from ..models.treino import Treino
+from ..models.pagamento import Pagamento
+from ..models.resposta import Resposta
+from ..models.venda import Venda
 from ..modules import login_manager, db, admin_permission
 
 
@@ -66,12 +70,11 @@ def unauthorized(arg=None):
 def hello_user(): 
     return render_template('index.html')
 
-
-@consultoria_app.route('/pdf/<int:id>', methods=['GET','POST'])
-def get_pdf(id): 
-    if request.method == "POST":
-        return RelatorioController().upload_pdf(id)
-    return RelatorioController().get_pdf(id)    
+# @consultoria_app.route('/pdf/<int:id>', methods=['GET','POST'])
+# def get_pdf(id): 
+#     if request.method == "POST":
+#         return RelatorioController().upload_pdf(id)
+#     return RelatorioController().get_pdf(id)    
     
 @consultoria_app.route('/loged')
 def loged():   
@@ -103,7 +106,6 @@ def login():
         return controller.login(request.json)
     return redirect('/#/index/signin')
     
-
 @consultoria_app.route('/logout')
 @login_required
 def logout():
@@ -127,6 +129,34 @@ def admin_usuarios(id=None):
     if request.method == "PUT":
         return UsuarioController().admin_editar(request.json or request.form)
     return crud_request(UsuarioController(), id)
+
+@consultoria_app.route('/admin/duvidas/', methods=['GET', "POST", "PUT", "DELETE"])
+@consultoria_app.route('/admin/duvidas/<int:id>', methods=["GET", "DELETE"])
+@admin_permission.require(http_exception=403)
+def admin_duvidas(id=None):
+    if request.method == "PUT":
+        return DuvidasController().admin_editar(request.json or request.form)
+    if request.method == "GET":
+        return DuvidasController().listar_admin()
+    return crud_request(DuvidasController(), id)
+
+@consultoria_app.route('/duvidas/', methods=['GET', "POST", "PUT"])
+@consultoria_app.route('/duvidas/<int:id>', methods=['GET', "POST", "PUT"])
+@login_required
+def duvidas(id=None):
+    return crud_request(DuvidasController(), id)
+
+# @consultoria_app.route('/resposta/', methods=['GET', "POST", "PUT"])
+# @consultoria_app.route('/resposta/<int:id>', methods=['GET', "POST", "PUT"])
+# @login_required
+# def resposta(id=None):
+#     return crud_request(DuvidasController(), id)
+
+@consultoria_app.route('/planos/', methods=['GET', "POST", "PUT", "DELETE"])
+@consultoria_app.route('/planos/<int:id>', methods=["GET", "DELETE"])
+@login_required
+def planos(id=None):
+    return crud_request(PlanoController(), id)
 
 @consultoria_app.route('/admin/planos/', methods=['GET', "POST", "PUT", "DELETE"])
 @consultoria_app.route('/admin/planos/<int:id>', methods=["GET", "DELETE"])

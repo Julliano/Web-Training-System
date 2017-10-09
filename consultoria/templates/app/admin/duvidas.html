@@ -7,16 +7,16 @@
 		<table class="table table-striped" id="table-usuarios">
 			<thead>
 				<tr>
-					<th class="col-md-5">Assunto</th>
-					<th class="col-md-4">Descrição</th>
-					<th class="col-md-3">Data</th>
+					<th class="col-md-3">Assunto</th>
+					<th class="col-md-7">Descrição</th>
+					<th class="col-md-2 text-center">Data</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="duvida in DuvidaAdmCtrl.duvidas | filter:DuvidaAdmCtrl.filtroDuvida">
-					<th>{{duvida.titulo}}</th>
-					<th>{{duvida.descricao}}</th>
-					<th>{{duvida.data}}</th>
+				<tr ng-repeat="duvida in DuvidaAdmCtrl.duvidas | filter:DuvidaAdmCtrl.filtroDuvida" ng-class="{'danger':duvida.status == 'pendente', 'success':duvida.status == 'ativa'}">
+					<td ng-click="DuvidaAdmCtrl.verDuvida(duvida.id)" style="white-space: nowrap;color:blue;">{{duvida.titulo}}</td>
+					<td style="white-space: nowrap;">{{duvida.descricao}}</td>
+					<td class="text-center">{{duvida.data}}</td>
 				</tr>
 			</tbody>
 		</table>

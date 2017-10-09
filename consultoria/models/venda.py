@@ -17,8 +17,8 @@ class Venda(db.Model):
     treinos = db.relationship("Treino", cascade="save-update, merge, delete", backref="plano")
     
 
-class PlanoSchema(BaseSchema):
+class VendaSchema(BaseSchema):
     class Meta(BaseSchema.Meta):
-        model = Plano
+        model = Venda
     
-    planos = ma.Nested("PlanoSchema", many=True)
+    vendas = ma.Nested("VendaSchema", many=True)

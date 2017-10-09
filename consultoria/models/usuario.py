@@ -9,7 +9,7 @@ from sqlalchemy import DateTime
 from ..models import BaseSchema
 from ..modules import db, ma
 from usuario_grupo import usuario_grupo
-from .plano import Plano
+from .venda import Venda
 from ..modules import admin_permission
 
 
@@ -35,7 +35,9 @@ class Usuario(db.Model):
     termo = db.Column(db.Boolean, nullable=False, default=False)
     logado = db.Column(db.Boolean, nullable=False, default=False)
     grupo_id = db.Column(db.Integer, db.ForeignKey("grupo.id"), nullable=False)
-    planos = db.relationship("Plano", cascade="save-update, merge, delete", backref="usuario")
+    duvida = db.relationship("Duvida", cascade="save-update, merge, delete", backref="usuario")
+    resposta = db.relationship("Resposta", cascade="save-update, merge, delete", backref="usuario")
+    vendas = db.relationship("Venda", cascade="save-update, merge, delete", backref="usuario")
 
     # Flask-Security SECURITY_TRACKABLE
     last_login_at = db.Column(db.DateTime())

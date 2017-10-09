@@ -25,6 +25,10 @@
 			});
 		};
 		
+		var duvida = function(DuvidaService, $stateParams) {
+			return DuvidaService.buscar($stateParams.id);
+		};
+		
 		$provide.decorator('$state', function($delegate, $rootScope) {
 		    $rootScope.$on('$stateChangeStart', function(event, state, params, from, fromParams) {
 		    	$delegate.next = state;
@@ -76,6 +80,14 @@
 			templateUrl : '/app/cliente/duvidas.html',
 			controller : 'ClienteDuvidaController',
 			controllerAs : 'CliDuvidaCtrl'
+		}).state('app.duvida', {
+			url : '/duvida/:id',
+			templateUrl : '/app/cliente/duvida.html',
+			controller : 'ClienteDuvidaUnitariaController',
+			controllerAs : 'CliDuvidaUniCtrl',
+			resolve : {
+				duvida : duvida
+			}
 		}).state('app.conta', {
 			url : '/conta',
 			templateUrl : '/app/cliente/conta.html',

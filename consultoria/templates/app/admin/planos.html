@@ -20,9 +20,9 @@
 				<tr ng-repeat="plano in PlanoAdmCtrl.planos | filter: PlanoAdmCtrl.filtroPlano">
 					<th>{{plano.titulo}}</th>
 					<th>{{plano.n_treinos}}</th>
-					<th>{{plano.valor}}</th>
+					<th>R$ {{plano.valor}}</th>
 					<th>
-						<button class="btn btn-primary btn-xs" ng-click="PlanoAdmCtrl.modalPlano(instituicao)">
+						<button class="btn btn-primary btn-xs" ng-click="PlanoAdmCtrl.modal(plano)">
 							<spam class="glyphicon glyphicon-pencil"></spam>
 						</button>
 					</th>

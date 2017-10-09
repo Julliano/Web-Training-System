@@ -10,7 +10,20 @@
 		var vm = this;
 		vm.usuario = LoginService.getUsuario();
 		vm.modal = modal;
+
 		
+		init();
+		
+		function init(){
+			listar()
+		}
+		
+		function listar() {
+			$http.get('/planos').then(function(response) {
+				vm.planos = response.data;
+			})
+			
+		}
 		
 		function modal(plano) {
 			var modalInstance = $uibModal

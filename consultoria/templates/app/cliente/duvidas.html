@@ -1,22 +1,22 @@
 <p class="tituloPagina">DÚVIDAS</p>
 <div class="container">
-	<button class="btn btn-success botaoDuvida" type="button" ng-click="CliDuvidaCtrl.modalDuvida(null)">
+	<button class="btn btn-success botaoDuvida" type="button" ng-click="CliDuvidaCtrl.modal(null)">
 			<span class="glyphicon glyphicon-plus"></span>
 	</button>
 	<div class="fundoBranco">
 		<table class="table" id="table-usuarios">
 			<thead>
 				<tr>
-					<th class="col-md-3">Data</th>
-					<th class="col-md-4">Tópico</th>
-					<th class="col-md-5">Descrição</th>
+					<th class="col-md-2">Data</th>
+					<th class="col-md-3">Tópico</th>
+					<th class="col-md-7">Descrição</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="plano in CliDuvidaCtrl.planos | filter: CliDuvidaCtrl.filtroPlano">
-					<th>{{duvida.data}}</th>
-					<th>{{duvida.titulo}}</th>
-					<th>{{duvida.descricao}}</th>
+				<tr ng-repeat="duvida in CliDuvidaCtrl.duvidas">
+					<td style="color:blue;" ng-click="CliDuvidaCtrl.verDuvida(duvida.id)">{{duvida.data}}</td>
+					<td style="white-space: nowrap;">{{duvida.titulo}}</td>
+					<td style="white-space: nowrap;">{{duvida.descricao}}</td>
 				</tr>
 			</tbody>
 		</table>

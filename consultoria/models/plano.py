@@ -3,7 +3,6 @@ from datetime import date
 
 from ..models import BaseSchema
 from ..modules import db, ma
-from .treino import Treino
 
 
 class Plano(db.Model):
@@ -11,6 +10,7 @@ class Plano(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     data_cadastro = db.Column(db.Date, default=date.today)
     titulo = db.Column(db.String(255), nullable=False)
+    valor = db.Column(db.Float) 
     n_treinos = db.Column(db.Float) 
     
 

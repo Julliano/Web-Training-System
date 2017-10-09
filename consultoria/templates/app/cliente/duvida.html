@@ -1,0 +1,37 @@
+<p class="tituloPagina"></p>
+<div class="container">
+	<div class="fundoBranco">
+		<p class="tituloPagina" style="padding:0;">{{CliDuvidaUniCtrl.duvida.titulo}}</p>
+		<ul class="list-group">
+ 			<li class="list-group-item">
+				<div>
+					{{CliDuvidaUniCtrl.duvida.usuario.nome_completo}}
+					<sub style="float:right;"><i class="glyphicon glyphicon-calendar"></i> {{CliDuvidaUniCtrl.duvida.data | date:"dd/MM/yyyy"}}</sub>
+				</div>
+				<br>
+				<div>
+					<p style="margin:0;">{{CliDuvidaUniCtrl.duvida.descricao}}<p>
+				</div>
+			</li>
+		  	<li class="list-group-item" ng-repeat="duvida in CliDuvidaUniCtrl.duvida.respostas">
+		  		<div>
+					{{duvida.usuario.nome_completo}}
+					<sub style="float:right;"><i class="glyphicon glyphicon-calendar"></i> {{duvida.data | date:"dd/MM/yyyy"}}</sub>
+				</div>
+				<br>
+				<div>
+					<p style="margin:0;">{{duvida.descricao}}<p>
+				</div>
+			</li>		  	
+		</ul>
+		<br>
+		<br>
+		<div>
+			<label class="text-form">Resposta:</label>			
+			<textarea class="form-control" type="text" ng-model="CliDuvidaUniCtrl.resposta.descricao"></textarea>
+			<div class="modal-footer" style="padding-right: 0;">
+				<button class="btn btn-success" type="submit" ng-click="CliDuvidaUniCtrl.salvarResposta()" ng-disabled="!CliDuvidaUniCtrl.resposta.descricao">Enviar</button>
+			</div>
+		</div>
+	</div>
+</div>
