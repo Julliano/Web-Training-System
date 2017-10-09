@@ -1,26 +1,26 @@
 <p class="tituloPagina"></p>
 <div class="container">
 	<div class="fundoBranco">
-		<p class="tituloPagina" style="padding:0;">{{CliDuvidaUniCtrl.duvida.titulo}}</p>
+		<p class="tituloPagina" style="padding:0;margin:0;">{{DuvidaUniCtrl.duvida.titulo}}</p>
 		<ul class="list-group">
  			<li class="list-group-item">
-				<div>
-					{{CliDuvidaUniCtrl.duvida.usuario.nome_completo}}
-					<sub style="float:right;"><i class="glyphicon glyphicon-calendar"></i> {{CliDuvidaUniCtrl.duvida.data | date:"dd/MM/yyyy"}}</sub>
+				<div style="border-bottom: 1px solid;">
+					{{DuvidaUniCtrl.duvida.usuario.nome_completo}}
+					<sub style="float:right;"><i class="fa fa-calendar"></i> {{DuvidaUniCtrl.duvida.data | date:"dd/MM/yyyy"}}</sub>
 				</div>
 				<br>
 				<div>
-					<p style="margin:0;">{{CliDuvidaUniCtrl.duvida.descricao}}<p>
+					<p style="margin:0;">{{DuvidaUniCtrl.duvida.descricao}}<p>
 				</div>
 			</li>
-		  	<li class="list-group-item" ng-repeat="duvida in CliDuvidaUniCtrl.duvida.respostas">
-		  		<div>
-					{{duvida.usuario.nome_completo}}
-					<sub style="float:right;"><i class="glyphicon glyphicon-calendar"></i> {{duvida.data | date:"dd/MM/yyyy"}}</sub>
+		  	<li class="list-group-item" ng-repeat="resposta in DuvidaUniCtrl.duvida.respostas">
+		  		<div style="border-bottom: 1px solid;">
+					{{resposta.usuario.nome_completo}}
+					<sub style="float:right;"><i class="fa fa-calendar"></i> {{resposta.data | date:"dd/MM/yyyy"}}</sub>
 				</div>
 				<br>
 				<div>
-					<p style="margin:0;">{{duvida.descricao}}<p>
+					<p style="margin:0;">{{resposta.descricao}}<p>
 				</div>
 			</li>		  	
 		</ul>
@@ -28,9 +28,9 @@
 		<br>
 		<div>
 			<label class="text-form">Resposta:</label>			
-			<textarea class="form-control" type="text" ng-model="CliDuvidaUniCtrl.resposta.descricao"></textarea>
+			<textarea class="form-control" type="text" ng-model="DuvidaUniCtrl.resposta.descricao"></textarea>
 			<div class="modal-footer" style="padding-right: 0;">
-				<button class="btn btn-success" type="submit" ng-click="CliDuvidaUniCtrl.salvarResposta()" ng-disabled="!CliDuvidaUniCtrl.resposta.descricao">Enviar</button>
+				<button class="btn btn-success" type="submit" ng-click="DuvidaUniCtrl.salvarResposta()" ng-disabled="!DuvidaUniCtrl.resposta.descricao">Enviar</button>
 			</div>
 		</div>
 	</div>

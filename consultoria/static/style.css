@@ -668,7 +668,7 @@ input[readonly] {
 }
 
 html, body {
-	height: 100%;
+	/* height: 100%; */
 	margin: 0px;
 	padding: 0px;
 	background-color: #f7f7f7;

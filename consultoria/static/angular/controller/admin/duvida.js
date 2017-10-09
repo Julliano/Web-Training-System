@@ -24,7 +24,7 @@
 		}
 		
 		function verDuvida(id){
-			$state.go("app.duvida", {
+			$state.go("admin.duvida", {
 				id : id
 			})
 		}

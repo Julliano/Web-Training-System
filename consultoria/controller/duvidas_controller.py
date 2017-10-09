@@ -36,6 +36,19 @@ class DuvidasController:
     def buscar(self, id):
         return DuvidaSchema().jsonify(Duvida.query.get(id))
     
+    @admin_permission.require(http_exception=403)
+    def admin_editar(self, data):
+        with db.session.no_autoflush:
+            schema = DuvidaSchema().load(data, instance=Duvida().query.get(data['id']), partial=True)        
+            if schema.errors.__len__() > 0:
+                return make_response(schema.errors[0], 500)        
+            duvida = schema.data
+            duvida.status = 'ativa'
+            db.session.add(duvida)
+            db.session.commit()
+            return DuvidaSchema().jsonify(duvida)                
+#             return make_response("Informações alteradas com sucesso", 200)
+
     @fresh_login_required
     def editar(self, data):
         with db.session.no_autoflush:
@@ -43,6 +56,8 @@ class DuvidasController:
             if schema.errors.__len__() > 0:
                 return make_response(schema.errors[0], 500)        
             duvida = schema.data
+            duvida.status = 'pendente'
             db.session.add(duvida)
-            db.session.commit()                
-            return make_response("Informações alteradas com sucesso", 200)
+            db.session.commit()
+            return DuvidaSchema().jsonify(duvida)                
+#             return make_response("Informações alteradas com sucesso", 200)

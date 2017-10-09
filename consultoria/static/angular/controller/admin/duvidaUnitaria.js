@@ -1,12 +1,12 @@
 (function() {
 	"use strict";
 
-	angular.module("consultoria").controller("ClienteDuvidaUnitariaController", ClienteDuvidaUnitariaController);
+	angular.module("consultoria").controller("AdminDuvidaUnitariaController", AdminDuvidaUnitariaController);
 
-	ClienteDuvidaUnitariaController.$inject = [ "$http", "LoginService", "Notification", "$uibModal", "DuvidaService", "$state", "duvida"];
+	AdminDuvidaUnitariaController.$inject = [ "$http", "LoginService", "Notification", "$uibModal", "DuvidaService", "$state", "duvida"];
 
 	/* @ngInject */
-	function ClienteDuvidaUnitariaController($http, LoginService, Notification, $uibModal, DuvidaService, $state, duvida) {
+	function AdminDuvidaUnitariaController($http, LoginService, Notification, $uibModal, DuvidaService, $state, duvida) {
 		var vm = this;
 		vm.usuario = LoginService.getUsuario();
 		vm.duvida = duvida;
@@ -22,7 +22,7 @@
 			vm.resposta.usuario_id = vm.usuario.id;
 			vm.resposta.duvida_id = vm.duvida.id;
 			vm.duvida.respostas.push(vm.resposta)
-			$http.put('/duvidas/', vm.duvida).then(httpSuccess, httpFail);
+			$http.put('/admin/duvidas/', vm.duvida).then(httpSuccess, httpFail);
 		}
 		
 		function httpSuccess(response) {

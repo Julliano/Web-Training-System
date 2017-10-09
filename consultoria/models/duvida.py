@@ -22,6 +22,7 @@ class Duvida(db.Model):
 class DuvidaSchema(BaseSchema):
     class Meta(BaseSchema.Meta):
         model = Duvida
-    
+
+    usuario_id = field_for(Duvida, 'usuario_id', dump_only=False)    
     usuario = ma.Nested("UsuarioSchema", dump_only=True, only=('id', 'nome_completo', 'email'))
     respostas = ma.Nested("RespostaSchema", many=True, exclude=('duvida_id',))

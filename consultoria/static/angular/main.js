@@ -84,7 +84,7 @@
 			url : '/duvida/:id',
 			templateUrl : '/app/cliente/duvida.html',
 			controller : 'ClienteDuvidaUnitariaController',
-			controllerAs : 'CliDuvidaUniCtrl',
+			controllerAs : 'DuvidaUniCtrl',
 			resolve : {
 				duvida : duvida
 			}
@@ -104,22 +104,30 @@
 			templateUrl : '/app/admin/usuarios.html',
 			controller : 'AdminUsuarioController',
 			controllerAs : 'UsuarioAdmCtrl'
-		}).state('admin.treino', {
+		}).state('admin.treinos', {
 			url : '/treinos',
 			templateUrl : '/app/admin/treinos.html',
 			controller : 'TreinoAdminController',
 			controllerAs : 'TreinoAdmCtrl'
-		}).state('admin.plano', {
+		}).state('admin.planos', {
 			url : '/planos',
 			templateUrl : '/app/admin/planos.html',
 			controller : 'PlanoAdminController',
 			controllerAs : 'PlanoAdmCtrl'
-		}).state('admin.duvida', {
+		}).state('admin.duvidas', {
 			url : '/duvidas',
 			templateUrl : '/app/admin/duvidas.html',
 			controller : 'DuvidaAdminController',
 			controllerAs : 'DuvidaAdmCtrl'
-		}).state('admin.modelo', {
+		}).state('admin.duvida', {
+			url : '/duvida/:id',
+			templateUrl : '/app/cliente/duvida.html',
+			controller : 'AdminDuvidaUnitariaController',
+			controllerAs : 'DuvidaUniCtrl',
+			resolve : {
+				duvida : duvida
+			}
+		}).state('admin.modelos', {
 			url : '/modelos',
 			templateUrl : '/app/admin/modelos.html',
 			controller : 'ModeloAdminController',
