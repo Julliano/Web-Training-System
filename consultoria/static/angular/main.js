@@ -58,6 +58,16 @@
 			templateUrl : '/templates/app/cadastrar.html',
 			controller : 'CadastrarController',
 			controllerAs : 'CadastrarCtrl'
+		}).state('recuperarSenha', {
+			url : '/recuperarSenha',
+			templateUrl : '/templates/app/recuperar.html',
+			controller : 'RecuperarSenhaController',
+			controllerAs : 'RecSenhaCtrl'
+		}).state('emailRecuperar', {
+			url : '/emailRecuperacao',
+			templateUrl : '/templates/app/emailRecuperar.html',
+			controller : 'RecuperarEmailController',
+			controllerAs : 'RecEmailCtrl'
 		}).state('app', {
 			url : '/app',
 			templateUrl : '/app/cliente/base.html',

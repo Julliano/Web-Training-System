@@ -116,6 +116,23 @@ def logout():
     logout_user()        
     return "Logout success"
 
+@consultoria_app.route('/cadastroNovoUsuario/', methods=["POST", "PUT"])
+def cadastroNovoUsuario(id=None):
+    if request.method == "POST":
+        return UsuarioController().salvar(request.json or request.form)
+    if request.method == "PUT":
+        return UsuarioController().mudarSenha(request.json or request.form)
+
+@consultoria_app.route('/resetarSenha/', methods=["PUT"])
+def resetarSenha(id=None):
+    if request.method == "PUT":
+        return UsuarioController().resetarSenha(request.json or request.form)
+
+@consultoria_app.route('/emailRecuperacao/', methods=["POST"])
+def emailRecuperacao(id=None):
+    if request.method == "POST":
+        return UsuarioController().emailRecuperacao(request.json or request.form)
+
 @consultoria_app.route('/usuarios/', methods=['GET', "POST", "PUT", "DELETE"])
 @consultoria_app.route('/usuarios/<int:id>', methods=["GET", "DELETE"])
 @login_required

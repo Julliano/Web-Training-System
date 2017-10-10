@@ -1,5 +1,6 @@
 # coding: utf-8
 from os import path
+
 from flask import Flask
 from flask_migrate import MigrateCommand
 from flask_security.core import Security
@@ -9,6 +10,7 @@ from itsdangerous import URLSafeSerializer
 from blueprints.consultoria_blueprint import consultoria_app 
 from consultoria.controller.grupo_controller import GrupoController
 from consultoria.models.usuario import UsuarioSchema
+from consultoria.modules import mail
 from modules import db, ma, migrate, manager, login_manager, csrf
 
 
@@ -50,5 +52,6 @@ def create_app(mode="development"):
     migrate.init_app(app, db)    
     datastore = SQLAlchemyUserDatastore(db, Usuario, Grupo)
     Security(app=app, datastore=datastore)
+    mail.init_app(app)
     return app
 

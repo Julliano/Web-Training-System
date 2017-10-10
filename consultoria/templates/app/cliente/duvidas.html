@@ -18,7 +18,7 @@
 					<td style="color:blue;" ng-click="CliDuvidaCtrl.verDuvida(duvida.id)">{{duvida.data}}</td>
 					<td style="white-space: nowrap;">{{duvida.titulo}}</td>
 					<td style="white-space: nowrap;">{{duvida.descricao}}</td>
-					<td class="text-center"><i alt='teste' ng-class="{'fa fa-clock-o':duvida.status == 'pendente', 'fa fa-check':duvida.status == 'ativa'}"></i></td>
+					<td class="text-center"><i ng-class="{'fa fa-clock-o':duvida.status == 'pendente', 'fa fa-check':duvida.status == 'ativa'}"></i></td>
 				</tr>
 			</tbody>
 		</table>

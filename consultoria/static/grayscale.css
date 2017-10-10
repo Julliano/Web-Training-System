@@ -350,7 +350,7 @@ footer p {
     margin: 0;
 }
 
-::-moz-selection {
+/* ::-moz-selection {
     text-shadow: none;
     background: #fcfcfc;
     background: rgba(255,255,255,.2);
@@ -360,7 +360,7 @@ footer p {
     text-shadow: none;
     background: #fcfcfc;
     background: rgba(255,255,255,.2);
-}
+} */
 
 img::selection {
     background: 0 0;

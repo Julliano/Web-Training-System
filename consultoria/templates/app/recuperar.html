@@ -1,0 +1,29 @@
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="container-fluid container">
+		<div class="navbar-header">
+			<span class="text-highlight font-days navbar-brand">Julliano</span>
+		</div>
+	</div>
+</div>
+<p class="tituloPagina" style="margin-top: 50px;">Recuperar Senha</p>
+<form novalidate class="form" name="contaForm">
+	<div class="container">
+		<div class="col-md-6 col-md-offset-3">
+			<div class="form-group" style="margin-top: 5px;">
+				<label class="text-form">Nova senha</label>
+				<input type="password" class="form-control" ng-model="RecSenhaCtrl.usuario.novaSenha" required>
+			</div>
+			<div class="form-group">
+				<label class="text-form">Confirma senha</label>
+				<input type="password" class="form-control" ng-model="confirmaSenha" compara-com="RecSenhaCtrl.usuario.novaSenha" compara-senha required>
+			</div>
+			<div style="display: grid;">
+				<div style="margin-bottom: 5px; display: grid;">
+					<button type="submit" ng-click="RecSenhaCtrl.salvar()" ng-disabled="!contaForm.$valid" class="btn btn-default">Salvar alterações</button>
+				</div>
+				
+				<button type="submit" ui-sref="index.start" class="btn btn-primary">Voltar</button>
+			</div>
+		</div>
+	</div>			
+</form>

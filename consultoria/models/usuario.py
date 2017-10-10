@@ -26,11 +26,12 @@ class Usuario(db.Model):
     cpf = db.Column(db.String(45))
     email = db.Column(db.String(60), nullable=False, unique=True)
     endereco = db.Column(db.String(155), nullable=False)
-    complemento = db.Column(db.String(155), nullable=False)
+    complemento = db.Column(db.String(155), nullable=True)
     cep = db.Column(db.String(45), nullable=False)
     bairro = db.Column(db.String(45), nullable=False)
     cidade = db.Column(db.String(45), nullable=False)
     uf = db.Column(db.String(45), nullable=False)
+    recuperarSenha = db.Column(db.String(255), nullable=True)
     senha = db.Column(db.String(130), nullable=False)
     termo = db.Column(db.Boolean, nullable=False, default=False)
     logado = db.Column(db.Boolean, nullable=False, default=False)
@@ -60,7 +61,7 @@ class Usuario(db.Model):
     
     @property
     def url(self):
-        return url_for('.usuarios', id=self.id)
+        return 'www.jullianovolpato.com.br/?#!/recuperarSenha?token='+self.recuperarSenha.__str__() 
     
     @property
     def roles(self):

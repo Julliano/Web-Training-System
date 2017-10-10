@@ -1,8 +1,10 @@
+from marshmallow_sqlalchemy.convert import field_for
 from sqlalchemy.orm import relationship
 
 from ..models import BaseSchema
 from ..modules import db, ma
 from .duvida import Duvida
+
 
 class Treino(db.Model):
     __tablename__ = "treino"
@@ -21,3 +23,6 @@ class Treino(db.Model):
 class TreinoSchema(BaseSchema):
     class Meta(BaseSchema.Meta):
         model = Treino
+        
+    venda_id = field_for(Treino, 'venda_id', dump_only=False)    
+    venda = ma.Nested("VendaSchema", dump_only=True)

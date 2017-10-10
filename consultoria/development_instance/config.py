@@ -21,4 +21,5 @@ MAIL_USE_SSL = True
 MAIL_USERNAME = "jullianoVolpato@gmail.com"
 MAIL_PASSWORD = "eusoroxConsultoria"
 MAIL_DEFAULT_SENDER = "Julliano Volpato - Consultoria"
+MAIL_ASCII_ATTACHMENTS = False
 SEND_FILE_MAX_AGE_DEFAULT = 0

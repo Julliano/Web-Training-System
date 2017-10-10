@@ -1,5 +1,6 @@
 # coding: utf-8
 from flask_login import LoginManager
+from flask_mail import Mail
 from flask_marshmallow import Marshmallow
 from flask_migrate import Migrate
 from flask_principal import Permission, RoleNeed
@@ -15,6 +16,7 @@ csrf = CsrfProtect()
 ma = Marshmallow()
 migrate = Migrate()
 manager = Manager()
+mail = Mail()
 
 #Permissões
 admin_permission = Permission(RoleNeed('admin'))

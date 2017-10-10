@@ -18,6 +18,7 @@ encoding//consultoria/models/usuario_grupo.py=utf-8
 encoding//consultoria/models/venda.py=utf-8
 encoding//consultoria/modules.py=utf-8
 encoding//env/Lib/site-packages/flask_login.py=utf-8
+encoding//env/Lib/site-packages/flask_mail.py=utf-8
 encoding//env/Lib/site-packages/flask_principal.py=utf-8
 encoding//env/Lib/site-packages/flask_security/utils.py=utf-8
 encoding//env/Lib/site-packages/werkzeug/local.py=utf-8

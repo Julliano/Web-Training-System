@@ -22,3 +22,7 @@ class VendaSchema(BaseSchema):
         model = Venda
     
     vendas = ma.Nested("VendaSchema", many=True)
+    plano = ma.Nested("PlanoSchema", dump_only=True)
+    usuario = ma.Nested("UsuarioShchema", dump_only=True)
+    formulario = ma.Nested("FormularioShchema", dump_only=True)
+    pagamento = ma.Nested("PagamentoShchema", dump_only=True)

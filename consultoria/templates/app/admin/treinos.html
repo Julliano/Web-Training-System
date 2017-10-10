@@ -9,18 +9,20 @@
 				<tr>
 					<th class="col-md-2">Previsao</th>
 					<th class="col-md-3">Cliente</th>
-					<th class="col-md-3">Email</th>
+					<th class="col-md-2">Email</th>
 					<th class="col-md-3">Pedido</th>
-					<th class="col-md-1">Sessão</th>
+					<th class="col-md-1 text-center">Sessão</th>
+					<th class="col-md-1 text-center">Status</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="treino in TreinoAdmCtrl.treinos | filter:TreinoAdmCtrl.filtroTreino">
-					<th>{{treino.previsao}}</th>
-					<th>{{treino.plano.usuario.nome}}</th>
-					<th>{{treino.plano.usuario.email}}</th>
-					<th>{{treino.id}}</th>
-					<th>{{treino.sessao}}</th>
+					<td>{{treino.data_entrega}}</td>
+					<td>{{treino.plano.usuario.nome}}</td>
+					<td>{{treino.plano.usuario.email}}</td>
+					<td>{{treino.id}}</td>
+					<td class="text-center">{{treino.sessao}}</td>
+					<td class="text-center"><i ng-class="{'fa fa-clock-o':treino.status == 'pendente', 'fa fa-check':treino.status == 'ativa'}"></i></td>
 				</tr>
 			</tbody>
 		</table>

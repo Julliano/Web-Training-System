@@ -86,9 +86,9 @@
 				$rootScope.session = true;
 				logged().then(function(){
 					if(_usuario.grupos[0]['nome'] == "admin"){
-						$state.go("admin.treino");
+						$state.go("admin.treinos");
 					} else {
-						$state.go("app.treino");
+						$state.go("app.treinos");
 					}					
 				})
 				return response.data;
