@@ -13,20 +13,22 @@ from flask_security import login_required
 from sqlalchemy.sql.functions import func
 from werkzeug import redirect
 
+from consultoria.controller.modelo_controller import ModeloTreinoController
+
+from ..controller.duvidas_controller import DuvidasController
 from ..controller.grupo_controller import GrupoController
+from ..controller.plano_controller import PlanoController
 from ..controller.session_controller import SessionController
 from ..controller.usuario_controller import UsuarioController
-from ..controller.plano_controller import PlanoController
-from ..controller.duvidas_controller import DuvidasController
-from ..models.usuario import Usuario, UsuarioSchema
 from ..models.duvida import Duvida
 from ..models.formulario import Formulario
 from ..models.grupo import Grupo
 from ..models.modelo import ModeloTreino
-from ..models.plano import Plano
-from ..models.treino import Treino
 from ..models.pagamento import Pagamento
+from ..models.plano import Plano
 from ..models.resposta import Resposta
+from ..models.treino import Treino
+from ..models.usuario import Usuario, UsuarioSchema
 from ..models.venda import Venda
 from ..modules import login_manager, db, admin_permission
 
@@ -156,6 +158,12 @@ def admin_duvidas(id=None):
     if request.method == "GET":
         return DuvidasController().listar_admin()
     return crud_request(DuvidasController(), id)
+
+@consultoria_app.route('/admin/modeloTreino/', methods=['GET', "POST", "PUT", "DELETE"])
+@consultoria_app.route('/admin/modeloTreino/<int:id>', methods=["GET", "DELETE"])
+@admin_permission.require(http_exception=403)
+def admin_modeloTreino(id=None):
+    return crud_request(ModeloTreinoController(), id)
 
 @consultoria_app.route('/duvidas/', methods=['GET', "POST", "PUT"])
 @consultoria_app.route('/duvidas/<int:id>', methods=['GET', "POST", "PUT"])

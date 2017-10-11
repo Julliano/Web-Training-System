@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 
-	angular.module('consultoria', [ 'ngRoute', 'ui.bootstrap', 'ui.router', 'ui-notification', 'ui.mask', 'duScroll' ])
+	angular.module('consultoria', [ 'ngRoute', 'ui.bootstrap', 'ui.router', 'ui-notification', 'ui.mask', 'duScroll', 'textAngular'])
 
 	.config([ '$stateProvider', '$urlRouterProvider' , '$provide', '$uibTooltipProvider', config ])
 
