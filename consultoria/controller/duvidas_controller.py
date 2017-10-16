@@ -1,11 +1,15 @@
 # coding: utf-8
 from flask import jsonify
 from flask.helpers import make_response
+from flask.templating import render_template
 from flask_login import fresh_login_required, current_user, login_required
+from flask_mail import Message
 from flask_security.decorators import roles_required
 
-from ..modules import db, admin_permission
 from consultoria.models.duvida import Duvida, DuvidaSchema
+from consultoria.modules import mail
+
+from ..modules import db, admin_permission
 
 
 class DuvidasController:
@@ -46,6 +50,7 @@ class DuvidasController:
             duvida.status = 'ativa'
             db.session.add(duvida)
             db.session.commit()
+            self.emailRespostaDudiva(duvida)
             return DuvidaSchema().jsonify(duvida)                
 #             return make_response("Informações alteradas com sucesso", 200)
 
@@ -61,3 +66,13 @@ class DuvidasController:
             db.session.commit()
             return DuvidaSchema().jsonify(duvida)                
 #             return make_response("Informações alteradas com sucesso", 200)
+
+    def emailRespostaDudiva(self, duvida):
+        try:
+            msg = Message('Sua dúvida foi respondida.', recipients=[duvida.usuario.email])
+            msg.html = render_template('app/emailNotificaRespostaDuvida.html', enviado='Dúvidas', email='jullianoVolpato@gmail.com' , duvida=duvida) 
+            mail.send(msg)
+            return make_response("E-mail enviado com sucesso", 200)
+        except Exception:
+            pass
+            return make_response("Erro no envio do e-mail", 500)

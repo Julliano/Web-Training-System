@@ -9,11 +9,13 @@ from flask.helpers import send_from_directory, make_response
 from flask.json import jsonify
 from flask.templating import render_template
 from flask_login import logout_user, current_user
+from flask_mail import Message
 from flask_security import login_required
 from sqlalchemy.sql.functions import func
 from werkzeug import redirect
 
 from consultoria.controller.modelo_controller import ModeloTreinoController
+from consultoria.modules import mail
 
 from ..controller.duvidas_controller import DuvidasController
 from ..controller.grupo_controller import GrupoController
@@ -130,6 +132,17 @@ def resetarSenha(id=None):
     if request.method == "PUT":
         return UsuarioController().resetarSenha(request.json or request.form)
 
+@consultoria_app.route('/emailContato/', methods=["POST"])
+def emailContato(id=None):
+    if request.method == "POST":
+        try:
+            msg = Message('Email de contato', recipients=["jullianoVolpato@gmail.com"])
+            msg.html = render_template('app/emailContato.html', enviado='formulario', email='jullianoVolpato@gmail.com' , form=request.json) 
+            mail.send(msg)
+            return make_response("E-mail enviado com sucesso", 200)
+        except Exception:
+            return make_response("Erro no envio do e-mail", 500)
+
 @consultoria_app.route('/emailRecuperacao/', methods=["POST"])
 def emailRecuperacao(id=None):
     if request.method == "POST":
@@ -159,17 +172,18 @@ def admin_duvidas(id=None):
         return DuvidasController().listar_admin()
     return crud_request(DuvidasController(), id)
 
+@consultoria_app.route('/duvidas/', methods=['GET', "POST", "PUT"])
+@consultoria_app.route('/duvidas/<int:id>', methods=['GET', "POST", "PUT"])
+@login_required
+def duvidas(id=None):
+    return crud_request(DuvidasController(), id)
+
 @consultoria_app.route('/admin/modeloTreino/', methods=['GET', "POST", "PUT", "DELETE"])
 @consultoria_app.route('/admin/modeloTreino/<int:id>', methods=["GET", "DELETE"])
 @admin_permission.require(http_exception=403)
 def admin_modeloTreino(id=None):
     return crud_request(ModeloTreinoController(), id)
 
-@consultoria_app.route('/duvidas/', methods=['GET', "POST", "PUT"])
-@consultoria_app.route('/duvidas/<int:id>', methods=['GET', "POST", "PUT"])
-@login_required
-def duvidas(id=None):
-    return crud_request(DuvidasController(), id)
 
 # @consultoria_app.route('/resposta/', methods=['GET', "POST", "PUT"])
 # @consultoria_app.route('/resposta/<int:id>', methods=['GET', "POST", "PUT"])

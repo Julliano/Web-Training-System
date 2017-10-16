@@ -65,7 +65,7 @@ class UsuarioController:
     def send_email_analista(self, usuario):
         try:
             msg = Message('Email de recuperação de senha', recipients=[usuario.email])
-            msg.html = render_template('app/emailSenhaCliente.html', enviado='Suporte', email='jullianoVolpato@gmail.com' , usuario=usuario) 
+            msg.html = render_template('app/emailSenhaCliente.html', enviado='Suporte', email='jullianoVolpato@gmail.com' , form=request.form) 
             mail.send(msg)
             return make_response("E-mail enviado com sucesso", 200)
         except Exception:

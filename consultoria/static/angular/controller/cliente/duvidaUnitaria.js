@@ -26,8 +26,9 @@
 		}
 		
 		function httpSuccess(response) {
-			Notification.success("Informações alteradas com sucesso");
+			Notification.success("Dúvida enviada com sucesso");
 			vm.duvida = response.data;
+			vm.resposta = null;
 		}
 	
 		function httpFail(response) {

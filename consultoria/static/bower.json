@@ -11,7 +11,7 @@
     "angular-bootstrap": "~0.14.3",
     "angular-loading-bar": "^0.9.0",
     "angular-route": "1.6.5",
-    "angular-ui-notification": "~0.0.14",
+    "angular-ui-notification": "^0.3.6",
     "angular-ui-router": "^0.4.2",
     "bootstrap": "~3.3.5",
     "font-awesome": "^4.5.0",

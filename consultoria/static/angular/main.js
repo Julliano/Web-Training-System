@@ -52,7 +52,9 @@
 			templateUrl : '/templates/presentation/base.html',
 		}).state('index.start', {
 			url : '/start',
-			templateUrl : '/templates/presentation/start.html'
+			templateUrl : '/templates/presentation/start.html',
+			controller : 'StartController',
+			controllerAs : 'StartCtrl'
 		}).state('cadastrar', {
 			url : '/novoUsuario',
 			templateUrl : '/templates/app/cadastrar.html',
