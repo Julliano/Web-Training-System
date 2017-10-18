@@ -15,8 +15,10 @@ from sqlalchemy.sql.functions import func
 from werkzeug import redirect
 
 from consultoria.controller.modelo_controller import ModeloTreinoController
+from consultoria.controller.treino_controller import TreinoController
 from consultoria.modules import mail
 
+from ..controller.compra_controller import CompraController
 from ..controller.duvidas_controller import DuvidasController
 from ..controller.grupo_controller import GrupoController
 from ..controller.plano_controller import PlanoController
@@ -178,6 +180,31 @@ def admin_duvidas(id=None):
 def duvidas(id=None):
     return crud_request(DuvidasController(), id)
 
+@consultoria_app.route('/admin/treinos/', methods=['GET', "POST", "PUT", "DELETE"])
+@consultoria_app.route('/admin/treinos/<int:id>', methods=["GET", "DELETE"])
+@admin_permission.require(http_exception=403)
+def admin_treinos(id=None):
+    if request.method == "PUT":
+        return TreinoController().admin_editar(request.json or request.form)
+    if request.method == "GET":
+        return TreinoController().listar_admin()
+    return crud_request(TreinoController(), id)
+
+@consultoria_app.route('/treinos/', methods=['GET', "POST", "PUT"])
+@consultoria_app.route('/treinos/<int:id>', methods=['GET', "POST", "PUT"])
+@login_required
+def treinos(id=None):
+    return crud_request(TreinoController(), id)
+
+@consultoria_app.route('/comprarConsultoria/<int:id>', methods=['GET', "POST", "PUT"])
+@login_required
+def comprar(id=None):
+    if id == 1:
+        return CompraController().planoMes()
+    elif id ==3:
+        return CompraController().planoTri()
+
+
 @consultoria_app.route('/admin/modeloTreino/', methods=['GET', "POST", "PUT", "DELETE"])
 @consultoria_app.route('/admin/modeloTreino/<int:id>', methods=["GET", "DELETE"])
 @admin_permission.require(http_exception=403)
@@ -190,6 +217,15 @@ def admin_modeloTreino(id=None):
 # @login_required
 # def resposta(id=None):
 #     return crud_request(DuvidasController(), id)
+
+@consultoria_app.route('/planosCliente/', methods=['GET', "POST", "PUT", "DELETE"])
+@consultoria_app.route('/planosCliente/<int:id>', methods=["GET", "DELETE"])
+@login_required
+def planosCliente(id=None):
+    if request.method == "GET":
+        return PlanoController().listarCliente()
+    else:
+        return crud_request(PlanoController(), id)
 
 @consultoria_app.route('/planos/', methods=['GET', "POST", "PUT", "DELETE"])
 @consultoria_app.route('/planos/<int:id>', methods=["GET", "DELETE"])

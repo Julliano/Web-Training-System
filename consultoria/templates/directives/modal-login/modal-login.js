@@ -3,9 +3,9 @@
 
 	angular.module("consultoria").controller("ModalLoginController", ModalLoginController);
 
-	ModalLoginController.$inject = ["$uibModalInstance", "LoginService", "$window", "$state"];
+	ModalLoginController.$inject = ["$uibModalInstance", "LoginService", "$window", "$state", "compra"];
 
-	function ModalLoginController($uibModalInstance, LoginService, $window, $state) {
+	function ModalLoginController($uibModalInstance, LoginService, $window, $state, compra) {
 		var vm = this;
 		vm.trendy = "OK";
 		vm.agro = "Agrosatélite"
@@ -23,10 +23,9 @@
 		}
 		
 		function logar() {
-			LoginService.login(vm.usuario).then(function(response){
+			LoginService.login(vm.usuario, compra).then(function(response){
 				if(response.auth){
 					$uibModalInstance.dismiss();
-					$state.go("app.treinos")
 				}
 			});
 		}

@@ -18,15 +18,18 @@
 		var session = function(LoginService, $stateParams, $state) {
 			return LoginService.logged().then(function(response) {				
 				return response;
-//				$state.go("app.conta");
 			}, function(response) {
-				console.log(response)
+				$state.go("index.start");
 				return false;
 			});
 		};
 		
 		var duvida = function(DuvidaService, $stateParams) {
 			return DuvidaService.buscar($stateParams.id);
+		};
+		
+		var treino = function(TreinoService, $stateParams) {
+			return TreinoService.buscar($stateParams.id);
 		};
 		
 		$provide.decorator('$state', function($delegate, $rootScope) {
@@ -42,7 +45,7 @@
 		
 		// For unmatched routes
 		$urlRouterProvider.otherwise('/index/start');
-//		$urlRouterProvider.when('/app/', '/app/conta');
+		$urlRouterProvider.when('/app/', '/app/treinos');
 
 		// Application routes
 		$stateProvider.state('index', {
@@ -77,6 +80,16 @@
 				LoginService : "LoginService",
 				session : session
 			}
+		}).state('app.compra1', {
+			url : '/compra-consultoria-1mes',
+			templateUrl : '/app/cliente/compraTreinamento1.html',
+			controller : 'ComprarController',
+			controllerAs : 'CompraCtrl'
+		}).state('app.compra3', {
+			url : '/compra-consultoria-3meses',
+			templateUrl : '/app/cliente/compraTreinamento3.html',
+			controller : 'ComprarController',
+			controllerAs : 'CompraCtrl'
 		}).state('app.planos', {
 			url : '/planos',
 			templateUrl : '/app/cliente/planos.html',
@@ -121,6 +134,14 @@
 			templateUrl : '/app/admin/treinos.html',
 			controller : 'TreinoAdminController',
 			controllerAs : 'TreinoAdmCtrl'
+		}).state('admin.treino', {
+			url : '/treino/:id',
+			templateUrl : '/app/admin/treino.html',
+			controller : 'LiberarTreinoAdminController',
+			controllerAs : 'LibeTreinoAdmCtrl',
+			resolve : {
+				treino : treino
+			}
 		}).state('admin.planos', {
 			url : '/planos',
 			templateUrl : '/app/admin/planos.html',

@@ -1,0 +1,58 @@
+<p class="tituloPagina">100% Jullianooo - Entrega isso da melhor forma possível!</p>
+<div class="container">
+	<uib-tabset active="activeJustified">
+    	<uib-tab index="0" heading="Treino">
+			<div class="fundoBranco">
+				<p style="margin-bottom: 5px;"><strong>Plano: </strong>
+					{{LibeTreinoAdmCtrl.treino.venda.plano.titulo}}
+				</p>
+				<p style="margin-bottom: 5px;"><strong>Sessão: </strong>
+					{{LibeTreinoAdmCtrl.treino.sessao}}
+				</p>
+				<p style="margin-bottom: 5px;"><strong>Data de liberação: </strong>
+					{{LibeTreinoAdmCtrl.treino.data_entrega | date:'dd/MM/yy'}}
+				</p>
+				<p style="margin-bottom: 5px;"><strong>Plano: </strong>
+					{{LibeTreinoAdmCtrl.treino.venda.plano.titulo}}
+				</p>
+				<p style="margin-bottom: 5px;">
+					<strong>Titulo: </strong>
+					<select ng-options="modelo as modelo.titulo for modelo in LibeTreinoAdmCtrl.modelos" 
+					class="texto-info analise" ng-model="LibeTreinoAdmCtrl.modelo">
+						<option label="" value=""></option>
+					</select>
+				</p>
+				<p style="margin-bottom: 5px;"><strong>Explicação: </strong>
+					<div ng-bind-html="LibeTreinoAdmCtrl.modelo.explicacao"></div>
+				</p>
+			</div>
+		</uib-tab>
+		<uib-tab index="1" heading="Formulário">
+			<div class="fundoBranco">
+			
+			</div>
+		</uib-tab>
+		<uib-tab index="2" heading="Treinos Antigos">
+			<div class="fundoBranco">
+				<table class="table" id="table-usuarios">
+					<thead>
+						<tr>
+							<th class="col-md-1">#</th>
+							<th class="col-md-3">Entregue em</th>
+							<th class="col-md-7">Titulo</th>
+							<th class="col-md-1 text-center">Sessão</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="treino in LibeTreinoAdmCtrl.treino.venda.treinos">
+							<td class="text-center">{{treino.id}}</td>
+							<td>{{treino.data_entrega}}</td>
+							<td>{{treino.nome}}</td>
+							<td>{{treino.sessao}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</uib-tab>
+  	</uib-tabset>
+</div>

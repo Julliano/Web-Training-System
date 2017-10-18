@@ -14,15 +14,16 @@ class Venda(db.Model):
     plano_id = db.Column(db.Integer, db.ForeignKey("plano.id"), nullable=True)
     usuario_id = db.Column(db.Integer, db.ForeignKey("usuario.id"), nullable=True)
     formulario_id = db.Column(db.Integer, db.ForeignKey("formulario.id"), nullable=True)
-    treinos = db.relationship("Treino", cascade="save-update, merge, delete", backref="plano")
+    treinos = db.relationship("Treino", cascade="save-update, merge, delete", backref="venda")
     
 
 class VendaSchema(BaseSchema):
     class Meta(BaseSchema.Meta):
         model = Venda
     
+    treinos = ma.Nested("TreinoSchema", many=True, only=('id','nome','data_entrega','sessao'))
     vendas = ma.Nested("VendaSchema", many=True)
     plano = ma.Nested("PlanoSchema", dump_only=True)
-    usuario = ma.Nested("UsuarioShchema", dump_only=True)
-    formulario = ma.Nested("FormularioShchema", dump_only=True)
-    pagamento = ma.Nested("PagamentoShchema", dump_only=True)
+    usuario = ma.Nested("UsuarioSchema", dump_only=True)
+    formulario = ma.Nested("FormularioSchema", dump_only=True)
+    pagamento = ma.Nested("PagamentoSchema", dump_only=True)

@@ -21,16 +21,18 @@
 			LoginService.login(vm.usuario)
 		}
 		
-		function modalLogin() {
-			var modalInstance = $uibModal
-					.open({
-						animation : true,
-						templateUrl : function() {
-							return '/templates/directives/modal-login/modal-login.html'
-						},
-						controller : "ModalLoginController",
-						controllerAs : "ModalLogCtrl"
-					});
+		function modalLogin(param) {
+			var modalInstance = $uibModal.open({
+				animation : true,
+				templateUrl : function() {
+					return '/templates/directives/modal-login/modal-login.html'
+				},
+				controller : "ModalLoginController",
+				controllerAs : "ModalLogCtrl",
+				resolve : {
+					compra : {'valor': param}|| null
+				}
+			});
 
 			modalInstance.result.then(function(selectedItem) {
 				init();

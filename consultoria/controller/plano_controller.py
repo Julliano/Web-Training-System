@@ -5,6 +5,8 @@ from flask_login import fresh_login_required, current_user, login_required
 from flask_security.decorators import roles_required
 
 from consultoria.models.plano import PlanoSchema, Plano
+from consultoria.models.venda import Venda, VendaSchema
+from consultoria.models.usuario import Usuario, UsuarioSchema
 
 from ..modules import db, admin_permission
 
@@ -25,6 +27,10 @@ class PlanoController:
         schema = PlanoSchema()
         lista = Plano().query.filter().all()        
         return schema.jsonify(lista, True)
+    
+    def listarCliente(self):
+        lista = db.session.query(Venda).filter(Venda.usuario_id == current_user.id).all()      
+        return jsonify(VendaSchema(exclude=('usuario','formulario','pagamento.vendas','treinos')).dump(lista, True).data)
     
     @login_required
     def buscar(self, id):

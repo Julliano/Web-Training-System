@@ -3,22 +3,24 @@
 
 	angular.module("consultoria").controller("ModeloAdminController", ModeloAdminController);
 
-	ModeloAdminController.$inject = [ "$http", "LoginService", "Notification", "$uibModal" ];
+	ModeloAdminController.$inject = [ "$http", "LoginService", "Notification", "$uibModal", "ModeloService"];
 
 	/* @ngInject */
-	function ModeloAdminController($http, LoginService, Notification, $uibModal) {
+	function ModeloAdminController($http, LoginService, Notification, $uibModal, ModeloService) {
 		var vm = this;
 		vm.usuario = LoginService.getUsuario();
 		vm.modal = modal;
 
+		init();
+		
 		function init(){
-//			listar();
+			listar();
 		}
 		
 		function listar() {
-//			ModeloService.listar().then(function(response) {
-//				vm.duvidas = response;
-//			})
+			ModeloService.listarAdmin().then(function(response) {
+				vm.modelos = response;
+			})
 			
 		}
 		

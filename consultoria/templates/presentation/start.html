@@ -40,10 +40,11 @@
 	        <h5 style="margin-bottom: 15px;">O meu serviço não será um Personal Online.</h5>
 			<h5 style="margin-bottom: 15px;">Eu serei um consultor, farei um planejamento, você seguirá e juntos atingiremos o seu objetivo.</h5>
 			<h5 style="margin-bottom: 15px;">Meu planejamentos são desenvolvidos para serem executados em academia!</h5>	
-			<h5 style="margin-bottom: 30px;">Presentei alguém ou a si mesmo, escolha um plano abaixo. Te aguardo.</h5>
+			<h5 style="margin-bottom: 30px;">Presentei si mesmo, escolha um plano abaixo. Te aguardo.</h5>
 			<h3 style="margin-bottom: 15px; text-decoration: underline;">Aproveite o preço promocional de lançamento</h3>
-			<div class="col-md-12 col-xs-12" style="box-shadow: 1px 1px 10px 2px #757373;">
-				<div class="col-md-6 col-xs-12" style="background-color: #f6f7f9; border: 3px solid #f6f7f9;">
+			<div class="col-md-12 col-xs-12">
+				<div class="col-md-1"></div>
+				<div class="col-md-5 col-xs-12" style="background-color: #f6f7f9; border: 3px solid #f6f7f9; box-shadow: 1px 1px 10px 2px #757373;">
 					<h3>Planejamento mensal</h3>
 					<h3 style="margin-top: 5px;">1 consultoria</h3>
 					<div>
@@ -52,9 +53,10 @@
 			            <span class="moeda">R$</span>
 			            <span class="valor">99,00</span>
 		          	</div>
-		            <button class="btn btn-primary botaoComprar">Comprar</button>
+		            <button class="btn btn-primary botaoComprar" ng-click="StartCtrl.comprar('1')">Comprar</button>
 				</div>
-				<div class="col-md-6 col-xs-12" style="background-color: #f6f7f9; border: 3px solid #f6f7f9; color: #63b050;">
+				<div class="col-md-1"></div>
+				<div class="col-md-5 col-xs-12" style="background-color: #f6f7f9; border: 3px solid #f6f7f9; color: #63b050; box-shadow: 1px 1px 10px 2px #757373;">
 					<h3>Planejamento trimestral</h3>
 					<h3 style="margin-top: 5px;">3 consultorias</h3>
 					<div>
@@ -63,7 +65,7 @@
 			            <span class="moeda">R$</span>
 			            <span class="valor">229,00</span>
 		          	</div>
-		          	<button class="btn btn-success botaoComprar">Comprar</button>
+		          	<button class="btn btn-success botaoComprar" ng-click="StartCtrl.comprar('3')">Comprar</button>
 				</div>
 			</div>
         </div>
@@ -77,18 +79,16 @@
         		<img class="img-responsive" src="/media/julliano.jpg">
         	</div>
         	<div class="col-xs-6 col-md-8">
-	        <h2 style="text-transform: capitalize;">Julliano Volpato</h2>
-        	<p>
-        		Graduado em Educação Física (Bacharel) pela Universidade Estadual de Santa Catarina - (UDESC)
-				Graduado em Análise e Desenvolvimento de Sistemas - SENAI/CTAI
-        	</p>
-        	<ul>
-        		<li>
-        			 <a href="http://instagram.com/julliano_osorio" target="_blank" style="color:black;">
+		        <h2 style="text-transform: capitalize;">Julliano Volpato</h2>
+	        	<p>
+	        		Graduado em Educação Física (Bacharel) pela Universidade Estadual de Santa Catarina - (UDESC)
+					Graduado em Análise e Desenvolvimento de Sistemas - SENAI/CTAI
+	        	</p>
+	   			<div>
+	    			<a href="http://instagram.com/julliano_osorio" target="_blank" style="color:black;">
 		             	<i class="fa fa-instagram fa-2x" style="margin-right: 10px;"></i>@julliano_osorio
 		        	</a>
-        		</li>
-        	</ul>
+		       	</div>
         	</div>
         </div>
     </section>
@@ -127,11 +127,6 @@
 	        </div>
 	        <div class="col-xs-6 pull-right">
 	        	<ul style="float: right; margin: 0;">
-	        		<li style="display: inline; margin: 5px;">
-	        			<a href="https://www.facebook.com/julliano.osorio" target="_blank" style="font-size: 20px;">
-	        				<i class="fa fa-facebook"></i>
-	        			</a>
-	        		</li>
 	        		<li style="display: inline; margin: 5px;">
 	        			<a href="https://www.instagram.com/julliano_osorio/" target="_blank" style="font-size: 20px;">
 	        				<i class="fa fa-instagram"></i>

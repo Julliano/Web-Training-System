@@ -4,7 +4,7 @@ from datetime import date
 from ..models import BaseSchema
 from ..modules import db, ma
 from sqlalchemy.types import ARRAY
-
+from .venda import Venda
 
 class Formulario(db.Model):
     __tablename__ = 'formulario'    
@@ -32,6 +32,7 @@ class Formulario(db.Model):
     ultimoTreino = db.Column(db.Text)
     objetivo = db.Column(db.Text)
     obs = db.Column(db.Text)
+    vendas = db.relationship("Venda", cascade="save-update, merge, delete", backref="formulario")
     
 class FormularioSchema(BaseSchema):
     class Meta(BaseSchema.Meta):

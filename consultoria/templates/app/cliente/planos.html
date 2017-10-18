@@ -1,25 +1,23 @@
 <p class="tituloPagina">Planos adquiridos</p>
 <div class="container">
-	<div class="panel-body">
-		<div class="dataTable_wrapper">
-			<table class="table table-bordered" id="table-usuarios">
-				<thead>
-					<tr>
-						<td>Data aquisição</td>
-						<td>Descrição</td>
-						<td>Valor</td>
-						<td>Status</td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="plano in PlanoCtrl.planos" class="odd gradeX">
-						<td>{{plano.data_compra}}</td>
-						<td>{{plano.titulo}}</td>
-						<td>{{plano.valor}}</td>
-						<td>{{plano.pagamento}}</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+	<div class="fundoBranco">
+		<table class="table" id="table-usuarios">
+			<thead>
+				<tr>
+					<th class="col-md-2">Data aquisição</th>
+					<th class="col-md-6">Descrição</th>
+					<th class="col-md-1 text-center">Valor</th>
+					<th class="col-md-3 text-center">Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="venda in CliPlanoCtrl.vendas" class="odd gradeX">
+					<td>{{venda.data_compra}}</td>
+					<td>{{venda.plano.titulo}}</td>
+					<td class="text-center">R${{venda.plano.valor}}</td>
+					<td class="text-center">{{venda.pagamento.status}}</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 </div>

@@ -1,24 +1,48 @@
 <p class="tituloPagina">DÚVIDAS DOS CLIENTES</p>
 <div class="container">
-	<div class="input-group" style="padding-bottom: 20px;">
+	<!-- <div class="input-group" style="padding-bottom: 20px;">
 		<input class="form-control" type="text" ng-model="DuvidaAdmCtrl.filtroDuvida">
-	</div>
-	<div class="fundoBranco">
-		<table class="table table-striped" id="table-usuarios">
-			<thead>
-				<tr>
-					<th class="col-md-3">Assunto</th>
-					<th class="col-md-7">Descrição</th>
-					<th class="col-md-2 text-center">Data</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="duvida in DuvidaAdmCtrl.duvidas | filter:DuvidaAdmCtrl.filtroDuvida" ng-class="{'danger':duvida.status == 'pendente', 'success':duvida.status == 'ativa'}">
-					<td ng-click="DuvidaAdmCtrl.verDuvida(duvida.id)" style="white-space: nowrap;color:blue;">{{duvida.titulo}}</td>
-					<td style="white-space: nowrap;">{{duvida.descricao}}</td>
-					<td class="text-center">{{duvida.data}}</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+	</div> -->
+	<uib-tabset active="activeJustified">
+    	<uib-tab index="0" heading="Ativas" ng-click="DuvidaAdmCtrl.filtrar('ativa')">
+			<div class="fundoBranco">
+				<table class="table table-striped" id="table-usuarios">
+					<thead>
+						<tr>
+							<th class="col-md-3">Assunto</th>
+							<th class="col-md-7">Descrição</th>
+							<th class="col-md-2 text-center">Data</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="duvida in DuvidaAdmCtrl.duvidas | filter:DuvidaAdmCtrl.filtroDuvida" ng-class="{'danger':duvida.status == 'pendente', 'success':duvida.status == 'ativa'}">
+							<td ng-click="DuvidaAdmCtrl.verDuvida(duvida.id)" style="white-space: nowrap;color:blue;">{{duvida.titulo}}</td>
+							<td style="white-space: nowrap;">{{duvida.descricao}}</td>
+							<td class="text-center">{{duvida.data}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</uib-tab>
+    	<uib-tab index="1" heading="Pendentes" ng-click="DuvidaAdmCtrl.filtrar('pendente')">
+			<div class="fundoBranco">
+				<table class="table table-striped" id="table-usuarios">
+					<thead>
+						<tr>
+							<th class="col-md-3">Assunto</th>
+							<th class="col-md-7">Descrição</th>
+							<th class="col-md-2 text-center">Data</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="duvida in DuvidaAdmCtrl.duvidas | filter:DuvidaAdmCtrl.filtroDuvida" ng-class="{'danger':duvida.status == 'pendente', 'success':duvida.status == 'ativa'}">
+							<td ng-click="DuvidaAdmCtrl.verDuvida(duvida.id)" style="white-space: nowrap;color:blue;">{{duvida.titulo}}</td>
+							<td style="white-space: nowrap;">{{duvida.descricao}}</td>
+							<td class="text-center">{{duvida.data}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</uib-tab>
+  	</uib-tabset>
 </div>

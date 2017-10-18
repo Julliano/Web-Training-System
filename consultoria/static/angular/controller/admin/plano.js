@@ -22,7 +22,6 @@
 			$http.get('/planos').then(function(response) {
 				vm.planos = response.data;
 			})
-			
 		}
 		
 		function modal(plano) {

@@ -7,6 +7,7 @@
 
 	function LoginService($q, $rootScope, $state, $http, Notification) {
 		var _usuario;
+		var _compra;
 		var _observers = {total_change : []}
 		var service = {
 			login : login,
@@ -72,7 +73,8 @@
 			return deferred.promise;
 		}
 
-		function login(usuario) {
+		function login(usuario, param) {
+			_compra = param;
 			return $http.post("/login", usuario).then(loginSuccess, loginFailed)
 		}
 
@@ -88,7 +90,11 @@
 					if(_usuario.grupos[0]['nome'] == "admin"){
 						$state.go("admin.treinos");
 					} else {
-						$state.go("app.treinos");
+						if(_compra){
+							$state.go("app.compra"+_compra.valor)
+						}else{
+							$state.go("app.treinos");
+						}
 					}					
 				})
 				return response.data;

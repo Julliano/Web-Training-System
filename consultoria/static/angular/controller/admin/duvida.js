@@ -9,7 +9,9 @@
 	function DuvidaAdminController($http, LoginService, Notification, DuvidaService, $state) {
 		var vm = this;
 		vm.usuario = LoginService.getUsuario();
+		vm.filtrar = filtrar;
 		vm.verDuvida = verDuvida;
+		vm.filtroDuvida = 'ativa'
 		
 		init();
 		
@@ -21,6 +23,10 @@
 			DuvidaService.listarAdmin().then(function(response) {
 				vm.duvidas = response;
 			})
+		}
+		
+		function filtrar(param){
+			vm.filtroDuvida = param;
 		}
 		
 		function verDuvida(id){

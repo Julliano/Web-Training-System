@@ -9,6 +9,7 @@ from sqlalchemy import DateTime
 from ..models import BaseSchema
 from ..modules import db, ma
 from usuario_grupo import usuario_grupo
+from .grupo import GrupoSchema
 from .venda import Venda
 from ..modules import admin_permission
 

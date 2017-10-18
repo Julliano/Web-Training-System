@@ -3,7 +3,7 @@ from datetime import date
 
 from ..models import BaseSchema
 from ..modules import db, ma
-
+from .venda import Venda
 
 class Plano(db.Model):
     __tablename__ = 'plano'    
@@ -11,7 +11,8 @@ class Plano(db.Model):
     data_cadastro = db.Column(db.Date, default=date.today)
     titulo = db.Column(db.String(255), nullable=False)
     valor = db.Column(db.Float) 
-    n_treinos = db.Column(db.Float) 
+    n_treinos = db.Column(db.Float)
+    vendas = db.relationship("Venda", cascade="save-update, merge, delete", backref="plano") 
     
 
 class PlanoSchema(BaseSchema):
