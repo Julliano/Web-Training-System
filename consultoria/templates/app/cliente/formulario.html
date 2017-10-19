@@ -1,0 +1,166 @@
+<p class="tituloPagina">Formulário</p>
+<div class="container" style="margin-bottom: 35px;">
+	<div class="row">
+		<form novalidate class="form" name="formVenda">
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3">
+					<div class="form-group">
+						<label class="text-form">Peso: *</label>
+						<input type="text" class="form-control" placeholder="Ex: 60kg" ng-model="CliFormCtrl.formulario.peso" required>
+					</div>
+					<div class="form-group">
+						<label class="text-form">% Gordura: </label>
+						<input type="text" class="form-control" placeholder="Ex: 24%" ng-model="CliFormCtrl.formulario.formulario.bf">
+					</div>
+					<div class="form-group">
+						<label class="text-form">Cardápio atual:</label>
+						<textarea type="text" class="form-control" placeholder="Ex: Café da manha... / Almoço..." ng-model="CliFormCtrl.formulario.formulario.cardapio" required></textarea>
+					</div>
+					<div class="form-group">
+						<div>
+							<label class="text-form">Está treinando: *</label>
+						</div>
+						<div style="margin-left: 20px;">
+							<label>
+						  		<input type="radio" ng-model="CliFormCtrl.formulario.treinando" ng-value="true" required>
+						  		Sim
+							</label>
+							<label>
+						  		<input type="radio" ng-model="CliFormCtrl.formulario.treinando" ng-value="false" required>
+						  		Não
+							</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="text-form">Experiência:</label>
+						<select class="texto-info analise form-control" ng-model="CliFormCtrl.formulario.experiencia" ng-disabled="CliFormCtrl.formulario.treinando != 'true'">
+							<option label="" value="3 meses">3 meses</option>
+							<option label="" value="6 meses">6 meses</option>
+							<option label="" value="9 meses">9 meses</option>
+							<option label="" value="1 ano">1 ano</option>
+							<option label="" value="2 anos">+ 2 anos</option>
+						</select>
+					</div>
+					<div class="weekDays-selector form-group" style="display: grid;">
+						<label class="text-form">Disponibilidade para treinos na semana:</label>
+						<input type="checkbox" id="weekday-mon" class="weekday" ng-model="CliFormCtrl.formulario.extra_disponibilidade['segunda']"/>
+					  	<label for="weekday-mon">Segunda</label>
+					  	<input type="checkbox" id="weekday-tue" class="weekday" ng-model="CliFormCtrl.formulario.extra_disponibilidade['terca']"/>
+					  	<label for="weekday-tue">Terça</label>
+					  	<input type="checkbox" id="weekday-wed" class="weekday" ng-model="CliFormCtrl.formulario.extra_disponibilidade['quarta']"/>
+					  	<label for="weekday-wed">Quarta</label>
+					  	<input type="checkbox" id="weekday-thu" class="weekday" ng-model="CliFormCtrl.formulario.extra_disponibilidade['quinta']"/>
+					  	<label for="weekday-thu">Quinta</label>
+					  	<input type="checkbox" id="weekday-fri" class="weekday" ng-model="CliFormCtrl.formulario.extra_disponibilidade['sexta']"/>
+					  	<label for="weekday-fri">Sexta</label>
+					  	<input type="checkbox" id="weekday-sat" class="weekday" ng-model="CliFormCtrl.formulario.extra_disponibilidades['sabado']"/>
+					  	<label for="weekday-sat">Sábado</label>
+					  	<input type="checkbox" id="weekday-sun" class="weekday" ng-model="CliFormCtrl.formulario.extra_disponibilidade['domingo']"/>
+					  	<label for="weekday-sun">Domingo</label>
+					</div>
+					<div class="form-group">
+						<div>
+							<label class="text-form">Pratica atividade extra: *</label>
+						</div>
+						<div style="margin-left: 20px;">
+							<label>
+						  		<input type="radio" ng-model="CliFormCtrl.formulario.extra" ng-value="true" required>
+						  		Sim
+							</label>
+							<label>
+						  		<input type="radio" ng-model="CliFormCtrl.formulario.extra" ng-value="false" required>
+						  		Não
+							</label>
+						</div>
+					</div>
+					<div class="weekDays-selector form-group" style="display: grid;" ng-if="CliFormCtrl.formulario.extra == 'true'">
+						<label class="text-form">Frequência:</label>
+						<input type="checkbox" id="weekday-mon" class="weekday" ng-model="CliFormCtrl.formulario.extra_disponibilidade['segunda']"/>
+					  	<label for="weekday-mon">Segunda</label>
+					  	<input type="checkbox" id="weekday-tue" class="weekday" ng-model="CliFormCtrl.formulario.extra_disponibilidade['terca']"/>
+					  	<label for="weekday-tue">Terça</label>
+					  	<input type="checkbox" id="weekday-wed" class="weekday" ng-model="CliFormCtrl.formulario.extra_disponibilidade['quarta']"/>
+					  	<label for="weekday-wed">Quarta</label>
+					  	<input type="checkbox" id="weekday-thu" class="weekday" ng-model="CliFormCtrl.formulario.extra_disponibilidade['quinta']"/>
+					  	<label for="weekday-thu">Quinta</label>
+					  	<input type="checkbox" id="weekday-fri" class="weekday" ng-model="CliFormCtrl.formulario.extra_disponibilidade['sexta']"/>
+					  	<label for="weekday-fri">Sexta</label>
+					  	<input type="checkbox" id="weekday-sat" class="weekday" ng-model="CliFormCtrl.formulario.extra_disponibilidades['sabado']"/>
+					  	<label for="weekday-sat">Sábado</label>
+					  	<input type="checkbox" id="weekday-sun" class="weekday" ng-model="CliFormCtrl.formulario.extra_disponibilidade['domingo']"/>
+					  	<label for="weekday-sun">Domingo</label>
+					</div>
+					<div class="form-group">
+						<div>
+							<label class="text-form">Fumante: *</label>
+						</div>
+						<div style="margin-left: 20px;">
+							<label>
+						  		<input type="radio" ng-model="CliFormCtrl.formulario.fumante" ng-value="true" required>
+						  		Sim
+							</label>
+							<label>
+						  		<input type="radio" ng-model="CliFormCtrl.formulario.fumante" ng-value="false" required>
+						  		Não
+							</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div>
+							<label class="text-form">Bebe: *</label>
+						</div>
+						<div style="margin-left: 20px;" class="form-group">
+							<label>
+						  		<input type="radio" ng-model="CliFormCtrl.formulario.bebe" ng-value="true" required>
+						  		Sim
+							</label>
+							<label>
+						  		<input type="radio" ng-model="CliFormCtrl.formulario.bebe" ng-value="false" required>
+						  		Não
+							</label>
+						</div>
+						<select class="texto-info analise form-control" ng-disabled="CliFormCtrl.formulario.bebe != 'true'">
+							<option label="" value="Socialmente">Socialmente</option>
+							<option label="" value="Fim de semana">Fins de semana</option>
+							<option label="" value="Sempre que da">Sempre que dá</option>
+							<option label="" value="Todo dia">Todo dia</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label class="text-form">Melhor treino até o momento:</label>
+						<textarea type="text" class="form-control" placeholder="Ex: Treino de força, com método Piramidal 12/10/8" ng-model="CliFormCtrl.formulario.formulario.melhorTreino"></textarea>
+					</div>
+					<div class="form-group">
+						<label class="text-form">Exercícios preferidos:</label>
+						<textarea type="text" class="form-control" placeholder="Ex: Gosto de agachamento, supinho e voador" ng-model="CliFormCtrl.formulario.formulario.exerGosta"></textarea>
+					</div>
+					<div class="form-group">
+						<label class="text-form">Exercícios que não gosta:</label>
+						<textarea type="text" class="form-control" placeholder="Ex: Não gosto de levantamento terra..." ng-model="CliFormCtrl.formulario.formulario.exerOdeia"></textarea>
+					</div>
+					<div class="form-group">
+						<label class="text-form">Patologia:</label>
+						<textarea type="text" class="form-control" placeholder="Ex: Tenho artrose..." ng-model="CliFormCtrl.formulario.formulario.patologia"></textarea>
+					</div>
+					<div class="form-group">
+						<label class="text-form">Problema articular:</label>
+						<textarea type="text" class="form-control" placeholder="Ex: Lesão de grau 1 no ligamento lateral do joelho esquerdo." ng-model="CliFormCtrl.formulario.formulario.articulacao"></textarea>
+					</div>
+					<div class="form-group">
+						<label class="text-form">Objetivo:</label>
+						<textarea type="text" class="form-control" placeholder="Ex: Hipertrofia / Emagrecimento" ng-model="CliFormCtrl.formulario.formulario.objetivo"></textarea>
+					</div>
+					<div class="form-group">
+						<label class="text-form">Observações:</label>
+						<textarea type="text" class="form-control" placeholder="Ex: Algo que queira acrescentar, além das perguntas fornecidas." ng-model="CliFormCtrl.formulario.formulario.obj"></textarea>
+					</div>
+				</div>
+			</div>
+			<div style="float: right;">
+				<button type="submit" ng-click="CliFormCtrl.salvar()" ng-disabled="!formVenda.$valid" class="btn btn-success">Salvar</button>
+				<button type="submit" ui-sref="index.start" class="btn btn-primary">Voltar</button>
+			</div>			
+		</form>
+	</div>
+	<hr>
+</div>

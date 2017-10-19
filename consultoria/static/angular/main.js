@@ -27,6 +27,10 @@
 		var duvida = function(DuvidaService, $stateParams) {
 			return DuvidaService.buscar($stateParams.id);
 		};
+
+		var form = function(FormService, $stateParams) {
+			return FormService.buscar($stateParams.id);
+		};
 		
 		var treino = function(TreinoService, $stateParams) {
 			return TreinoService.buscar($stateParams.id);
@@ -118,6 +122,14 @@
 			templateUrl : '/app/cliente/conta.html',
 			controller : 'ClienteContaController',
 			controllerAs : 'CliContaCtrl'
+		}).state('app.formulario', {
+			url : '/formulario/:id',
+			templateUrl : '/app/cliente/formulario.html',
+			controller : 'ClienteFormularioController',
+			controllerAs : 'CliFormCtrl',
+			resolve : {
+				form : form
+			}
 		}).state('admin', {
 			url : '/admin',
 			templateUrl : '/app/admin/base.html',

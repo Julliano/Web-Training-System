@@ -1,6 +1,11 @@
 <p class="tituloPagina">Treinos</p>
 <div class="container">
-	<div class="fundoBranco">
+	<div class="fundoBranco text-center" ng-if="!CliTreinoCtrl.formularios[0].preenchido">
+		<h4 style="font-weight: 300;">Olá, percebi que você tem um formulário não preenchido ou que foi solicitado alguma correção pelo Julliano.</h4>
+		<button class="btn btn-success botaoComprar" ng-click="CliTreinoCtrl.formularioAntigo(false)">Preencher / Ajustar</button>
+		<button class="btn btn-success botaoComprar" ng-if="CliTreinoCtrl.formularios[1].preenchido" ng-click="CliTreinoCtrl.formularioAntigo(true)">Utilizar relatorio antigo como base</button>
+	</div>
+	<div class="fundoBranco" ng-if="CliTreinoCtrl.formularios[0].preenchido">
 		<table class="table table-bordered" id="table-usuarios">
 			<thead>
 				<tr>
@@ -11,10 +16,10 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="treino in TreinoCtrl.treinos" class="odd gradeX">
+				<tr ng-repeat="treino in CliTreinoCtrl.treinos" class="odd gradeX">
 					<td>{{treino.data_entrega}}</td>
-					<td>{{treino.modelo.titulo}}</td>
-					<td>{{treino.plano.titulo}}</td>
+					<td>{{treino.nome}}</td>
+					<td>{{treino.venda.plano.titulo}}</td>
 					<td>{{treino.sessao}}</td>
 				</tr>
 			</tbody>

@@ -90,7 +90,7 @@
 					if(_usuario.grupos[0]['nome'] == "admin"){
 						$state.go("admin.treinos");
 					} else {
-						if(_compra){
+						if(_compra.valor){
 							$state.go("app.compra"+_compra.valor)
 						}else{
 							$state.go("app.treinos");

@@ -1,6 +1,8 @@
 # coding: utf-8
 from datetime import date
 
+from marshmallow_sqlalchemy.convert import field_for
+
 from ..models import BaseSchema
 from ..modules import db, ma
 from .treino import Treino
@@ -24,6 +26,7 @@ class VendaSchema(BaseSchema):
     treinos = ma.Nested("TreinoSchema", many=True, only=('id','nome','data_entrega','sessao'))
     vendas = ma.Nested("VendaSchema", many=True)
     plano = ma.Nested("PlanoSchema", dump_only=True)
+    usuario_id = field_for(Venda, 'usuario_id', dump_only=False)
     usuario = ma.Nested("UsuarioSchema", dump_only=True)
     formulario = ma.Nested("FormularioSchema", dump_only=True)
     pagamento = ma.Nested("PagamentoSchema", dump_only=True)

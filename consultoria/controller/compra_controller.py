@@ -1,15 +1,17 @@
 # coding: utf-8
+from datetime import date, timedelta
+
 from flask import jsonify
 from flask.helpers import make_response
 from flask_login import fresh_login_required, current_user, login_required
 
-from ..models.venda import Venda, VendaSchema
-from ..models.pagamento import Pagamento, PagamentoSchema
-from ..models.treino import Treino, TreinoSchema
-from ..models.plano import Plano, PlanoSchema
-from ..models.pagamento import Pagamento, PagamentoSchema
 from ..models.formulario import Formulario, FormularioSchema
+from ..models.pagamento import Pagamento, PagamentoSchema
+from ..models.pagamento import Pagamento, PagamentoSchema
+from ..models.plano import Plano, PlanoSchema
+from ..models.treino import Treino, TreinoSchema
 from ..models.usuario import Usuario, UsuarioSchema
+from ..models.venda import Venda, VendaSchema
 from ..modules import db, admin_permission
 
 
@@ -40,6 +42,7 @@ class CompraController:
             venda.formulario = Formulario()
             for treino in range(0,int(venda.plano.n_treinos)):
                 treino = Treino()
+                treino.data_entrega = date.today + timedelta(days=2) #mudar para ser preenchido na confirmação do pagamento.
                 treino.sessao = '1/1'
                 venda.treinos.append(treino)
             db.session.add(venda)

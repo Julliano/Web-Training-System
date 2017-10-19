@@ -1,3 +1,24 @@
+.weekDays-selector input {
+  display: none!important;
+}
+
+.weekDays-selector input[type=checkbox] + label {
+  display: inline-block;
+  border-radius: 6px;
+  background: #dddddd;
+  height: 40px;
+  margin-right: 3px;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.weekDays-selector input[type=checkbox]:checked + label {
+  background: #63b050;
+  color: #ffffff;
+}
+
+
 .tituloPagina{
     padding: 10px 0px 10px 20%;
     border-bottom: 1px solid olivedrab;

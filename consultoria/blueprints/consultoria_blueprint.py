@@ -20,6 +20,7 @@ from consultoria.modules import mail
 
 from ..controller.compra_controller import CompraController
 from ..controller.duvidas_controller import DuvidasController
+from ..controller.formulario_controller import FormularioController
 from ..controller.grupo_controller import GrupoController
 from ..controller.plano_controller import PlanoController
 from ..controller.session_controller import SessionController
@@ -149,6 +150,25 @@ def emailContato(id=None):
 def emailRecuperacao(id=None):
     if request.method == "POST":
         return UsuarioController().emailRecuperacao(request.json or request.form)
+
+@consultoria_app.route('/formulariosUltimo/<int:id>', methods=["GET"])
+@login_required
+def formulariosUltimo(id=None):
+    return FormularioController().buscarUltimo(id)
+
+@consultoria_app.route('/formularios/', methods=['GET', "POST", "PUT", "DELETE"])
+@consultoria_app.route('/formularios/<int:id>', methods=["GET", "DELETE"])
+@login_required
+def formularios(id=None):
+    return crud_request(FormularioController(), id)
+
+@consultoria_app.route('/admin/formularios/', methods=['GET', "POST", "PUT", "DELETE"])
+@consultoria_app.route('/admin/formularios/<int:id>', methods=["GET", "DELETE"])
+@admin_permission.require(http_exception=403)
+def admin_formularios(id=None):
+    if request.method == "PUT":
+        return FormularioController().admin_editar(request.json or request.form)
+    return crud_request(FormularioController(), id)
 
 @consultoria_app.route('/usuarios/', methods=['GET', "POST", "PUT", "DELETE"])
 @consultoria_app.route('/usuarios/<int:id>', methods=["GET", "DELETE"])

@@ -1,4 +1,6 @@
 # coding: utf-8
+from datetime import date
+
 from flask import jsonify
 from flask.helpers import make_response
 from flask.templating import render_template
@@ -7,6 +9,8 @@ from flask_mail import Message
 from flask_security.decorators import roles_required
 
 from consultoria.models.treino import Treino, TreinoSchema
+from consultoria.models.usuario import Usuario
+from consultoria.models.venda import Venda
 from consultoria.modules import mail
 
 from ..modules import db, admin_permission
@@ -33,7 +37,7 @@ class TreinoController:
     @login_required
     def listar(self):
         schema = TreinoSchema()
-        lista = Treino().query.filter(Treino.usuario_id == current_user.id).all()        
+        lista = Treino().query.join(Treino.venda).filter(Venda.usuario_id == current_user.id).all()        
         return schema.jsonify(lista, True)
     
     @login_required
@@ -47,6 +51,7 @@ class TreinoController:
             if schema.errors.__len__() > 0:
                 return make_response(schema.errors[0], 500)        
             treino = schema.data
+            treino.data_disponibilizado = date.today
             treino.status = 'ativa'
             db.session.add(treino)
             db.session.commit()

@@ -4,6 +4,7 @@ encoding//consultoria/blueprints/consultoria_blueprint.py=utf-8
 encoding//consultoria/controller/alteracao_status_controller.py=utf-8
 encoding//consultoria/controller/compra_controller.py=utf-8
 encoding//consultoria/controller/duvidas_controller.py=utf-8
+encoding//consultoria/controller/formulario_controller.py=utf-8
 encoding//consultoria/controller/grupo_controller.py=utf-8
 encoding//consultoria/controller/modelo_controller.py=utf-8
 encoding//consultoria/controller/plano_controller.py=utf-8

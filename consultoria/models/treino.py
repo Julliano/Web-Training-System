@@ -11,6 +11,7 @@ class Treino(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(255))
     data_entrega = db.Column(db.Date)
+    data_disponibilizado = db.Column(db.Date)
     status = db.Column(db.String(45), default="pendente")
     sessao = db.Column(db.String(3))
     alteracao = db.Column(db.Text) 
