@@ -61,8 +61,7 @@ class FormularioController:
             formulario.preenchido = True
             db.session.add(formulario)
             db.session.commit()
-            self.emailLiberacaoFormulario(formulario)
-            return FormularioSchema().jsonify(formulario)                
+            return make_response("Formulario editado com sucesso", 200)
 
     @admin_permission.require(http_exception=403)
     def admin_editar(self, data):

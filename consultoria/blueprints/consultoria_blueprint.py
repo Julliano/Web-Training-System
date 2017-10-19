@@ -157,13 +157,13 @@ def formulariosUltimo(id=None):
     return FormularioController().buscarUltimo(id)
 
 @consultoria_app.route('/formularios/', methods=['GET', "POST", "PUT", "DELETE"])
-@consultoria_app.route('/formularios/<int:id>', methods=["GET", "DELETE"])
+@consultoria_app.route('/formularios/<int:id>', methods=["GET", "PUT" "DELETE"])
 @login_required
 def formularios(id=None):
     return crud_request(FormularioController(), id)
 
 @consultoria_app.route('/admin/formularios/', methods=['GET', "POST", "PUT", "DELETE"])
-@consultoria_app.route('/admin/formularios/<int:id>', methods=["GET", "DELETE"])
+@consultoria_app.route('/admin/formularios/<int:id>', methods=["GET", "PUT" "DELETE"])
 @admin_permission.require(http_exception=403)
 def admin_formularios(id=None):
     if request.method == "PUT":
