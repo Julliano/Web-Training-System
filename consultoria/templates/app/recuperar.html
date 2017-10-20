@@ -5,25 +5,27 @@
 		</div>
 	</div>
 </div>
-<p class="tituloPagina" style="margin-top: 50px;">Recuperar Senha</p>
-<form novalidate class="form" name="contaForm">
-	<div class="container">
-		<div class="col-md-6 col-md-offset-3">
-			<div class="form-group" style="margin-top: 5px;">
-				<label class="text-form">Nova senha</label>
-				<input type="password" class="form-control" ng-model="RecSenhaCtrl.usuario.novaSenha" required>
-			</div>
-			<div class="form-group">
-				<label class="text-form">Confirma senha</label>
-				<input type="password" class="form-control" ng-model="confirmaSenha" compara-com="RecSenhaCtrl.usuario.novaSenha" compara-senha required>
-			</div>
-			<div style="display: grid;">
-				<div style="margin-bottom: 5px; display: grid;">
-					<button type="submit" ng-click="RecSenhaCtrl.salvar()" ng-disabled="!contaForm.$valid" class="btn btn-default">Salvar alterações</button>
+<div class="wapperVerde">
+	<p class="tituloPagina">Recuperar Senha</p>
+	<form novalidate class="form" name="contaForm">
+		<div class="container fundoBranco">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="form-group" style="margin-top: 5px;">
+					<label class="text-form">Nova senha</label>
+					<input type="password" class="form-control" ng-model="RecSenhaCtrl.usuario.novaSenha" required>
 				</div>
-				
-				<button type="submit" ui-sref="index.start" class="btn btn-primary">Voltar</button>
+				<div class="form-group">
+					<label class="text-form">Confirma senha</label>
+					<input type="password" class="form-control" ng-model="confirmaSenha" compara-com="RecSenhaCtrl.usuario.novaSenha" compara-senha required>
+				</div>
+				<div style="display: grid;">
+					<div style="margin-bottom: 5px; display: grid;">
+						<button type="submit" ng-click="RecSenhaCtrl.salvar()" ng-disabled="!contaForm.$valid" class="btn btn-default">Salvar alterações</button>
+					</div>
+					
+					<button type="submit" ui-sref="index.start" class="btn btn-primary">Voltar</button>
+				</div>
 			</div>
-		</div>
-	</div>			
-</form>
+		</div>			
+	</form>
+</div>

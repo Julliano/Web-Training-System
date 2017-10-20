@@ -18,6 +18,14 @@
   color: #ffffff;
 }
 
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+    background-color: transparent;
+    border-top: 3px solid white;
+}
+
+.navbar-default {
+	background-color: transparent;
+}
 
 .nav>li>a:focus, .nav>li>a:hover {
     color: #d4d1d1 !important;

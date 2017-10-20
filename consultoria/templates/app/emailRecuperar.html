@@ -1,25 +1,27 @@
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<div class="navbar navbar-fixed-top" role="navigation">
 	<div class="container-fluid container">
 		<div class="navbar-header">
 			<span class="text-highlight font-days navbar-brand">Julliano</span>
 		</div>
 	</div>
 </div>
-<p class="tituloPagina" style="margin-top: 50px;">Recuperar Senha</p>
-<form novalidate class="form" name="contaForm">
-	<div class="container">
-		<div class="col-md-6 col-md-offset-3">
-			<div class="form-group" style="margin-top: 5px;">
-				<label class="text-form">Email</label>
-				<input type="email" class="form-control" ng-model="RecEmailCtrl.usuario.email" required>
-			</div>
-			<div style="display: grid;">
-				<div style="margin-bottom: 5px; display: grid;">
-					<button type="submit" ng-click="RecEmailCtrl.salvar()" ng-disabled="!contaForm.$valid" class="btn btn-default">Recuperar Senha</button>
+<div class="wapperVerde">
+	<p class="tituloPagina">Recuperar Senha</p>
+	<form novalidate class="form" name="contaForm">
+		<div class="container fundoBranco">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="form-group" style="margin-top: 5px;">
+					<label class="text-form">Email</label>
+					<input type="email" class="form-control" ng-model="RecEmailCtrl.usuario.email" required>
 				</div>
-				
-				<button type="submit" ui-sref="index.start" class="btn btn-primary">Voltar</button>
+				<div style="display: grid;">
+					<div style="margin-bottom: 5px; display: grid;">
+						<button type="submit" ng-click="RecEmailCtrl.salvar()" ng-disabled="!contaForm.$valid" class="btn btn-default">Recuperar Senha</button>
+					</div>
+					
+					<button type="submit" ui-sref="index.start" class="btn btn-primary">Voltar</button>
+				</div>
 			</div>
-		</div>
-	</div>			
-</form>
+		</div>			
+	</form>
+</div>
