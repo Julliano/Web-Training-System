@@ -22,6 +22,7 @@ class Venda(db.Model):
 class VendaSchema(BaseSchema):
     class Meta(BaseSchema.Meta):
         model = Venda
+        dump_only = ("plano", "usuario", "formulario","pagamento")
     
     treinos = ma.Nested("TreinoSchema", many=True, only=('id','nome','data_entrega','sessao'))
     vendas = ma.Nested("VendaSchema", many=True)

@@ -13,6 +13,7 @@
 		vm.salvar = salvar;
 		vm.disponibilidade = disponibilidade;
 
+		
 		function salvar() {			
 			$http.put('/formularios/', vm.formulario).then(function(response) {
 				Notification.success(response.data);

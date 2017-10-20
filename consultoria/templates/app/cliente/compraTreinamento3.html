@@ -1,8 +1,198 @@
 <p class="tituloPagina">Finalização de compra</p>
 <div class="container">
-	<div class="fundoBranco text-center">
+	<div class="fundoBranco text-center" ng-if="!CompraCtrl.quest">
 		<h4 style="font-weight: 300;">Olá, obrigado por confiar na minha dedicação com o seu objetivo, prometo te entregar o meu máximo nesse planejamento personalizado.</h4>
-		<h4>Clique no botão abaixo para concluir a sua compra. Até já!</h4>
-		<button class="btn btn-success botaoComprar" ng-click="CompraCtrl.comprar(3)">Comprar - 3 Consultoria</button>
+		<h4 style="font-weight: 300;">Você tem um formulário novo para preencher.</h4>
+		<button class="btn btn-success botaoComprar" ng-click="CompraCtrl.formularioAntigo(false)">Preencher</button>
+		<button class="btn btn-success botaoComprar" ng-if="CompraCtrl.ultimoForm.preenchido" ng-click="CompraCtrl.formularioAntigo(true)">Utilizar relatorio antigo como base</button>
+	</div>
+	<div class="fundoBranco" ng-if="CompraCtrl.quest">
+		<div class="row">
+			<form novalidate class="form" name="formVenda">
+				<div class="row">
+					<div class="col-md-6 col-md-offset-3">
+						<div class="form-group">
+							<label class="text-form">Peso: *</label>
+							<input type="text" class="form-control" placeholder="Ex: 60kg" ng-model="CompraCtrl.formulario.peso" required>
+						</div>
+						<div class="form-group">
+							<label class="text-form">% Gordura: </label>
+							<input type="text" class="form-control" placeholder="Ex: 24%" ng-model="CompraCtrl.formulario.bf">
+						</div>
+						<div class="form-group">
+							<label class="text-form">Cardápio atual:</label>
+							<textarea type="text" class="form-control" placeholder="Ex: Café da manha... / Almoço..." ng-model="CompraCtrl.formulario.cardapio" required></textarea>
+						</div>
+						<div class="form-group">
+							<div>
+								<label class="text-form">Está treinando: *</label>
+							</div>
+							<div style="margin-left: 20px;">
+								<label>
+							  		<input type="radio" ng-model="CompraCtrl.formulario.treinando" ng-value="true" required>
+							  		Sim
+								</label>
+								<label>
+							  		<input type="radio" ng-model="CompraCtrl.formulario.treinando" ng-value="false" required>
+							  		Não
+								</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="text-form">Experiência:</label>
+							<select class="texto-info analise form-control" ng-model="CompraCtrl.formulario.experiencia" ng-disabled="CompraCtrl.formulario.treinando != true">
+								<option label="" value="3 meses">3 meses</option>
+								<option label="" value="6 meses">6 meses</option>
+								<option label="" value="9 meses">9 meses</option>
+								<option label="" value="1 ano">1 ano</option>
+								<option label="" value="2 anos">+ 2 anos</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<div>
+								<label class="text-form">Faz questão de aeróbico: *</label>
+							</div>
+							<div style="margin-left: 20px;">
+								<label>
+							  		<input type="radio" ng-model="CompraCtrl.formulario.aerobico" ng-value="true" required>
+							  		Sim
+								</label>
+								<label>
+							  		<input type="radio" ng-model="CompraCtrl.formulario.aerobico" ng-value="false" required>
+							  		Não
+								</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="text-form">Preferência:</label>
+							<select class="texto-info analise form-control" ng-model="CompraCtrl.formulario.aerobicoPreferido" ng-disabled="CompraCtrl.formulario.aerobico != true">
+								<option label="" value="Esteira">Esteira</option>
+								<option label="" value="Bike">Bike</option>
+								<option label="" value="Transport">Transport</option>
+								<option label="" value="Remo">Remo</option>
+							</select>
+						</div>
+						<div class="weekDays-selector form-group" style="display: grid;">
+							<label class="text-form">Disponibilidade para treinos na semana:</label>
+							<input type="checkbox" id="weekday1-mon" class="weekday1" checklist-model="CompraCtrl.formulario.disponibilidade" checklist-value="'segunda'"/>
+						  	<label for="weekday1-mon">Segunda</label>
+						  	<input type="checkbox" id="weekday1-tue" class="weekday1" checklist-model="CompraCtrl.formulario.disponibilidade" checklist-value="'terca'"/>
+						  	<label for="weekday1-tue">Terça</label>
+						  	<input type="checkbox" id="weekday1-wed" class="weekday1" checklist-model="CompraCtrl.formulario.disponibilidade" checklist-value="'quarta'"/>
+						  	<label for="weekday1-wed">Quarta</label>
+						  	<input type="checkbox" id="weekday1-thu" class="weekday1" checklist-model="CompraCtrl.formulario.disponibilidade" checklist-value="'quinta'"/>
+						  	<label for="weekday1-thu">Quinta</label>
+						  	<input type="checkbox" id="weekday1-fri" class="weekday1" checklist-model="CompraCtrl.formulario.disponibilidade" checklist-value="'sexta'"/>
+						  	<label for="weekday1-fri">Sexta</label>
+						  	<input type="checkbox" id="weekday1-sat" class="weekday1" checklist-model="CompraCtrl.formulario.disponibilidade" checklist-value="'sabado'"/>
+						  	<label for="weekday1-sat">Sábado</label>
+						  	<input type="checkbox" id="weekday1-sun" class="weekday1" checklist-model="CompraCtrl.formulario.disponibilidade" checklist-value="'domingo'"/>
+						  	<label for="weekday1-sun">Domingo</label>
+						</div>
+						<div class="form-group">
+							<div>
+								<label class="text-form">Pratica atividade extra: *</label>
+							</div>
+							<div style="margin-left: 20px;">
+								<label>
+							  		<input type="radio" ng-model="CompraCtrl.formulario.extra" ng-value="true" required>
+							  		Sim
+								</label>
+								<label>
+							  		<input type="radio" ng-model="CompraCtrl.formulario.extra" ng-value="false" required>
+							  		Não
+								</label>
+							</div>
+						</div>
+						<div class="weekDays-selector form-group" style="display: grid;" ng-if="CompraCtrl.formulario.extra == true">
+							<label class="text-form">Frequência: *</label>
+							<input type="checkbox" id="weekday-mon" class="weekday" checklist-model="CompraCtrl.formulario.extra_disponibilidade" checklist-value="'segunda'"/>
+						  	<label for="weekday-mon">Segunda</label>
+						  	<input type="checkbox" id="weekday-tue" class="weekday" checklist-model="CompraCtrl.formulario.extra_disponibilidade" checklist-value="'terca'"/>
+						  	<label for="weekday-tue">Terça</label>
+						  	<input type="checkbox" id="weekday-wed" class="weekday" checklist-model="CompraCtrl.formulario.extra_disponibilidade" checklist-value="'quarta'"/>
+						  	<label for="weekday-wed">Quarta</label>
+						  	<input type="checkbox" id="weekday-thu" class="weekday" checklist-model="CompraCtrl.formulario.extra_disponibilidade" checklist-value="'quinta'"/>
+						  	<label for="weekday-thu">Quinta</label>
+						  	<input type="checkbox" id="weekday-fri" class="weekday" checklist-model="CompraCtrl.formulario.extra_disponibilidade" checklist-value="'sexta'"/>
+						  	<label for="weekday-fri">Sexta</label>
+						  	<input type="checkbox" id="weekday-sat" class="weekday" checklist-model="CompraCtrl.formulario.extra_disponibilidade" checklist-value="'sabado'"/>
+						  	<label for="weekday-sat">Sábado</label>
+						  	<input type="checkbox" id="weekday-sun" class="weekday" checklist-model="CompraCtrl.formulario.extra_disponibilidade" checklist-value="'domingo'"/>
+						  	<label for="weekday-sun">Domingo</label>
+						</div>
+						<div class="form-group">
+							<div>
+								<label class="text-form">Fumante: *</label>
+							</div>
+							<div style="margin-left: 20px;">
+								<label>
+							  		<input type="radio" ng-model="CompraCtrl.formulario.fumante" ng-value="true" required>
+							  		Sim
+								</label>
+								<label>
+							  		<input type="radio" ng-model="CompraCtrl.formulario.fumante" ng-value="false" required>
+							  		Não
+								</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<div>
+								<label class="text-form">Bebe: *</label>
+							</div>
+							<div style="margin-left: 20px;" class="form-group">
+								<label>
+							  		<input type="radio" ng-model="CompraCtrl.formulario.bebe" ng-value="true" required>
+							  		Sim
+								</label>
+								<label>
+							  		<input type="radio" ng-model="CompraCtrl.formulario.bebe" ng-value="false" required>
+							  		Não
+								</label>
+							</div>
+							<select class="texto-info analise form-control" ng-disabled="CompraCtrl.formulario.bebe != true">
+								<option label="" value="Socialmente">Socialmente</option>
+								<option label="" value="Fim de semana">Fins de semana</option>
+								<option label="" value="Sempre que da">Sempre que dá</option>
+								<option label="" value="Todo dia">Todo dia</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label class="text-form">Melhor treino até o momento:</label>
+							<textarea type="text" class="form-control" placeholder="Ex: Treino de força, com método Piramidal 12/10/8" ng-model="CompraCtrl.formulario.melhorTreino"></textarea>
+						</div>
+						<div class="form-group">
+							<label class="text-form">Exercícios preferidos: *</label>
+							<textarea type="text" class="form-control" placeholder="Ex: Gosto de agachamento, supinho e voador" ng-model="CompraCtrl.formulario.exerGosta" required></textarea>
+						</div>
+						<div class="form-group">
+							<label class="text-form">Exercícios que não gosta:</label>
+							<textarea type="text" class="form-control" placeholder="Ex: Não gosto de levantamento terra..." ng-model="CompraCtrl.formulario.exerOdeia"></textarea>
+						</div>
+						<div class="form-group">
+							<label class="text-form">Patologia:</label>
+							<textarea type="text" class="form-control" placeholder="Ex: Tenho artrose..." ng-model="CompraCtrl.formulario.patologia"></textarea>
+						</div>
+						<div class="form-group">
+							<label class="text-form">Problema articular:</label>
+							<textarea type="text" class="form-control" placeholder="Ex: Lesão de grau 1 no ligamento lateral do joelho esquerdo." ng-model="CompraCtrl.formulario.articulacao"></textarea>
+						</div>
+						<div class="form-group">
+							<label class="text-form">Objetivo: *</label>
+							<textarea type="text" class="form-control" placeholder="Ex: Hipertrofia / Emagrecimento" ng-model="CompraCtrl.formulario.objetivo" required></textarea>
+						</div>
+						<div class="form-group">
+							<label class="text-form">Observações:</label>
+							<textarea type="text" class="form-control" placeholder="Ex: Algo que queira acrescentar, além das perguntas fornecidas." ng-model="CompraCtrl.formulario.obj"></textarea>
+						</div>
+					</div>
+				</div>
+				<div style="margin-top: 25px" class="text-center">
+					<h4>Clique no botão abaixo para concluir a sua compra. Até já!</h4>
+					<button class="btn btn-success botaoComprar" ng-disabled="!formVenda.$valid" ng-click="CompraCtrl.comprar(3)">Comprar - 3 Consultorias</button>
+					<button type="submit" ui-sref="index.start" class="btn btn-primary botaoComprar">Voltar</button>
+				</div>			
+			</form>
+		</div>
 	</div>
 </div>

@@ -45,10 +45,8 @@ class FormularioController:
 
     @login_required
     def buscarUltimo(self, id):
-        array = []
-        array.append(Formulario().query.join(Formulario.vendas).filter(Formulario.preenchido == False, Venda.usuario_id == current_user.id).order_by(Venda.id).first())
-        array.append(Formulario().query.join(Formulario.vendas).filter(Formulario.preenchido == True, Venda.usuario_id == current_user.id).order_by(Venda.id).first())
-        return FormularioSchema().jsonify(array, True)
+        form = Formulario().query.join(Formulario.vendas).filter(Formulario.preenchido == True, Venda.usuario_id == current_user.id).order_by(Venda.id.desc()).first()
+        return FormularioSchema().jsonify(form)
     
     @login_required
     def editar(self, data):

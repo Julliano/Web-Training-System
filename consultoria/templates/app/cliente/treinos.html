@@ -1,11 +1,6 @@
 <p class="tituloPagina">Treinos</p>
 <div class="container">
-	<div class="fundoBranco text-center" ng-if="!CliTreinoCtrl.formularios[0].preenchido">
-		<h4 style="font-weight: 300;">Olá, percebi que você tem um formulário não preenchido ou que foi solicitado alguma correção pelo Julliano.</h4>
-		<button class="btn btn-success botaoComprar" ng-click="CliTreinoCtrl.formularioAntigo(false)">Preencher / Ajustar</button>
-		<button class="btn btn-success botaoComprar" ng-if="CliTreinoCtrl.formularios[1].preenchido" ng-click="CliTreinoCtrl.formularioAntigo(true)">Utilizar relatorio antigo como base</button>
-	</div>
-	<div class="fundoBranco" ng-if="CliTreinoCtrl.formularios[0].preenchido">
+	<div class="fundoBranco">
 		<table class="table table-bordered" id="table-usuarios">
 			<thead>
 				<tr>
@@ -24,5 +19,8 @@
 				</tr>
 			</tbody>
 		</table>
+		<div ng-if="CliTreinoCtrl.treinos.length == 0" style="text-align: center; margin: 35px;font-size: 20px;">
+			Você não possue treinos ou eles ainda não foram liberados pelo Julliano.
+		</div>			
 	</div>
 </div>

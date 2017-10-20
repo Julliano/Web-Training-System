@@ -37,7 +37,7 @@ class TreinoController:
     @login_required
     def listar(self):
         schema = TreinoSchema()
-        lista = Treino().query.join(Treino.venda).filter(Venda.usuario_id == current_user.id).all()        
+        lista = Treino().query.join(Treino.venda).filter(Venda.usuario_id == current_user.id, Treino.status == 'ativa').all()        
         return schema.jsonify(lista, True)
     
     @login_required

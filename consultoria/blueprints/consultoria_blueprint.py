@@ -232,12 +232,6 @@ def admin_modeloTreino(id=None):
     return crud_request(ModeloTreinoController(), id)
 
 
-# @consultoria_app.route('/resposta/', methods=['GET', "POST", "PUT"])
-# @consultoria_app.route('/resposta/<int:id>', methods=['GET', "POST", "PUT"])
-# @login_required
-# def resposta(id=None):
-#     return crud_request(DuvidasController(), id)
-
 @consultoria_app.route('/planosCliente/', methods=['GET', "POST", "PUT", "DELETE"])
 @consultoria_app.route('/planosCliente/<int:id>', methods=["GET", "DELETE"])
 @login_required
@@ -260,36 +254,6 @@ def admin_planos(id=None):
     if request.method == "PUT":
         return PlanoController().admin_editar(request.json or request.form)
     return crud_request(PlanoController(), id)
-
-@consultoria_app.route('/contar_pendencias/')
-def pendencia():
-    return OperacaoController().listarPendencia()
-    
-@consultoria_app.route('/contarPendenciaCliente/', methods=["GET"])
-def pendenciaCliente(id=None):
-    if request.method == "GET":
-        return RelatorioController().listarPendencia()
-
-@consultoria_app.route('/listarHistorico/<int:id>', methods=["GET"])
-@login_required
-def listarHistorico(id=None):
-    if request.method == "GET":
-        return MatriculaController().listarHistorico(id)            
-
-@consultoria_app.route('/listarArquivos/<int:id>', methods=["GET", "DELETE"])
-@login_required
-def listarArquivos(id=None):
-    if request.method == "GET":
-        return MatriculaController().listarArquivos(id)            
-    if request.method == "DELETE":
-        with analista_permission.require(http_exception=403):
-            return MatriculaController().deletarArquivos(id)
-
-@consultoria_app.route('/downloadArquivos/<int:id>/<path:file>', methods=["GET"])
-@login_required
-def downloadArquivos(id, file):
-    if request.method == "GET":
-        return MatriculaController().downloadArquivos(id, file)        
 
 @consultoria_app.route('/grupos/', methods=['GET', "POST", "PUT"])
 @consultoria_app.route('/grupos/<int:id>')
