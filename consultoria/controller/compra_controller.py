@@ -45,10 +45,17 @@ class CompraController:
             venda.plano = Plano().query.filter(Plano.n_treinos == 3).first()
             venda.pagamento = Pagamento() #Incluir logica de pagamento;
             venda.formulario = Formulario()
-            for treino in range(0,int(venda.plano.n_treinos)):
+            for index in range(0,int(venda.plano.n_treinos)):
                 treino = Treino()
-                treino.data_entrega = date.today + timedelta(days=2) #mudar para ser preenchido na confirmação do pagamento.
-                treino.sessao = '1/1'
+                if index == 0:
+                    treino.data_entrega = date.today() + timedelta(days=2) #mudar para ser preenchido na confirmação do pagamento.
+                    treino.sessao = '1/3'
+                if index == 1:
+                    treino.data_entrega = date.today() + timedelta(days=32) #mudar para ser preenchido na confirmação do pagamento.
+                    treino.sessao = '2/3'
+                if index == 2:
+                    treino.data_entrega = date.today() + timedelta(days=62) #mudar para ser preenchido na confirmação do pagamento.
+                    treino.sessao = '3/3'
                 venda.treinos.append(treino)
             db.session.add(venda)
             db.session.commit()

@@ -1,5 +1,5 @@
-<p class="tituloPagina">ENTREGA DE TREINOS</p>
 <div class="container">
+	<p class="tituloPagina">ENTREGA DE TREINOS</p>
 	<!-- <div class="input-group" style="padding-bottom: 20px;">
 		<input class="form-control" type="text" ng-model="TreinoAdmCtrl.filtroTreino">
 	</div> -->
@@ -28,6 +28,7 @@
 							<td class="text-center"><i ng-class="{'fa fa-clock-o':treino.status == 'pendente', 'fa fa-check':treino.status == 'ativa'}"></i></td>
 						</tr>
 					</tbody>
+										<ul uib-pagination items-per-page="TreinoAdmCtrl.pagination.porPagina" total-items="TreinoAdmCtrl.pagination.totalItems" ng-model="TreinoAdmCtrl.pagination.paginaAtual" ng-change="TreinoAdmCtrl.filtrarPagina();" max-size="10" class="pagination-sm" boundary-link-numbers="true"></ul>
 				</table>
 			</div>
 		</uib-tab>
@@ -54,6 +55,7 @@
 							<td class="text-center"><i ng-class="{'fa fa-clock-o':treino.status == 'pendente', 'fa fa-check':treino.status == 'ativa'}"></i></td>
 						</tr>
 					</tbody>
+					<ul uib-pagination items-per-page="TreinoAdmCtrl.pagination.porPagina" total-items="TreinoAdmCtrl.pagination.totalItems" ng-model="TreinoAdmCtrl.pagination.paginaAtual" ng-change="TreinoAdmCtrl.filtrarPagina();" max-size="10" class="pagination-sm" boundary-link-numbers="true"></ul>
 				</table>
 			</div>
 		</uib-tab>

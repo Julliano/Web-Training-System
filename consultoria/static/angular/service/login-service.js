@@ -111,6 +111,7 @@
 
 		function logoutSuccess(response) {
 			$state.go("index.start")
+			_usuario = null;
 		}
 
 		function logoutFailed(response) {

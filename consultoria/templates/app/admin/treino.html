@@ -1,5 +1,5 @@
-<p class="tituloPagina">100% Jullianooo - Entrega isso da melhor forma possível!</p>
 <div class="container">
+	<p class="tituloPagina">100% Jullianooo - Entrega isso da melhor forma possível!</p>
 	<uib-tabset active="activeJustified">
     	<uib-tab index="0" heading="Treino">
 			<div class="fundoBranco">
@@ -13,7 +13,7 @@
 					{{LibeTreinoAdmCtrl.treino.data_entrega | date:'dd/MM/yy'}}
 				</p>
 				<p style="margin-bottom: 5px;"><strong>Plano: </strong>
-					{{LibeTreinoAdmCtrl.treino.venda.plano.titulo}}
+					{{LibeTreinoAdmCtrl.treino.venda.formulario.plano.titulo}}
 				</p>
 				<p style="margin-bottom: 5px;">
 					<strong>Titulo: </strong>
@@ -29,7 +29,154 @@
 		</uib-tab>
 		<uib-tab index="1" heading="Formulário">
 			<div class="fundoBranco">
-			
+				<p style="margin-bottom: 5px;"><strong>Peso: </strong>
+					{{LibeTreinoAdmCtrl.treino.venda.formulario.peso}}
+				</p>
+				<p style="margin-bottom: 5px;"><strong>% Gordura: </strong>
+					{{LibeTreinoAdmCtrl.treino.venda.formulario.bf}}
+				</p>
+				<p style="margin-bottom: 5px;"><strong>Cardápio atual: </strong>
+					{{LibeTreinoAdmCtrl.treino.venda.formulario.cardapio}}
+				</p>
+				<div class="form-group">
+					<div>
+						<label class="text-form">Está treinando: *</label>
+					</div>
+					<div style="margin-left: 20px;">
+						<label>
+					  		<input type="radio" ng-model="LibeTreinoAdmCtrl.treino.venda.formulario.treinando" ng-value="true">
+					  		Sim
+						</label>
+						<label>
+					  		<input type="radio" ng-model="LibeTreinoAdmCtrl.treino.venda.formulario.treinando" ng-value="false">
+					  		Não
+						</label>
+					</div>
+				</div>
+				<p style="margin-bottom: 5px;"><strong>Experiência: </strong>
+					{{LibeTreinoAdmCtrl.treino.venda.formulario.experiencia}}
+				</p>
+				<div class="form-group">
+					<div>
+						<label class="text-form">Faz questão de aeróbico: *</label>
+					</div>
+					<div style="margin-left: 20px;">
+						<label>
+					  		<input type="radio" ng-model="LibeTreinoAdmCtrl.treino.venda.formulario.aerobico" ng-value="true">
+					  		Sim
+						</label>
+						<label>
+					  		<input type="radio" ng-model="LibeTreinoAdmCtrl.treino.venda.formulario.aerobico" ng-value="false">
+					  		Não
+						</label>
+					</div>
+				</div>
+				<p style="margin-bottom: 5px;"><strong>Preferência: </strong>
+					{{LibeTreinoAdmCtrl.treino.venda.formulario.aerobicoPreferido}}
+				</p>
+				<div class="weekDays-selector form-group" style="display: grid;">
+					<label class="text-form">Disponibilidade para treinos na semana:</label>
+					<input type="checkbox" id="weekday1-mon" class="weekday1" checklist-model="CliFormCtrl.treino.venda.formulario.disponibilidade" checklist-value="'segunda'"/>
+				  	<label for="weekday1-mon">Segunda</label>
+				  	<input type="checkbox" id="weekday1-tue" class="weekday1" checklist-model="LibeTreinoAdmCtrl.treino.venda.formulario.disponibilidade" checklist-value="'terca'"/>
+				  	<label for="weekday1-tue">Terça</label>
+				  	<input type="checkbox" id="weekday1-wed" class="weekday1" checklist-model="LibeTreinoAdmCtrl.treino.venda.formulario.disponibilidade" checklist-value="'quarta'"/>
+				  	<label for="weekday1-wed">Quarta</label>
+				  	<input type="checkbox" id="weekday1-thu" class="weekday1" checklist-model="LibeTreinoAdmCtrl.treino.venda.formulario.disponibilidade" checklist-value="'quinta'"/>
+				  	<label for="weekday1-thu">Quinta</label>
+				  	<input type="checkbox" id="weekday1-fri" class="weekday1" checklist-model="LibeTreinoAdmCtrl.treino.venda.formulario.disponibilidade" checklist-value="'sexta'"/>
+				  	<label for="weekday1-fri">Sexta</label>
+				  	<input type="checkbox" id="weekday1-sat" class="weekday1" checklist-model="LibeTreinoAdmCtrl.treino.venda.formulario.disponibilidade" checklist-value="'sabado'"/>
+				  	<label for="weekday1-sat">Sábado</label>
+				  	<input type="checkbox" id="weekday1-sun" class="weekday1" checklist-model="LibeTreinoAdmCtrl.treino.venda.formulario.disponibilidade" checklist-value="'domingo'"/>
+				  	<label for="weekday1-sun">Domingo</label>
+				</div>
+				<div class="form-group">
+					<div>
+						<label class="text-form">Pratica atividade extra: *</label>
+					</div>
+					<div style="margin-left: 20px;">
+						<label>
+					  		<input type="radio" ng-model="LibeTreinoAdmCtrl.treino.venda.formulario.extra" ng-value="true" required>
+					  		Sim
+						</label>
+						<label>
+					  		<input type="radio" ng-model="LibeTreinoAdmCtrl.treino.venda.formulario.extra" ng-value="false" required>
+					  		Não
+						</label>
+					</div>
+				</div>
+				<div class="weekDays-selector form-group" style="display: grid;" ng-if="LibeTreinoAdmCtrl.treino.venda.formulario.extra == true">
+					<label class="text-form">Frequência: *</label>
+					<input type="checkbox" id="weekday-mon" class="weekday" checklist-model="LibeTreinoAdmCtrl.treino.venda.formulario.extra_disponibilidade" checklist-value="'segunda'"/>
+				  	<label for="weekday-mon">Segunda</label>
+				  	<input type="checkbox" id="weekday-tue" class="weekday" checklist-model="LibeTreinoAdmCtrl.treino.venda.formulario.extra_disponibilidade" checklist-value="'terca'"/>
+				  	<label for="weekday-tue">Terça</label>
+				  	<input type="checkbox" id="weekday-wed" class="weekday" checklist-model="LibeTreinoAdmCtrl.treino.venda.formulario.extra_disponibilidade" checklist-value="'quarta'"/>
+				  	<label for="weekday-wed">Quarta</label>
+				  	<input type="checkbox" id="weekday-thu" class="weekday" checklist-model="LibeTreinoAdmCtrl.treino.venda.formulario.extra_disponibilidade" checklist-value="'quinta'"/>
+				  	<label for="weekday-thu">Quinta</label>
+				  	<input type="checkbox" id="weekday-fri" class="weekday" checklist-model="LibeTreinoAdmCtrl.treino.venda.formulario.extra_disponibilidade" checklist-value="'sexta'"/>
+				  	<label for="weekday-fri">Sexta</label>
+				  	<input type="checkbox" id="weekday-sat" class="weekday" checklist-model="LibeTreinoAdmCtrl.treino.venda.formulario.extra_disponibilidade" checklist-value="'sabado'"/>
+				  	<label for="weekday-sat">Sábado</label>
+				  	<input type="checkbox" id="weekday-sun" class="weekday" checklist-model="LibeTreinoAdmCtrl.treino.venda.formulario.extra_disponibilidade" checklist-value="'domingo'"/>
+				  	<label for="weekday-sun">Domingo</label>
+				</div>
+				<div class="form-group">
+					<div>
+						<label class="text-form">Fumante: *</label>
+					</div>
+					<div style="margin-left: 20px;">
+						<label>
+					  		<input type="radio" ng-model="LibeTreinoAdmCtrl.treino.venda.formulario.fumante" ng-value="true" required>
+					  		Sim
+						</label>
+						<label>
+					  		<input type="radio" ng-model="LibeTreinoAdmCtrl.treino.venda.formulario.fumante" ng-value="false" required>
+					  		Não
+						</label>
+					</div>
+				</div>
+				<div class="form-group">
+					<div>
+						<label class="text-form">Bebe: *</label>
+					</div>
+					<div style="margin-left: 20px;" class="form-group">
+						<label>
+					  		<input type="radio" ng-model="LibeTreinoAdmCtrl.treino.venda.formulario.bebe" ng-value="true" required>
+					  		Sim
+						</label>
+						<label>
+					  		<input type="radio" ng-model="LibeTreinoAdmCtrl.treino.venda.formulario.bebe" ng-value="false" required>
+					  		Não
+						</label>
+					</div>
+					<p style="margin-bottom: 5px;"><strong>Bebe: </strong>
+						{{LibeTreinoAdmCtrl.treino.venda.formulario.bebe_frequencia}}
+					</p>
+				</div>
+				<p style="margin-bottom: 5px;"><strong>Melhor treino até o momento: </strong>
+					{{LibeTreinoAdmCtrl.treino.venda.formulario.melhorTreino}}
+				</p>
+				<p style="margin-bottom: 5px;"><strong>Exercícios preferidos: </strong>
+					{{LibeTreinoAdmCtrl.treino.venda.formulario.exerGosta}}
+				</p>
+				<p style="margin-bottom: 5px;"><strong>Exercícios que não gosta: </strong>
+					{{LibeTreinoAdmCtrl.treino.venda.formulario.exerOdeia}}
+				</p>
+				<p style="margin-bottom: 5px;"><strong>Patologia: </strong>
+					{{LibeTreinoAdmCtrl.treino.venda.formulario.patologia}}
+				</p>
+				<p style="margin-bottom: 5px;"><strong>Problema articular: </strong>
+					{{LibeTreinoAdmCtrl.treino.venda.formulario.articulacao}}
+				</p>
+				<p style="margin-bottom: 5px;"><strong>Objetivo: </strong>
+					{{LibeTreinoAdmCtrl.treino.venda.formulario.objetivo}}
+				</p>
+				<p style="margin-bottom: 5px;"><strong>Observações: </strong>
+					{{LibeTreinoAdmCtrl.treino.venda.formulario.obj}}
+				</p>
 			</div>
 		</uib-tab>
 		<uib-tab index="2" heading="Treinos Antigos">
@@ -44,7 +191,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="treino in LibeTreinoAdmCtrl.treino.venda.treinos">
+						<tr ng-repeat="treino in LibeTreinoAdmCtrl.treino.venda.formulario.treinos">
 							<td class="text-center">{{treino.id}}</td>
 							<td>{{treino.data_entrega}}</td>
 							<td>{{treino.nome}}</td>

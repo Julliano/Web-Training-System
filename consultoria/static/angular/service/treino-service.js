@@ -21,8 +21,8 @@
 			})
 		}
 
-		function listarAdmin() {
-			return $http.get("/admin/treinos/").then(function(response) {
+		function listarAdmin(pagina) {
+			return $http.get("/admin/treinos/", pagina).then(function(response) {
 				return response.data;
 			})
 		}

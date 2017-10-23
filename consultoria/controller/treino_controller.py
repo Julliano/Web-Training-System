@@ -7,6 +7,7 @@ from flask.templating import render_template
 from flask_login import fresh_login_required, current_user, login_required
 from flask_mail import Message
 from flask_security.decorators import roles_required
+from sqlalchemy.orm import joinedload, contains_eager
 
 from consultoria.models.treino import Treino, TreinoSchema
 from consultoria.models.usuario import Usuario
@@ -29,10 +30,20 @@ class TreinoController:
         return make_response("Dúvida adicionada com sucesso", 200)
         
     @admin_permission.require(http_exception=403)
-    def listar_admin(self):
-        schema = TreinoSchema()
-        lista = Treino().query.filter().all()        
-        return schema.jsonify(lista, True)
+    def listar_admin(self, pagina=1):
+#         schema = TreinoSchema()
+#         lista = Treino().query.filter().all()
+        stmt = Treino.query.options(joinedload('venda')).order_by(Treino.id)            
+        if pagina:
+            result = stmt.paginate(pagina, 5, False)
+            treinos = Treino.query.options(joinedload('venda')).order_by(Treino.id)
+#             lista =  Treino.query.options(contains_eager('vendas')).filter(Treino.id.in_(result.items)).order_by(Treino.id)
+        else:
+            result = stmt.all()
+            treinos = Treino.query.options(joinedload('venda')).order_by(Treino.id)
+#             lista = Treino.query.options(contains_eager('vendas')).filter(Treino.id.in_(result.items)).order_by(Treino.id), result
+        return jsonify(por_pagina=result.per_page, total_items = result.total, pagina_atual=result.page, total_paginas=result.pages,items=TreinoSchema().dump(treinos,True))
+#         return schema.jsonify(lista, True)
 
     @login_required
     def listar(self):

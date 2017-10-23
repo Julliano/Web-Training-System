@@ -16,6 +16,7 @@
 
 		vm.logout = function() {
 			LoginService.logout()
+			$state.reload();
 		}
 		
 //		vm.usuario_observer = usuario_observer;
