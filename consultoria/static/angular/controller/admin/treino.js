@@ -40,7 +40,11 @@
 
 		function filtrarPagina(){
 			TreinoService.listarAdmin(vm.pagination.paginaAtual).then(function(response) {
-				vm.treinos = response;
+				vm.treinos = response.items[0];					
+				vm.pagination.paginas = response.total_paginas;
+				vm.pagination.paginaAtual = response.pagina_atual;
+				vm.pagination.totalItems = response.total_items;
+				vm.pagination.porPagina = response.por_pagina;
 			})
 		}
 		

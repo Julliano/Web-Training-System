@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 
-	angular.module('consultoria', [ 'ngRoute', 'ui.bootstrap', 'ui.router', 'ui-notification', 'ui.mask', 'duScroll', 'textAngular', 'checklist-model'])
+	angular.module('consultoria', [ 'ngRoute', 'ui.bootstrap', 'ui.router', 'ui-notification', 'ui.mask', 'duScroll', 'textAngular', 'checklist-model', 'angular-bind-html-compile'])
 
 	.config([ '$stateProvider', '$urlRouterProvider' , '$provide', '$uibTooltipProvider', config ])
 
@@ -104,6 +104,14 @@
 			templateUrl : '/app/cliente/treinos.html',
 			controller : 'ClienteTreinoController',
 			controllerAs : 'CliTreinoCtrl'
+		}).state('app.treino', {
+			url : '/treinos/:id',
+			templateUrl : '/app/cliente/treino.html',
+			controller : 'AcessarTreinoController',
+			controllerAs : 'AceTreinoCtrl',
+			resolve : {
+				treino : treino
+			}
 		}).state('app.duvidas', {
 			url : '/duvidas',
 			templateUrl : '/app/cliente/duvidas.html',

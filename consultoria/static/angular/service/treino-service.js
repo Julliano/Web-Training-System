@@ -22,7 +22,13 @@
 		}
 
 		function listarAdmin(pagina) {
-			return $http.get("/admin/treinos/", pagina).then(function(response) {
+			var config = {
+				params : {}
+			};
+			if (pagina) {
+				config.params.pagina = pagina
+			}
+			return $http.get("/admin/treinos/", config).then(function(response) {
 				return response.data;
 			})
 		}

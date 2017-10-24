@@ -1,0 +1,21 @@
+<div class="container">
+	<p class="tituloPagina">Aproveite o seu treino</p>
+	<div class="fundoBranco">
+		<p style="margin-bottom: 5px;"><strong>Plano: </strong>
+			{{AceTreinoCtrl.treino.venda.plano.titulo}}
+		</p>
+		<p style="margin-bottom: 5px;"><strong>Sessão: </strong>
+			{{AceTreinoCtrl.treino.sessao}}
+		</p>
+		<p style="margin-bottom: 5px;"><strong>Título: </strong>
+			{{AceTreinoCtrl.treino.nome}}
+		</p>
+		<p style="margin-bottom: 5px;"><strong>Explicação: </strong>
+			<div bind-html-compile="AceTreinoCtrl.treino.explicacao"></div>
+		</p>
+		<div>
+			<button class="btn btn-default" ui-sref="app.treinos">Voltar a listagem</button>
+			<button class="btn btn-primary" ng-click="AceTreinoCtrl.gerarPdf()">PDF</button>
+		</div>
+	</div>
+</div>

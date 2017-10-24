@@ -23,8 +23,12 @@
 					</select>
 				</p>
 				<p style="margin-bottom: 5px;"><strong>Explicação: </strong>
-					<div ng-bind-html="LibeTreinoAdmCtrl.modelo.explicacao"></div>
+					<div id="explicacao" ng-bind-html="LibeTreinoAdmCtrl.modelo.explicacao"></div>
 				</p>
+				<div>
+					<button class="btn btn-default" ui-sref="admin.treinos">Voltar a listagem</button>
+					<button class="btn btn-primary" ng-disabled="LibeTreinoAdmCtrl.treino.status == 'ativa'" ng-click="LibeTreinoAdmCtrl.salvar()">Liberar Treino</button>
+				</div>
 			</div>
 		</uib-tab>
 		<uib-tab index="1" heading="Formulário">

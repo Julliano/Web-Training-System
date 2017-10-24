@@ -1,7 +1,7 @@
 <div class="container">
 	<p class="tituloPagina">Treinos</p>
 	<div class="fundoBranco">
-		<table class="table" id="table-usuarios">
+		<table class="table table-striped" id="table-usuarios">
 			<thead>
 				<tr>
 					<th>Data entrega</th>
@@ -11,7 +11,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="treino in CliTreinoCtrl.treinos" class="odd gradeX">
+				<tr ng-repeat="treino in CliTreinoCtrl.treinos" class="odd gradeX" ng-click="CliTreinoCtrl.acessarTreino(treino)">
 					<td>{{treino.data_entrega}}</td>
 					<td>{{treino.nome}}</td>
 					<td>{{treino.venda.plano.titulo}}</td>
