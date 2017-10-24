@@ -6,7 +6,7 @@
 	<uib-tabset active="activeJustified">
     	<uib-tab index="0" heading="Pendentes" ng-click="TreinoAdmCtrl.filtrar('pendente')">
 			<div class="fundoBranco">
-				<table class="table" id="table-usuarios">
+				<table class="table table-striped" id="table-usuarios">
 					<thead>
 						<tr>
 							<th class="col-md-2">Previsao</th>
@@ -18,7 +18,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="treino in TreinoAdmCtrl.treinos | filter:TreinoAdmCtrl.filtroTreino" ng-class="TreinoAdmCtrl.classTreino(treino)"
+						<tr ng-repeat="treino in TreinoAdmCtrl.treinos | filter:{status:TreinoAdmCtrl.filtroTreino}"" ng-class="TreinoAdmCtrl.classTreino(treino)"
 							ng-click="TreinoAdmCtrl.liberarTreino(treino)">
 							<td>{{treino.data_entrega}}</td>
 							<td>{{treino.venda.usuario.nome}}</td>
@@ -28,35 +28,35 @@
 							<td class="text-center"><i ng-class="{'fa fa-clock-o':treino.status == 'pendente', 'fa fa-check':treino.status == 'ativa'}"></i></td>
 						</tr>
 					</tbody>
-					<ul uib-pagination items-per-page="TreinoAdmCtrl.pagination.porPagina" total-items="TreinoAdmCtrl.pagination.totalItems" ng-model="TreinoAdmCtrl.pagination.paginaAtual" ng-change="TreinoAdmCtrl.filtrarPagina();" max-size="10" class="pagination-sm" boundary-link-numbers="true"></ul>
 				</table>
+				<ul uib-pagination items-per-page="TreinoAdmCtrl.pagination.porPagina" total-items="TreinoAdmCtrl.pagination.totalItems" ng-model="TreinoAdmCtrl.pagination.paginaAtual" ng-change="TreinoAdmCtrl.filtrarPagina();" max-size="10" class="pagination-sm" boundary-link-numbers="true"></ul>
 			</div>
 		</uib-tab>
 		<uib-tab index="1" heading="Ativos" ng-click="TreinoAdmCtrl.filtrar('ativa')">
 			<div class="fundoBranco">
-				<table class="table" id="table-usuarios">
+				<table class="table table-striped" id="table-usuarios">
 					<thead>
 						<tr>
 							<th class="col-md-2">Previsao</th>
 							<th class="col-md-3">Cliente</th>
-							<th class="col-md-2">Email</th>
-							<th class="col-md-3">Pedido</th>
+							<th class="col-md-2 text-center">Email</th>
+							<th class="col-md-3 text-center">Pedido</th>
 							<th class="col-md-1 text-center">Sessão</th>
 							<th class="col-md-1 text-center">Status</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="treino in TreinoAdmCtrl.treinos | filter:TreinoAdmCtrl.filtroTreino">
-							<td>{{treino.data_entrega}}</td>
-							<td>{{treino.plano.usuario.nome}}</td>
-							<td>{{treino.plano.usuario.email}}</td>
-							<td>{{treino.id}}</td>
+						<tr ng-repeat="treino in TreinoAdmCtrl.treinos | filter:{status:TreinoAdmCtrl.filtroTreino}">
+							<td>{{treino.data_disponibilizado}}</td>
+							<td>{{treino.venda.usuario.nome_completo}}</td>
+							<td>{{treino.venda.usuario.email}}</td>
+							<td>{{treino.venda.plano.titulo}}</td>
 							<td class="text-center">{{treino.sessao}}</td>
 							<td class="text-center"><i ng-class="{'fa fa-clock-o':treino.status == 'pendente', 'fa fa-check':treino.status == 'ativa'}"></i></td>
 						</tr>
 					</tbody>
-					<ul uib-pagination items-per-page="TreinoAdmCtrl.pagination.porPagina" total-items="TreinoAdmCtrl.pagination.totalItems" ng-model="TreinoAdmCtrl.pagination.paginaAtual" ng-change="TreinoAdmCtrl.filtrarPagina();" max-size="10" class="pagination-sm" boundary-link-numbers="true"></ul>
 				</table>
+				<ul uib-pagination items-per-page="TreinoAdmCtrl.pagination.porPagina" total-items="TreinoAdmCtrl.pagination.totalItems" ng-model="TreinoAdmCtrl.pagination.paginaAtual" ng-change="TreinoAdmCtrl.filtrarPagina();" max-size="10" class="pagination-sm" boundary-link-numbers="true"></ul>
 			</div>
 		</uib-tab>
   	</uib-tabset>

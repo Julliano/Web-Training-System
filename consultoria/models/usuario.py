@@ -123,6 +123,7 @@ class UsuarioSchema(BaseSchema):
     
 #     grupos = ma.Nested("GrupoSchema", many=True)
     is_admin = fields.Method("is_admin", dump_only=True)
+    nome_completo = fields.Function(lambda obj: obj.nome_completo, dump_only= True)
     
     def is_admin(self, data):
         return admin_permission.can()        
