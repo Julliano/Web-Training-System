@@ -68,10 +68,27 @@
 	background-color: transparent;
 }
 
-.nav>li>a:focus, .nav>li>a:hover {
+.navbar-nav>li>a{
+    padding-top: 15px;
+}
+
+.navbar-nav>li>a:focus, .navbar-nav>li>a:hover {
     color: #d4d1d1 !important;
     background-color: transparent;
-    border-top: 3px solid white;
+    border-top: 2px solid white;
+    padding-top: 13px;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+    color: #555;
+    cursor: default;
+    background-color: white;
+    background-color: #fff;
+    border-bottom-color: #fff;
+}
+
+.nav-tabs>li>a:hover {
+    background: #f1f1f1;
 }
 
 .tituloPagina{
@@ -104,7 +121,7 @@
     line-height: 1.42857143;
     border: 1px solid transparent;
     border-radius: 4px 4px 0 0;
-    background: white;
+    background: #ededed;
     color: black !important;
 }
 

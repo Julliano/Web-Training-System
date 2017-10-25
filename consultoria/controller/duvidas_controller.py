@@ -14,7 +14,6 @@ from ..modules import db, admin_permission
 
 class DuvidasController:
     
-    @admin_permission.require(http_exception=403)
     def salvar(self, data): 
         duvida, errors= DuvidaSchema().load(data)
         duvida.usuario_id = data['usuario_id']

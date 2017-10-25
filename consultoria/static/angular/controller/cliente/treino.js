@@ -28,6 +28,7 @@
 			$state.go("app.treino", {id:treino.id })
 		}		
 
+		
 	}
 
 })();

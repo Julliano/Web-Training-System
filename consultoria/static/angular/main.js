@@ -105,7 +105,7 @@
 			controller : 'ClienteTreinoController',
 			controllerAs : 'CliTreinoCtrl'
 		}).state('app.treino', {
-			url : '/treinos/:id',
+			url : '/treino/:id',
 			templateUrl : '/app/cliente/treino.html',
 			controller : 'AcessarTreinoController',
 			controllerAs : 'AceTreinoCtrl',
