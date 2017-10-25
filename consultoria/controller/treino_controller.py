@@ -68,7 +68,7 @@ class TreinoController:
 
     def emailLiberacaoTreino(self, treino):
         try:
-            msg = Message('Treino liberado.', recipients=[treino.usuario.email])
+            msg = Message('Treino liberado.', recipients=[treino.venda.usuario.email])
             msg.html = render_template('app/emailTreinoLiberado.html', enviado='Treinos', email='jullianoVolpato@gmail.com' , treino=treino) 
             mail.send(msg)
             return make_response("E-mail enviado com sucesso", 200)
