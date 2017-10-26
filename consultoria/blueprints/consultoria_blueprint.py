@@ -224,6 +224,14 @@ def comprar(id=None):
     elif id ==3:
         return CompraController().planoTri()
 
+@consultoria_app.route('/linkPagSeguro/<int:id>', methods=['GET'])
+@login_required
+def linkPagSeguro(id=None):
+        return CompraController().pagSeguro(id)
+
+@consultoria_app.route('/retornoPagSeguro/', methods=['POST'])
+def retornoPagSeguro():
+    return CompraController().retornoPagSeguro()
 
 @consultoria_app.route('/admin/modeloTreino/', methods=['GET', "POST", "PUT", "DELETE"])
 @consultoria_app.route('/admin/modeloTreino/<int:id>', methods=["GET", "DELETE"])

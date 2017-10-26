@@ -87,6 +87,7 @@
 			if (response.data.auth) {
 				$rootScope.session = true;
 				logged().then(function(){
+					Notification.success('Login bem sucessido. Bem Vindo!')
 					if(_usuario.grupos[0]['nome'] == "admin"){
 						$state.go("admin.treinos");
 					} else {

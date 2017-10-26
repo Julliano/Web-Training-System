@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 
-	angular.module('consultoria', [ 'ngRoute', 'ui.bootstrap', 'ui.router', 'ui-notification', 'ui.mask', 'duScroll', 'textAngular', 'checklist-model', 'angular-bind-html-compile'])
+	angular.module('consultoria', [ 'ngRoute', 'ui.bootstrap', 'ui.router', 'ui-notification', 'ui.mask', 'duScroll', 'textAngular', 'checklist-model', 'angular-bind-html-compile', 'ngAnimate'])
 
 	.config([ '$stateProvider', '$urlRouterProvider' , '$provide', '$uibTooltipProvider', config ])
 
@@ -125,6 +125,9 @@
 			resolve : {
 				duvida : duvida
 			}
+		}).state('app.faq', {
+			url : '/duvidasFrequentes',
+			templateUrl : '/app/cliente/faq.html'
 		}).state('app.conta', {
 			url : '/conta',
 			templateUrl : '/app/cliente/conta.html',

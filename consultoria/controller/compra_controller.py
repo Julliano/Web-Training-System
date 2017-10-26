@@ -1,5 +1,7 @@
 # coding: utf-8
 from datetime import date, timedelta
+import requests
+import xmltodict
 
 from flask import jsonify
 from flask.helpers import make_response
@@ -18,6 +20,32 @@ from ..modules import db, admin_permission
 
 class CompraController:
     
+    def retornoPagSeguro(self):
+        notificacao = xmltodict.parse()
+        url = 'https://ws.pagseguro.uol.com.br/v3/transactions/notifications/%s?email=jullianovosorio@gmail.com&token=1DF98935374845F2B18992B39A1B8B0F' % notificacao['notificationCode']
+        header = {'Content-Type': 'application/xml; charset=ISO-8859-1'}
+        response = requests.post(url, data=xml, headers=header, verify=True, timeout=120)
+    
+    @login_required
+    def pagSeguro(self, id):
+        if id == 1:
+            xml = """<?xml version="1.0"?> <checkout> <currency>BRL</currency> <items> <item> <id>01</id> <description>Plano de consultoria Mensal</description> <amount>99.00</amount> <quantity>1</quantity> </item> </items> <receiver> <email>jullianovosorio@gmail.com</email> </receiver> </checkout>"""
+        elif id == 3:
+            xml = """<?xml version="1.0"?> <checkout> <currency>BRL</currency> <items> <item> <id>01</id> <description>Plano de consultoria Trimestral</description> <amount>229.00</amount> <quantity>1</quantity> </item> </items> <receiver> <email>jullianovosorio@gmail.com</email> </receiver> </checkout>"""
+#       substituir pelo token verdadeiro depois (está no sandBox)
+#         url = 'https://ws.pagseguro.uol.com.br/v2/checkout?email=jullianovosorio@gmail.com&token=51E9D7E8918A4DB1B718EE9D017F4EFE'
+        url = 'https://ws.sandbox.pagseguro.uol.com.br/v2/checkout?email=jullianovosorio@gmail.com&token=1DF98935374845F2B18992B39A1B8B0F'
+        header = {'Content-Type': 'application/xml; charset=ISO-8859-1'}
+        response = requests.post(url, data=xml, headers=header, verify=True, timeout=120)
+        if response.status_code == 200:
+            resp = xmltodict.parse(response.content)
+            codigo = resp['checkout']['code']
+#             urlPagamento = 'https://pagseguro.uol.com.br/v2/checkout/payment.html?code=%s' % codigo
+            urlPagamento = 'https://sandbox.pagseguro.uol.com.br/v2/checkout/payment.html?code=%s' % codigo
+        return [urlPagamento, codigo]
+#         else:
+#             return make_response("Erro na conexão com o PagSeguro, tente realizar o pagamento novamente mais tarde.", 500)
+    
     @login_required
     def planoMes(self):
         with db.session.no_autoflush:
@@ -25,6 +53,8 @@ class CompraController:
             venda.usuario_id = current_user.id
             venda.plano = Plano().query.filter(Plano.n_treinos == 1).first()
             venda.pagamento = Pagamento() #Incluir logica de pagamento;
+            resposta = self.pagSeguro(1)
+            venda.pagamento.codigo = resposta[1]
             formulario , errors = FormularioSchema().loads(request.form['formulario'])
             formulario.preenchido = True
             venda.formulario = formulario
@@ -35,7 +65,7 @@ class CompraController:
                 venda.treinos.append(treino)
             db.session.add(venda)
             db.session.commit()
-            return make_response("Compra efetuada, assim que o pagamento for confirmado começarei a trabalhar no seu treino.", 200)
+            return jsonify(resposta[0])
 
     @login_required
     def planoTri(self):

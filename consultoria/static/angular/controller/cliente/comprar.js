@@ -3,10 +3,10 @@
 
 	angular.module("consultoria").controller("ComprarController", ComprarController);
 
-	ComprarController.$inject = [ "$http", "Notification", "$scope", "LoginService", "FormService", "$state"];
+	ComprarController.$inject = [ "$http", "Notification", "$scope", "LoginService", "FormService", "$state", "$window"];
 
 	/* @ngInject */
-	function ComprarController($http, Notification, $scope, LoginService, FormService, $state) {
+	function ComprarController($http, Notification, $scope, LoginService, FormService, $state, $window) {
 		var vm = this;
 		vm.usuario = LoginService.getUsuario();
 		vm.comprar = comprar;
@@ -37,12 +37,13 @@
 		}
 		
 		function httpSuccess(response) {
-			Notification.success(response.data);
+			$window.open(response.data)
+			Notification.success("Compra realizada, assim que o pagamento for confirmado começarei a trabalhar no seu treino.");
 			$state.go('app.treinos')
 		}
 	
 		function httpFail(response) {
-			Notification.error(response.data);
+			Notification.error("Erro na conexão com o servidor do PagSeguros, favor tentar realizar o pagamento mais tarde.");
 		}
 		
 
