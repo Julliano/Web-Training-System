@@ -6,12 +6,14 @@ from marshmallow import fields
 from marshmallow.decorators import pre_load
 from sqlalchemy import DateTime
 
-from ..models import BaseSchema
-from ..modules import db, ma
+from consultoria.models.duvida import Duvida
 from usuario_grupo import usuario_grupo
+
+from ..models import BaseSchema
+from ..modules import admin_permission
+from ..modules import db, ma
 from .grupo import GrupoSchema
 from .venda import Venda
-from ..modules import admin_permission
 
 
 class Usuario(db.Model):
@@ -81,6 +83,11 @@ class Usuario(db.Model):
         return self.nome + " " + self.sobrenome
 
     @property
+    def contaDuvidas(self):
+        lista = db.session.query(Duvida).filter(Duvida.status == 'pendente').all()
+        return lista
+
+    @property
     def password(self):
         return self.senha
     
@@ -106,13 +113,16 @@ class Usuario(db.Model):
     def hash_pass(self, password):
         return encrypt_password(password)
     
+    
 class UsuarioSchema(BaseSchema):
     class Meta(BaseSchema.Meta):
         model = Usuario
         load_only = ("senha",)
         exclude = ("senhaAtual", "novaSenha")
+        dump_only = ("contaDuvidas",)
 
     grupos = ma.Nested("GrupoSchema", many=True)
+    totalDuvidas = fields.Function(lambda x: len(x.contaDuvidas))
     
     @pre_load
     def pre_load(self, data):

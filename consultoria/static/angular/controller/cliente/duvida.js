@@ -10,6 +10,7 @@
 		var vm = this;
 		vm.usuario = LoginService.getUsuario();
 		vm.modal = modal;
+		vm.show = false;
 		vm.verDuvida = verDuvida;
 		
 		init();
@@ -24,7 +25,6 @@
 			DuvidaService.listar().then(function(response) {
 				vm.duvidas = response;
 			})
-			
 		}
 		
 		function verDuvida(id){
@@ -51,6 +51,7 @@
 
 			modalInstance.result.then(function(selectedItem) {
 				init();
+				vm.show = true;
 			});
 		}
 		

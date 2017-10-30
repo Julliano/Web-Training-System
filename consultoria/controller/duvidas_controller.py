@@ -39,6 +39,9 @@ class DuvidasController:
     def buscar(self, id):
         return DuvidaSchema().jsonify(Duvida.query.get(id))
     
+    def totalDuvidas(self):
+        return db.session.query(Duvida).filter(Duvida.status == 'pendente').all()
+    
     @admin_permission.require(http_exception=403)
     def admin_editar(self, data):
         with db.session.no_autoflush:
@@ -49,7 +52,7 @@ class DuvidasController:
             duvida.status = 'ativa'
             db.session.add(duvida)
             db.session.commit()
-            self.emailRespostaDudiva(duvida)
+#             self.emailRespostaDudiva(duvida)
             return DuvidaSchema().jsonify(duvida)                
 #             return make_response("Informações alteradas com sucesso", 200)
 

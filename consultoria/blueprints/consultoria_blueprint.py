@@ -200,6 +200,11 @@ def admin_duvidas(id=None):
 def duvidas(id=None):
     return crud_request(DuvidasController(), id)
 
+@consultoria_app.route('/totalDuvidas/', methods=['GET'])
+@login_required
+def totalDuvidas():
+    return DuvidasController().totalDuvidas()
+
 @consultoria_app.route('/admin/treinos/', methods=['GET', "POST", "PUT", "DELETE"])
 @consultoria_app.route('/admin/treinos/<int:id>', methods=["GET", "DELETE"])
 @admin_permission.require(http_exception=403)

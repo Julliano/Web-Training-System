@@ -5,7 +5,8 @@
 	ModalDuvidaController.$inject = ["filterFilter", "$uibModalInstance", "$http", "Notification", "usuario"];
 
 	function ModalDuvidaController(filterFilter, $uibModalInstance, $http, Notification, usuario) {
-		var vm = this;	
+		var vm = this;
+		vm.usuario = usuario;
 		vm.salvar = salvar;
 		vm.cancelar = cancelar;
 		vm.submitPromise = {

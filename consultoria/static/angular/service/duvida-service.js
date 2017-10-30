@@ -10,6 +10,7 @@
 		var service = {
 			buscar : buscar,
 			listar : listar,
+			totalDuvidas : totalDuvidas,
 			listarAdmin : listarAdmin
 		};
 
@@ -23,6 +24,12 @@
 
 		function listarAdmin() {
 			return $http.get("/admin/duvidas/").then(function(response) {
+				return response.data;
+			})
+		}
+		
+		function totalDuvidas() {
+			return $http.get("/totalDuvidas/").then(function(response) {
 				return response.data;
 			})
 		}
