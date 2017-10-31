@@ -27,11 +27,11 @@ class CompraController:
         response = requests.post(url, data=xml, headers=header, verify=True, timeout=120)
     
     @login_required
-    def pagSeguro(self, id):
-        if id == 1:
-            xml = """<?xml version="1.0"?> <checkout> <currency>BRL</currency> <items> <item> <id>01</id> <description>Plano de consultoria Mensal</description> <amount>99.00</amount> <quantity>1</quantity> </item> </items> <receiver> <email>jullianovosorio@gmail.com</email> </receiver> </checkout>"""
-        elif id == 3:
-            xml = """<?xml version="1.0"?> <checkout> <currency>BRL</currency> <items> <item> <id>01</id> <description>Plano de consultoria Trimestral</description> <amount>229.00</amount> <quantity>1</quantity> </item> </items> <receiver> <email>jullianovosorio@gmail.com</email> </receiver> </checkout>"""
+    def pagSeguro(self, plano):
+        if plano.n_treinos == 1:
+            xml = """<?xml version="1.0"?> <checkout> <currency>BRL</currency> <items> <item> <id>01</id> <description>Plano de consultoria Mensal</description> <amount>%s0</amount> <quantity>1</quantity> </item> </items> <receiver> <email>jullianovosorio@gmail.com</email> </receiver> </checkout>""" % float(plano.valor)
+        elif plano.n_treinos == 3:
+            xml = """<?xml version="1.0"?> <checkout> <currency>BRL</currency> <items> <item> <id>01</id> <description>Plano de consultoria Trimestral</description> <amount>%s0</amount> <quantity>1</quantity> </item> </items> <receiver> <email>jullianovosorio@gmail.com</email> </receiver> </checkout>""" % float(plano.valor)
 #       substituir pelo token verdadeiro depois (está no sandBox)
 #         url = 'https://ws.pagseguro.uol.com.br/v2/checkout?email=jullianovosorio@gmail.com&token=51E9D7E8918A4DB1B718EE9D017F4EFE'
         url = 'https://ws.sandbox.pagseguro.uol.com.br/v2/checkout?email=jullianovosorio@gmail.com&token=1DF98935374845F2B18992B39A1B8B0F'
@@ -53,7 +53,7 @@ class CompraController:
             venda.usuario_id = current_user.id
             venda.plano = Plano().query.filter(Plano.n_treinos == 1).first()
             venda.pagamento = Pagamento() #Incluir logica de pagamento;
-            resposta = self.pagSeguro(1)
+            resposta = self.pagSeguro(venda.plano)
             venda.pagamento.codigo = resposta[1]
             formulario , errors = FormularioSchema().loads(request.form['formulario'])
             formulario.preenchido = True
