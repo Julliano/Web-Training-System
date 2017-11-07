@@ -64,7 +64,6 @@ class TreinoController:
             db.session.commit()
             self.emailLiberacaoTreino(treino)
             return TreinoSchema().jsonify(treino)                
-#             return make_response("Informações alteradas com sucesso", 200)
 
     def emailLiberacaoTreino(self, treino):
         try:

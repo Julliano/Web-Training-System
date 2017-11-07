@@ -1,9 +1,9 @@
 (function() {
 	'use strict';
 
-	angular.module('consultoria', [ 'ngRoute', 'ui.bootstrap', 'ui.router', 'ui-notification', 'ui.mask', 'duScroll', 'textAngular', 'checklist-model', 'angular-bind-html-compile', 'ngAnimate'])
+	angular.module('consultoria', [ 'ngRoute', 'ui.bootstrap', 'ui.router', 'ui-notification', 'ui.mask', 'duScroll', 'textAngular', 'checklist-model', 'angular-bind-html-compile', 'ngAnimate', 'angular-loading-bar'])
 
-	.config([ '$stateProvider', '$urlRouterProvider' , '$provide', '$uibTooltipProvider', config ])
+	.config([ '$stateProvider', '$urlRouterProvider' , '$provide', '$uibTooltipProvider', 'cfpLoadingBarProvider', config ])
 
 	.run(function($http, $rootScope) {
 		init();
@@ -13,7 +13,7 @@
 		}
 	});
 
-	function config($stateProvider, $urlRouterProvider, $provide, $uibTooltipProvider) {
+	function config($stateProvider, $urlRouterProvider, $provide, $uibTooltipProvider, cfpLoadingBarProvider) {
 		
 		var session = function(LoginService, $stateParams, $state) {
 			return LoginService.logged().then(function(response) {				

@@ -12,7 +12,7 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="treino in CliTreinoCtrl.treinos" class="odd gradeX" ng-click="CliTreinoCtrl.acessarTreino(treino)">
-					<td>{{treino.data_entrega}}</td>
+					<td>{{treino.data_disponibilizado}}</td>
 					<td>{{treino.nome}}</td>
 					<td>{{treino.venda.plano.titulo}}</td>
 					<td>{{treino.sessao}}</td>
