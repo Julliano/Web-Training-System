@@ -7,7 +7,8 @@
 					<th class="col-md-2">Data aquisição</th>
 					<th class="col-md-6">Descrição</th>
 					<th class="col-md-1 text-center">Valor</th>
-					<th class="col-md-3 text-center">Status</th>
+					<th class="col-md-2 text-center">Status</th>
+					<th class="col-md-1 text-center">Formulário</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -17,6 +18,7 @@
 					<td class="text-center">R${{venda.plano.valor}}</td>
 					<td ng-if="CliPlanoCtrl.confere(venda)" ng-click="CliPlanoCtrl.pagar(venda)" style="color: blue;" class="text-center">{{venda.pagamento.status}}</td>
 					<td ng-if="!CliPlanoCtrl.confere(venda)" class="text-center">{{venda.pagamento.status}}</td>
+					<td class="text-center" ng-click="CliPlanoCtrl.ajustaForm(venda.formulario)"><i ng-class="{'fa fa-clock-o':venda.formulario.status == 'pendente', 'fa fa-check':venda.formulario.status == 'ativa'}"></i></td>
 				</tr>
 			</tbody>
 		</table>

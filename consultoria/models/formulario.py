@@ -12,6 +12,7 @@ class Formulario(db.Model):
     data_cadastro = db.Column(db.Date, default=date.today)
     status = db.Column(db.String(45), default="pendente")
     peso = db.Column(db.String(15))
+    ajuste = db.Column(db.String(255))
     bf = db.Column(db.String(15))
     cardapio = db.Column(db.Text)
     disponibilidade = db.Column(db.ARRAY(db.String), default=[])

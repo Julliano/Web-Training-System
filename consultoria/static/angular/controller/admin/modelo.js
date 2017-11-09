@@ -31,11 +31,12 @@
 						templateUrl : function() {
 							return '/templates/directives/modal-admin-modeloTreino/modal-admin-modeloTreino.html'
 						},
+						size : 'lg',
 						controller : "ModalModeloTreinoController",
 						controllerAs : "ModalModTreinoCtrl",
 						resolve : {
 							modelo : function() {
-								return angular.copy(vm.modelo)
+								return angular.copy(modelo)
 							}
 						} 
 					});

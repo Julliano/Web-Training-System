@@ -4,7 +4,7 @@
 		<input class="form-control" type="text" ng-model="TreinoAdmCtrl.filtroTreino">
 	</div> -->
 	<uib-tabset active="activeJustified">
-    	<uib-tab index="0" heading="Pendentes" ng-click="TreinoAdmCtrl.filtrar('pendente')">
+    	<uib-tab index="0" heading="Pendentes" ng-click="TreinoAdmCtrl.listar('pendente')">
 			<div class="fundoBranco">
 				<table class="table table-striped" id="table-usuarios">
 					<thead>
@@ -18,7 +18,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="treino in TreinoAdmCtrl.treinos | filter:{status:TreinoAdmCtrl.filtroTreino}"" ng-class="TreinoAdmCtrl.classTreino(treino)"
+						<tr ng-repeat="treino in TreinoAdmCtrl.treinosPendentes" ng-class="TreinoAdmCtrl.classTreino(treino)"
 							ng-click="TreinoAdmCtrl.liberarTreino(treino)">
 							<td>{{treino.data_entrega}}</td>
 							<td>{{treino.venda.usuario.nome}}</td>
@@ -29,10 +29,10 @@
 						</tr>
 					</tbody>
 				</table>
-				<ul uib-pagination items-per-page="TreinoAdmCtrl.pagination.porPagina" total-items="TreinoAdmCtrl.pagination.totalItems" ng-model="TreinoAdmCtrl.pagination.paginaAtual" ng-change="TreinoAdmCtrl.filtrarPagina();" max-size="10" class="pagination-sm" boundary-link-numbers="true"></ul>
+				<ul uib-pagination items-per-page="TreinoAdmCtrl.pagination.porPagina" total-items="TreinoAdmCtrl.pagination.totalItems" ng-model="TreinoAdmCtrl.pagination.paginaAtual" ng-change="TreinoAdmCtrl.filtrarPagina('pendente');" max-size="10" class="pagination-sm" boundary-link-numbers="true"></ul>
 			</div>
 		</uib-tab>
-		<uib-tab index="1" heading="Ativos" ng-click="TreinoAdmCtrl.filtrar('ativa')">
+		<uib-tab index="1" heading="Ativos" ng-click="TreinoAdmCtrl.listar('ativa')">
 			<div class="fundoBranco">
 				<table class="table table-striped" id="table-usuarios">
 					<thead>
@@ -46,7 +46,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="treino in TreinoAdmCtrl.treinos | filter:{status:TreinoAdmCtrl.filtroTreino}">
+						<tr ng-repeat="treino in TreinoAdmCtrl.treinosAtivos">
 							<td>{{treino.data_disponibilizado}}</td>
 							<td>{{treino.venda.usuario.nome_completo}}</td>
 							<td>{{treino.venda.usuario.email}}</td>
@@ -56,7 +56,7 @@
 						</tr>
 					</tbody>
 				</table>
-				<ul uib-pagination items-per-page="TreinoAdmCtrl.pagination.porPagina" total-items="TreinoAdmCtrl.pagination.totalItems" ng-model="TreinoAdmCtrl.pagination.paginaAtual" ng-change="TreinoAdmCtrl.filtrarPagina();" max-size="10" class="pagination-sm" boundary-link-numbers="true"></ul>
+				<ul uib-pagination items-per-page="TreinoAdmCtrl.pagination.porPagina" total-items="TreinoAdmCtrl.pagination.totalItems" ng-model="TreinoAdmCtrl.pagination.paginaAtual" ng-change="TreinoAdmCtrl.filtrarPagina('ativa');" max-size="10" class="pagination-sm" boundary-link-numbers="true"></ul>
 			</div>
 		</uib-tab>
   	</uib-tabset>

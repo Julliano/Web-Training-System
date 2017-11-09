@@ -30,7 +30,7 @@ class PlanoController:
     
     def listarCliente(self):
         lista = db.session.query(Venda).filter(Venda.usuario_id == current_user.id).all()      
-        return jsonify(VendaSchema(exclude=('usuario','formulario','pagamento.vendas','treinos')).dump(lista, True).data)
+        return jsonify(VendaSchema(exclude=('usuario','pagamento.vendas','treinos')).dump(lista, True).data)
     
     @login_required
     def buscar(self, id):

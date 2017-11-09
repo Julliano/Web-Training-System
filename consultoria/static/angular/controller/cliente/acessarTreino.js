@@ -41,7 +41,18 @@
 		}
 
 		function gerarPdf(){
-			
+			var doc = new jsPDF();
+			var specialElementHandlers = {
+			    '#editor': function (element, renderer) {
+			        return true;
+			    }
+			};
+
+			    doc.fromHTML(document.getElementById('treinoDescricao').innerHTML, 15, 5, {
+			        'width': 170,
+			            'elementHandlers': specialElementHandlers
+			    });
+			    doc.save('treino.pdf');
 		}
 		
 	}

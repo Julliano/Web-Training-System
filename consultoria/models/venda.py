@@ -24,7 +24,7 @@ class VendaSchema(BaseSchema):
         model = Venda
         dump_only = ("plano", "usuario", "formulario","pagamento")
     
-    treinos = ma.Nested("TreinoSchema", many=True, only=('id','nome','data_entrega','sessao'))
+    treinos = ma.Nested("TreinoSchema", many=True, only=('id','nome','data_entrega','sessao','status'))
     vendas = ma.Nested("VendaSchema", many=True)
     plano = ma.Nested("PlanoSchema", dump_only=True)
     usuario_id = field_for(Venda, 'usuario_id', dump_only=False)

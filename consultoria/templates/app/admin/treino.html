@@ -43,7 +43,7 @@
 				<p style="margin-bottom: 5px;"><strong>Cardápio atual: </strong>
 					{{LibeTreinoAdmCtrl.treino.venda.formulario.cardapio}}
 				</p>
-				<div class="form-group">
+				<div class="form-group col-md-6 col-xs-12">
 					<div>
 						<label class="text-form">Está treinando: *</label>
 					</div>
@@ -56,6 +56,15 @@
 					  		<input type="radio" ng-model="LibeTreinoAdmCtrl.treino.venda.formulario.treinando" ng-value="false">
 					  		Não
 						</label>
+					</div>
+				</div>
+				<div class="form-group col-md-6 col-xs-12">
+					<div>
+						<label class="text-form">Solicitar ajuste:</label>
+					</div>
+					<textarea class="text-form" ng-model="LibeTreinoAdmCtrl.treino.venda.formulario.ajuste" style="height: 100px; width: 450px;"></textarea>
+					<div>
+						<button type="submit" ng-click="LibeTreinoAdmCtrl.ajusteFormulario()" ng-disabled="!LibeTreinoAdmCtrl.treino.venda.formulario.ajuste" class="btn btn-success">Salvar</button>
 					</div>
 				</div>
 				<p style="margin-bottom: 5px;"><strong>Experiência: </strong>
@@ -191,16 +200,18 @@
 						<tr>
 							<th class="col-md-1">#</th>
 							<th class="col-md-3">Entregue em</th>
-							<th class="col-md-7">Titulo</th>
+							<th class="col-md-6">Titulo</th>
 							<th class="col-md-1 text-center">Sessão</th>
+							<th class="col-md-1 text-center">Status</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="treino in LibeTreinoAdmCtrl.treino.venda.formulario.treinos">
+						<tr ng-repeat="treino in LibeTreinoAdmCtrl.treino.venda.treinos | orderBy: treino.id">
 							<td class="text-center">{{treino.id}}</td>
 							<td>{{treino.data_entrega}}</td>
 							<td>{{treino.nome}}</td>
-							<td>{{treino.sessao}}</td>
+							<td class="text-center">{{treino.sessao}}</td>
+							<td class="text-center"><i ng-class="{'fa fa-clock-o':treino.status == 'pendente', 'fa fa-check':treino.status == 'ativa'}"></i></td>
 						</tr>
 					</tbody>
 				</table>

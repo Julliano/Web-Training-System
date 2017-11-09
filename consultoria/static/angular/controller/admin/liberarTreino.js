@@ -11,7 +11,8 @@
 		vm.usuario = LoginService.getUsuario();
 		vm.treino = treino;
 		vm.salvar = salvar;
-		vm.gerarPdf = gerarPdf;
+		vm.ajusteFormulario = ajusteFormulario;
+		vm.submitPromise = { message : "Aguarde..."	};
 		
 		init();
 		
@@ -27,25 +28,28 @@
 			$http.put('/admin/treinos/', vm.treino).then(httpSuccess, httpFail)
 		}
 		
+		function ajusteFormulario(){
+			vm.submitPromise.promise = $http.put('/ajustarFormulario/', vm.treino.venda).then(httpSuccessFormulario, httpFailFormulario)
+		}
+		
 
 		function httpSuccess(response) {
 			Notification.success("Treino liberado com sucesso");
 			$state.go("admin.treinos")
 		}
-	
+		
 		function httpFail(response) {
 			Notification.error("Erro, favor contate o administrador do sistema.");
 		}
 
-		function gerarPdf(){
-//			var texto = document.getElementById("explicacao")
-//			var doc = new jsPDF('p', 'pt', 'a4')
-//			doc.text(texto.innerText, 10, 10)
-//			doc.save('a4.pdf')
-//			
+		function httpSuccessFormulario(response) {
+			Notification.success("Solicitacao de ajuste enviada");
+			$state.go("admin.treinos")
+		}
+	
+		function httpFailFormulario(response) {
+			Notification.error("Erro, favor contate o administrador do sistema.");
 		}
 		
-		
 	}
-
 })();

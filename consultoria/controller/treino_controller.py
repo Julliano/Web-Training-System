@@ -5,12 +5,14 @@ from flask import jsonify
 from flask.globals import request
 from flask.helpers import make_response
 from flask.templating import render_template
+from sqlalchemy.sql.elements import and_
 from flask_login import fresh_login_required, current_user, login_required
 from flask_mail import Message
 from flask_security.decorators import roles_required
 from sqlalchemy.orm import joinedload, contains_eager
 
 from consultoria.models.treino import Treino, TreinoSchema
+from consultoria.models.formulario import Formulario
 from consultoria.models.usuario import Usuario
 from consultoria.models.venda import Venda
 from consultoria.modules import mail
@@ -31,12 +33,16 @@ class TreinoController:
         return make_response("Dúvida adicionada com sucesso", 200)
         
     @admin_permission.require(http_exception=403)
-    def listar_admin(self, pagina=1):
+    def listar_admin(self, pagina=1, status='pendente'):
+        and_form = and_(Formulario.status == 'ativa')
         if request.args:
-            pagina = int(dict(request.args).get('pagina')[0])
-        stmt = Treino.query.options(joinedload('venda')).order_by(Treino.id)            
+            if request.args.get('pagina'):
+                pagina = int(dict(request.args).get('pagina')[0])
+            if request.args.get('status'):
+                status = dict(request.args).get('status')[0]
+        stmt = Treino.query.options(joinedload('venda')).order_by(Treino.id).join(Treino.venda).join(Venda.formulario).filter(Formulario.status == "ativa", Treino.status == status)         
         if pagina:
-            result = stmt.paginate(pagina, 20, False)
+            result = stmt.paginate(pagina, 10, False)
         else:
             result = stmt.all()
         return jsonify(por_pagina=result.per_page, total_items = result.total, pagina_atual=result.page, total_paginas=result.pages,items=TreinoSchema().dump(result.items,True))

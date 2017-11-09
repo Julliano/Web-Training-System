@@ -11,6 +11,7 @@
 		vm.submitPromise = {
 			message : "Aguarde..."
 		};
+		vm.modelo = modelo;
 
 		init();
 

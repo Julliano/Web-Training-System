@@ -14,11 +14,11 @@
 			{{AceTreinoCtrl.treino.nome}}
 		</p>
 		<p style="margin-bottom: 5px;"><strong>Explicação: </strong>
-			<div bind-html-compile="AceTreinoCtrl.treino.explicacao"></div>
+			<div id="treinoDescricao" bind-html-compile="AceTreinoCtrl.treino.explicacao"></div>
 		</p>
 		<div>
 			<button class="btn btn-default" ui-sref="app.treinos">Voltar a listagem</button>
-			<button class="btn btn-primary" ng-click="AceTreinoCtrl.gerarPdf()">PDF</button>
+			<button class="btn btn-primary" id="cmd" ng-click="AceTreinoCtrl.gerarPdf()">PDF</button>
 		</div>
 	</div>
 </div>

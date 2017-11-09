@@ -7,6 +7,7 @@ from flask_mail import Message
 from flask_security.decorators import roles_required
 
 from consultoria.models.formulario import Formulario, FormularioSchema
+from consultoria.models.venda import Venda, VendaSchema
 from consultoria.modules import mail
 
 from ..models.venda import Venda
@@ -71,15 +72,28 @@ class FormularioController:
             formulario.status = 'ativa'
             db.session.add(formulario)
             db.session.commit()
-            self.emailLiberacaoFormulario(formulario)
+#             self.emailLiberacaoFormulario(formulario)
             return FormularioSchema().jsonify(formulario)                
 
-    def emailAjusteFormulario(self, formulario):
+    @admin_permission.require(http_exception=403)
+    def admin_form(self, data):
+        with db.session.no_autoflush:
+            schema = VendaSchema().load(data, instance=Venda().query.get(data['id']), partial=True)
+            venda = schema.data
+            formulario, errors = FormularioSchema().load(data['formulario'], instance=Formulario().query.get(data['formulario']['id']), partial=True)
+            formulario.status = 'pendente'
+            db.session.add(formulario)
+            db.session.commit()
+            self.emailAjusteFormulario(venda)
+            return FormularioSchema().jsonify(formulario)                
+
+    def emailAjusteFormulario(self, venda):
         try:
-            msg = Message('Ajuste de formulário.', recipients=[formulario.venda.usuario.email])
-            msg.html = render_template('app/emailAjusteFormulario.html', enviado='Formulario', email='jullianoVolpato@gmail.com' , formulario=formulario) 
+            msg = Message('Ajuste de formulário.', recipients=[venda.usuario.email])
+            msg.html = render_template('app/emailAjusteFormulario.html', enviado='Formulario', email='jullianoVolpato@gmail.com' , venda=venda) 
             mail.send(msg)
             return make_response("E-mail enviado com sucesso", 200)
         except Exception:
             pass
             return make_response("Erro no envio do e-mail", 500)
+

@@ -21,12 +21,15 @@
 			})
 		}
 
-		function listarAdmin(pagina) {
+		function listarAdmin(pagina, param) {
 			var config = {
 				params : {}
 			};
 			if (pagina) {
 				config.params.pagina = pagina
+			}
+			if (param) {
+				config.params.status = param
 			}
 			return $http.get("/admin/treinos/", config).then(function(response) {
 				return response.data;

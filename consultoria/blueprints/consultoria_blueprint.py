@@ -170,6 +170,11 @@ def admin_formularios(id=None):
         return FormularioController().admin_editar(request.json or request.form)
     return crud_request(FormularioController(), id)
 
+@consultoria_app.route('/ajustarFormulario/', methods=["PUT"])
+@admin_permission.require(http_exception=403)
+def ajustarFormulario():
+    return FormularioController().admin_form(request.json)
+
 @consultoria_app.route('/usuarios/', methods=['GET', "POST", "PUT", "DELETE"])
 @consultoria_app.route('/usuarios/<int:id>', methods=["GET", "DELETE"])
 @login_required

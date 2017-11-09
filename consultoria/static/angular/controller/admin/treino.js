@@ -14,6 +14,9 @@
 		vm.liberarTreino = liberarTreino;
 		vm.classTreino = classTreino;
 		vm.filtrarPagina = filtrarPagina;
+		vm.treinosPendentes = [];
+		vm.treinosAtivos = [];
+		vm.listar = listar;
 		vm.pagination = {
 			paginas : 0, 
 			paginaAtual : 0, 
@@ -25,12 +28,16 @@
 		init();
 		
 		function init(){
-			listar();
+			listar('pendente');
 		}
 		
-		function listar(){
-			TreinoService.listarAdmin().then(function(response) {
-				vm.treinos = response.items[0];					
+		function listar(param){
+			TreinoService.listarAdmin(0, param).then(function(response) {
+				if(param == 'pendente'){
+					vm.treinosPendentes = response.items[0];					
+				} else if (param == 'ativa'){
+					vm.treinosAtivos = response.items[0];					
+				}
 				vm.pagination.paginas = response.total_paginas;
 				vm.pagination.paginaAtual = response.pagina_atual;
 				vm.pagination.totalItems = response.total_items;
@@ -38,9 +45,13 @@
 			})
 		}
 
-		function filtrarPagina(){
-			TreinoService.listarAdmin(vm.pagination.paginaAtual).then(function(response) {
-				vm.treinos = response.items[0];					
+		function filtrarPagina(param){
+			TreinoService.listarAdmin(vm.pagination.paginaAtual, param).then(function(response) {
+				if(param == 'pendente'){
+					vm.treinosPendentes = response.items[0];					
+				} else if (param == 'ativa'){
+					vm.treinosAtivos = response.items[0];					
+				}					
 				vm.pagination.paginas = response.total_paginas;
 				vm.pagination.paginaAtual = response.pagina_atual;
 				vm.pagination.totalItems = response.total_items;
