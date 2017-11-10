@@ -12,13 +12,13 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="venda in CliPlanoCtrl.vendas" class="odd gradeX">
+				<tr ng-repeat="venda in CliPlanoCtrl.vendas" class="odd gradeX" ng-class="CliPlanoCtrl.classVenda(venda)">
 					<td>{{venda.data_compra}}</td>
 					<td>{{venda.plano.titulo}}</td>
 					<td class="text-center">R${{venda.plano.valor}}</td>
 					<td ng-if="CliPlanoCtrl.confere(venda)" ng-click="CliPlanoCtrl.pagar(venda)" style="color: blue;" class="text-center">{{venda.pagamento.status}}</td>
 					<td ng-if="!CliPlanoCtrl.confere(venda)" class="text-center">{{venda.pagamento.status}}</td>
-					<td class="text-center" ng-click="CliPlanoCtrl.ajustaForm(venda.formulario)"><i ng-class="{'fa fa-clock-o':venda.formulario.status == 'pendente', 'fa fa-check':venda.formulario.status == 'ativa'}"></i></td>
+					<td class="text-center" ng-click="CliPlanoCtrl.ajustaForm(venda.formulario)" uib-tooltip="Formulário" tooltip-placement="top"><i ng-class="{'fa fa-clock-o':venda.formulario.status == 'pendente', 'fa fa-check':venda.formulario.status == 'ativa'}"></i></td>
 				</tr>
 			</tbody>
 		</table>

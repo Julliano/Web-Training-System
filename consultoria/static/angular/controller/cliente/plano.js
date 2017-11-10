@@ -12,6 +12,7 @@
 		vm.pagar = pagar;
 		vm.confere = confere;
 		vm.ajustaForm = ajustaForm;
+		vm.classVenda = classVenda;
 		
 		init();
 		
@@ -37,6 +38,12 @@
 		function ajustaForm(form){
 			if(form.status == 'pendente'){
 				$state.go("app.formulario", {id:form.id})
+			}
+		}
+		
+		function classVenda(venda){
+			if(venda.formulario.status == 'pendente'){
+				return 'warning'
 			}
 		}
 		

@@ -52,10 +52,9 @@ class FormularioController:
     @login_required
     def editar(self, data):
         with db.session.no_autoflush:
-            schema = FormularioSchema().load(data, instance=Formulario().query.get(data['id']), partial=True)        
-            if schema.errors.__len__() > 0:
+            formulario, errors = FormularioSchema().load(data, instance=Formulario().query.get(data['id']), partial=True)        
+            if errors.__len__() > 0:
                 return make_response(schema.errors[0], 500)        
-            formulario = schema.data
             formulario.status = 'ativa'
             formulario.preenchido = True
             db.session.add(formulario)
