@@ -56,6 +56,7 @@ class CompraController:
             resposta = self.pagSeguro(venda.plano)
             venda.pagamento.codigo = resposta[1]
             formulario , errors = FormularioSchema().loads(request.form['formulario'])
+            formulario.status = 'ativa'
             formulario.preenchido = True
             venda.formulario = formulario
             for treino in range(0,int(venda.plano.n_treinos)):
