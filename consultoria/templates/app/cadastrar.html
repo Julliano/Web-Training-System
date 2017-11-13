@@ -105,7 +105,6 @@
 				<input type="checkbox" ng-model="CadastrarCtrl.usuario.termo" value="true" required> 
 				Eu li e concordo com os termos desse <a style="color: blue;text-decoration: underline;" target="_blank" href="--{url_for('.media', filename='contrato.pdf')}--">contrato</a>.
 			</div>
-			<div class="g-recaptcha" data-sitekey="6LdCgjgUAAAAAJfkP-D0-ugj2mrJnoa-Py3AxWAi"></div>
 			<div style="float: right;">
 				<button type="submit" ui-sref="index.start" class="btn btn-primary">Voltar</button>
 				<button type="submit" ng-click="CadastrarCtrl.salvar()" ng-disabled="!cadastroForm.$valid" class="btn btn-success">Cadastrar</button>
