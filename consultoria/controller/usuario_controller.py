@@ -55,17 +55,20 @@ class UsuarioController:
             return make_response("Talvez tenha expirado seu prazo, solicite um novo e-mail de recuperação de senha.", 500)
 
     def emailRecuperacao(self, data):
-        size = 50
-        usuario = Usuario().query.filter(Usuario.email == data['email']).first()
-        usuario.recuperarSenha = ''.join([choice(string.letters + string.digits) for i in range(size)])
-        db.session.add(usuario)
-        db.session.commit()
-        return self.send_email_analista(usuario)
+        try:
+            size = 50
+            usuario = Usuario().query.filter(Usuario.email == data['email']).first()
+            usuario.recuperarSenha = ''.join([choice(string.letters + string.digits) for i in range(size)])
+            db.session.add(usuario)
+            db.session.commit()
+            return self.send_email_analista(usuario)
+        except Exception:
+            return make_response("Email não encontrado na base", 500)
     
     def send_email_analista(self, usuario):
         try:
             msg = Message('Email de recuperação de senha', recipients=[usuario.email])
-            msg.html = render_template('app/emailSenhaCliente.html', enviado='Suporte', email='jullianoVolpato@gmail.com' , form=request.form) 
+            msg.html = render_template('app/emailSenhaCliente.html', enviado='Suporte', email='jullianoVolpato@gmail.com' , usuario=usuario) 
             mail.send(msg)
             return make_response("E-mail enviado com sucesso", 200)
         except Exception:
