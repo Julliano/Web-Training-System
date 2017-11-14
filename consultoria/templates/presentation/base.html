@@ -2,13 +2,13 @@
 	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                <button type="button" style="color: white;" class="navbar-toggle" data-toggle="collapse" ng-click="isCollapsed = !isCollapsed">
                     <i class="fa fa-bars"></i>
                 </button>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div id="menu" class="collapse navbar-collapse navbar-right navbar-main-collapse">
+            <div id="menu" class="collapse navbar-collapse navbar-right" uib-collapse="!isCollapsed">
                 <ul class="nav navbar-nav">
                     <!-- <li>
                      	<a class="page-scroll" href="#page-top" du-smooth-scroll> Inicio</a>
