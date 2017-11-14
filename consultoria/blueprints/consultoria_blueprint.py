@@ -239,7 +239,7 @@ def comprar(id=None):
 def linkPagSeguro(id=None):
         return CompraController().pagSeguro(id)
 
-@consultoria_app.route('/retornoPagSeguro/', methods=['POST'])
+@consultoria_app.route('/retornoPagSeguro/', methods=['POST', 'GET'])
 def retornoPagSeguro():
     return CompraController().retornoPagSeguro()
 

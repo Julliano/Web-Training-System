@@ -21,17 +21,45 @@ from ..modules import db, admin_permission
 class CompraController:
     
     def retornoPagSeguro(self):
-        notificacao = xmltodict.parse()
+        notificacao = request.json or request.form
         url = 'https://ws.pagseguro.uol.com.br/v3/transactions/notifications/%s?email=jullianovosorio@gmail.com&token=1DF98935374845F2B18992B39A1B8B0F' % notificacao['notificationCode']
         header = {'Content-Type': 'application/xml; charset=ISO-8859-1'}
-        response = requests.post(url, data=xml, headers=header, verify=True, timeout=120)
+        response = requests.get(url, data=url, headers=header, verify=True, timeout=120)
+        if response.status_code == 200:
+            resp = xmltodict.parse(response.content)
+            status = resp['transaction']['status']
+            referencia = resp['transaction']['reference']
+            pagamento = Pagamento().query.filter(Pagamento.referencia == referencia).first()
+            if int(status) == 1:
+                pagamento.status = 'Aguardando pagamento'
+            if int(status) == 2:
+                pagamento.status = 'Em análise'
+            if int(status) == 3:
+                pagamento.status = 'Paga'
+            if int(status) == 4:
+                pagamento.status = 'Disponível'
+            if int(status) == 5:
+                pagamento.status = 'Em disputa'
+            if int(status) == 6:
+                pagamento.status = 'Devolvida'
+            if int(status) == 7:
+                pagamento.status = 'Cancelada'
+            if int(status) == 8:
+                pagamento.status = 'Debitado'
+            if int(status) == 9:
+                pagamento.status = 'Retenção temporária'
+            db.session.add(pagamento)
+            db.session.commit()
+                
     
     @login_required
-    def pagSeguro(self, plano):
-        if plano.n_treinos == 1:
-            xml = """<?xml version="1.0"?> <checkout> <currency>BRL</currency> <items> <item> <id>01</id> <description>Plano de consultoria Mensal</description> <amount>%s0</amount> <quantity>1</quantity> </item> </items> <receiver> <email>jullianovosorio@gmail.com</email> </receiver> </checkout>""" % float(plano.valor)
-        elif plano.n_treinos == 3:
-            xml = """<?xml version="1.0"?> <checkout> <currency>BRL</currency> <items> <item> <id>01</id> <description>Plano de consultoria Trimestral</description> <amount>%s0</amount> <quantity>1</quantity> </item> </items> <receiver> <email>jullianovosorio@gmail.com</email> </receiver> </checkout>""" % float(plano.valor)
+    def pagSeguro(self, venda):
+        if venda.plano.n_treinos == 1:
+            xml = """<?xml version="1.0"?> <checkout> <currency>BRL</currency> <items> <item> <id>01</id> <description>Plano de consultoria Mensal</description> <amount>%s0</amount> <quantity>1</quantity> </item> </items> <reference>Plano1%s</reference> <receiver> <email>jullianovosorio@gmail.com</email> </receiver> </checkout>""" % (float(venda.plano.valor), venda.pagamento.id)
+            referencia = 'Plano1%s' % venda.pagamento.id
+        elif venda.plano.n_treinos == 3:
+            xml = """<?xml version="1.0"?> <checkout> <currency>BRL</currency> <items> <item> <id>01</id> <description>Plano de consultoria Trimestral</description> <amount>%s0</amount> <quantity>1</quantity> </item> </items> <reference>Plano3%s</reference> <receiver> <email>jullianovosorio@gmail.com</email> </receiver> </checkout>""" % (float(venda.plano.valor), venda.pagamento.id)
+            referencia = 'Plano3%s' % venda.pagamento.id
 #       substituir pelo token verdadeiro depois (está no sandBox)
 #         url = 'https://ws.pagseguro.uol.com.br/v2/checkout?email=jullianovosorio@gmail.com&token=51E9D7E8918A4DB1B718EE9D017F4EFE'
         url = 'https://ws.sandbox.pagseguro.uol.com.br/v2/checkout?email=jullianovosorio@gmail.com&token=1DF98935374845F2B18992B39A1B8B0F'
@@ -42,7 +70,7 @@ class CompraController:
             codigo = resp['checkout']['code']
 #             urlPagamento = 'https://pagseguro.uol.com.br/v2/checkout/payment.html?code=%s' % codigo
             urlPagamento = 'https://sandbox.pagseguro.uol.com.br/v2/checkout/payment.html?code=%s' % codigo
-        return [urlPagamento, codigo]
+        return [urlPagamento, codigo, referencia]
 #         else:
 #             return make_response("Erro na conexão com o PagSeguro, tente realizar o pagamento novamente mais tarde.", 500)
     
@@ -53,8 +81,6 @@ class CompraController:
             venda.usuario_id = current_user.id
             venda.plano = Plano().query.filter(Plano.n_treinos == 1).first()
             venda.pagamento = Pagamento() #Incluir logica de pagamento;
-            resposta = self.pagSeguro(venda.plano)
-            venda.pagamento.codigo = resposta[1]
             formulario , errors = FormularioSchema().loads(request.form['formulario'])
             formulario.status = 'ativa'
             formulario.preenchido = True
@@ -64,6 +90,11 @@ class CompraController:
                 treino.data_entrega = date.today() + timedelta(days=2) #mudar para ser preenchido na confirmação do pagamento.
                 treino.sessao = '1/1'
                 venda.treinos.append(treino)
+            db.session.add(venda)
+            db.session.commit()
+            resposta = self.pagSeguro(venda)
+            venda.pagamento.codigo = resposta[1]
+            venda.pagamento.referencia = resposta[2]
             db.session.add(venda)
             db.session.commit()
             return jsonify(resposta[0])
