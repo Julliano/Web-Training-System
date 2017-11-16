@@ -109,7 +109,10 @@ class CompraController:
             venda.usuario_id = current_user.id
             venda.plano = Plano().query.filter(Plano.n_treinos == 3).first()
             venda.pagamento = Pagamento() #Incluir logica de pagamento;
-            venda.formulario = Formulario()
+            formulario , errors = FormularioSchema().loads(request.form['formulario'])
+            formulario.status = 'ativa'
+            formulario.preenchido = True
+            venda.formulario = formulario
             for index in range(0,int(venda.plano.n_treinos)):
                 treino = Treino()
                 if index == 0:
@@ -122,6 +125,11 @@ class CompraController:
                     treino.data_entrega = date.today() + timedelta(days=62) #mudar para ser preenchido na confirmação do pagamento.
                     treino.sessao = '3/3'
                 venda.treinos.append(treino)
+            db.session.add(venda)
+            db.session.commit()
+            resposta = self.pagSeguro(venda)
+            venda.pagamento.codigo = resposta[1]
+            venda.pagamento.referencia = resposta[2]
             db.session.add(venda)
             db.session.commit()
             return make_response("Compra efetuada, assim que o pagamento for confirmado farei seu treino.", 200)
