@@ -50,7 +50,8 @@ class CompraController:
                 pagamento.status = 'Retenção temporária'
             db.session.add(pagamento)
             db.session.commit()
-        return make_response("Pagamento atualizado", 200)
+            return make_response("Pagamento atualizado", 200)
+        return make_response("Erro no codigo 200", 500)
                 
     
     @login_required
