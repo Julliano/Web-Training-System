@@ -22,7 +22,7 @@ class CompraController:
     
     def retornoPagSeguro(self):
         notificacao = request.json or request.form
-        url = 'https://ws.pagseguro.uol.com.br/v3/transactions/notifications/%s' % notificacao['notificationCode']
+        url = 'https://ws.sandbox.pagseguro.uol.com.br/v3/transactions/notifications/%s' % notificacao['notificationCode']
 #         header = {'Content-Type': 'application/xml; charset=ISO-8859-1'}
         parametros = {'email':'jullianovosorio@gmail.com', 'token':"1DF98935374845F2B18992B39A1B8B0F"}
         response = requests.get(url, params=parametros, verify=True, timeout=120)
