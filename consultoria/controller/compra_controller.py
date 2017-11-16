@@ -28,7 +28,10 @@ class CompraController:
         header = {'Content-Type': 'application/xml; charset=ISO-8859-1'}
         response = requests.get(url, data=url, headers=header, verify=True, timeout=120)
         if response.status_code == 200:
-            resp = xmltodict.parse(response.content)
+            try:
+                resp = xmltodict.parse(response.content)
+            except:
+                print(response.content)
             status = resp['transaction']['status']
             referencia = resp['transaction']['reference']
             try:
