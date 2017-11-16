@@ -37,6 +37,7 @@ class CompraController:
                 pagamento.status = 'Em análise'
             if int(status) == 3:
                 pagamento.status = 'Paga'
+                venda = Venda().query.filter(Venda.pagamento_id == pagamento.id).first()
             if int(status) == 4:
                 pagamento.status = 'Disponível'
             if int(status) == 5:
@@ -51,6 +52,11 @@ class CompraController:
                 pagamento.status = 'Retenção temporária'
             db.session.add(pagamento)
             db.session.commit()
+            if venda:
+                count = 0
+                for treino in venda.treinos:
+                    treino.data_entrega = date.today() + timedelta(days=(count*3+2))
+                    count += 1
             return make_response("Pagamento atualizado", 200)
         return make_response("Erro no codigo 200", 500)
                 
@@ -90,7 +96,7 @@ class CompraController:
             venda.formulario = formulario
             for treino in range(0,int(venda.plano.n_treinos)):
                 treino = Treino()
-                treino.data_entrega = date.today() + timedelta(days=2) #mudar para ser preenchido na confirmação do pagamento.
+#                 treino.data_entrega = date.today() + timedelta(days=2) #mudar para ser preenchido na confirmação do pagamento.
                 treino.sessao = '1/1'
                 venda.treinos.append(treino)
             db.session.add(venda)
@@ -116,13 +122,13 @@ class CompraController:
             for index in range(0,int(venda.plano.n_treinos)):
                 treino = Treino()
                 if index == 0:
-                    treino.data_entrega = date.today() + timedelta(days=2) #mudar para ser preenchido na confirmação do pagamento.
+#                     treino.data_entrega = date.today() + timedelta(days=2) #mudar para ser preenchido na confirmação do pagamento.
                     treino.sessao = '1/3'
                 if index == 1:
-                    treino.data_entrega = date.today() + timedelta(days=32) #mudar para ser preenchido na confirmação do pagamento.
+#                     treino.data_entrega = date.today() + timedelta(days=32) #mudar para ser preenchido na confirmação do pagamento.
                     treino.sessao = '2/3'
                 if index == 2:
-                    treino.data_entrega = date.today() + timedelta(days=62) #mudar para ser preenchido na confirmação do pagamento.
+#                     treino.data_entrega = date.today() + timedelta(days=62) #mudar para ser preenchido na confirmação do pagamento.
                     treino.sessao = '3/3'
                 venda.treinos.append(treino)
             db.session.add(venda)
