@@ -25,6 +25,8 @@ class CompraController:
         url = 'https://ws.pagseguro.uol.com.br/v3/transactions/notifications/%s?email=jullianovosorio@gmail.com&token=1DF98935374845F2B18992B39A1B8B0F' % notificacao['notificationCode']
         header = {'Content-Type': 'application/xml; charset=ISO-8859-1'}
         response = requests.get(url, data=url, headers=header, verify=True, timeout=120)
+        print('oi')
+        print(response.content)
         if response.status_code == 200:
             resp = xmltodict.parse(response.content)
             status = resp['transaction']['status']
