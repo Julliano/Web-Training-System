@@ -31,27 +31,30 @@ class CompraController:
             referencia = resp['transaction']['reference']
             print(status)
             print(referencia)
-            pagamento = Pagamento().query.filter(Pagamento.referencia == referencia).first()
-            if int(status) == 1:
-                pagamento.status = 'Aguardando pagamento'
-            if int(status) == 2:
-                pagamento.status = 'Em análise'
-            if int(status) == 3:
-                pagamento.status = 'Paga'
-            if int(status) == 4:
-                pagamento.status = 'Disponível'
-            if int(status) == 5:
-                pagamento.status = 'Em disputa'
-            if int(status) == 6:
-                pagamento.status = 'Devolvida'
-            if int(status) == 7:
-                pagamento.status = 'Cancelada'
-            if int(status) == 8:
-                pagamento.status = 'Debitado'
-            if int(status) == 9:
-                pagamento.status = 'Retenção temporária'
-            db.session.add(pagamento)
-            db.session.commit()
+            try:
+                pagamento = Pagamento().query.filter(Pagamento.referencia == referencia).first()
+                if int(status) == 1:
+                    pagamento.status = 'Aguardando pagamento'
+                if int(status) == 2:
+                    pagamento.status = 'Em análise'
+                if int(status) == 3:
+                    pagamento.status = 'Paga'
+                if int(status) == 4:
+                    pagamento.status = 'Disponível'
+                if int(status) == 5:
+                    pagamento.status = 'Em disputa'
+                if int(status) == 6:
+                    pagamento.status = 'Devolvida'
+                if int(status) == 7:
+                    pagamento.status = 'Cancelada'
+                if int(status) == 8:
+                    pagamento.status = 'Debitado'
+                if int(status) == 9:
+                    pagamento.status = 'Retenção temporária'
+                db.session.add(pagamento)
+                db.session.commit()
+            except Exception:
+                pass
         return make_response("Pagamento atualizado", 200)
                 
     
