@@ -21,41 +21,35 @@ from ..modules import db, admin_permission
 class CompraController:
     
     def retornoPagSeguro(self):
-        notificacao = request.json or request.form 
+        notificacao = request.json
         url = 'https://ws.pagseguro.uol.com.br/v3/transactions/notifications/%s?email=jullianovosorio@gmail.com&token=1DF98935374845F2B18992B39A1B8B0F' % notificacao['notificationCode']
         header = {'Content-Type': 'application/xml; charset=ISO-8859-1'}
         response = requests.get(url, headers=header, verify=True, timeout=120)
         if response.status_code == 200:
-            try:
-                resp = xmltodict.parse(response.content)
-                status = resp['transaction']['status']
-                referencia = resp['transaction']['reference']
-            except Exception as e:
-                return make_response(e.message, 500)
-            try:
-                pagamento = Pagamento().query.filter(Pagamento.referencia == referencia).first()
-                if int(status) == 1:
-                    pagamento.status = 'Aguardando pagamento'
-                if int(status) == 2:
-                    pagamento.status = 'Em análise'
-                if int(status) == 3:
-                    pagamento.status = 'Paga'
-                if int(status) == 4:
-                    pagamento.status = 'Disponível'
-                if int(status) == 5:
-                    pagamento.status = 'Em disputa'
-                if int(status) == 6:
-                    pagamento.status = 'Devolvida'
-                if int(status) == 7:
-                    pagamento.status = 'Cancelada'
-                if int(status) == 8:
-                    pagamento.status = 'Debitado'
-                if int(status) == 9:
-                    pagamento.status = 'Retenção temporária'
-                db.session.add(pagamento)
-                db.session.commit()
-            except Exception:
-                return make_response("Erro", 500)
+            resp = xmltodict.parse(response.content)
+            status = resp['transaction']['status']
+            referencia = resp['transaction']['reference']
+            pagamento = Pagamento().query.filter(Pagamento.referencia == referencia).first()
+            if int(status) == 1:
+                pagamento.status = 'Aguardando pagamento'
+            if int(status) == 2:
+                pagamento.status = 'Em análise'
+            if int(status) == 3:
+                pagamento.status = 'Paga'
+            if int(status) == 4:
+                pagamento.status = 'Disponível'
+            if int(status) == 5:
+                pagamento.status = 'Em disputa'
+            if int(status) == 6:
+                pagamento.status = 'Devolvida'
+            if int(status) == 7:
+                pagamento.status = 'Cancelada'
+            if int(status) == 8:
+                pagamento.status = 'Debitado'
+            if int(status) == 9:
+                pagamento.status = 'Retenção temporária'
+            db.session.add(pagamento)
+            db.session.commit()
         return make_response("Pagamento atualizado", 200)
                 
     
