@@ -29,6 +29,8 @@ class CompraController:
             resp = xmltodict.parse(response.content)
             status = resp['transaction']['status']
             referencia = resp['transaction']['reference']
+            print(status)
+            print(referencia)
             pagamento = Pagamento().query.filter(Pagamento.referencia == referencia).first()
             if int(status) == 1:
                 pagamento.status = 'Aguardando pagamento'
