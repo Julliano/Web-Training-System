@@ -30,10 +30,10 @@ class CompraController:
         if response.status_code == 200:
             try:
                 resp = xmltodict.parse(response.content)
-            except:
-                print(response.content)
-            status = resp['transaction']['status']
-            referencia = resp['transaction']['reference']
+                status = resp['transaction']['status']
+                referencia = resp['transaction']['reference']
+            except Exception as e:
+                print(e.message)
             try:
                 pagamento = Pagamento().query.filter(Pagamento.referencia == referencia).first()
                 if int(status) == 1:
