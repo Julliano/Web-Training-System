@@ -15,9 +15,9 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="modelo in ModeloAdmCtrl.modelos | filter:ModeloAdmCtrl.filtroModelo">
+				<tr ng-repeat="modelo in ModeloAdmCtrl.modelos | filter:ModeloAdmCtrl.filtroModelo" style="height: 250px !important;">
 					<th ng-click="ModeloAdmCtrl.modal(modelo)">{{modelo.titulo}}</th>
-					<th ng-bind-html="modelo.explicacao | limitTo: 250"></th>
+					<th ng-bind-html="modelo.explicacao" style="height: 250px !important;overflow-y: auto;display: block;"></th>
 				</tr>
 			</tbody>
 		</table>

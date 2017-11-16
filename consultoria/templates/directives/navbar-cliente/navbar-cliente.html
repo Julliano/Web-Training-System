@@ -2,8 +2,11 @@
 	<div class="container-fluid container">
 		<div class="navbar-header">
 			<span class="font-days navbar-brand" style="color: white;">Julliano Volpato</span>
-		</div>
-		<div uib-collapse="NavbarCtrl.collapse" class="navbar-collapse collapse">
+            <button type="button" style="color: white;" class="navbar-toggle" data-toggle="collapse" ng-click="isCollapsed = !isCollapsed">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+		<div class="navbar-collapse collapse" uib-collapse="!isCollapsed">
 			<ul class="nav navbar-nav" style="margin-left: 10px;">				
 				<li ui-sref-active="active" ><a ui-sref="app.planos">Planos</a></li>				
 				<li ui-sref-active="active"><a ui-sref="app.treinos">Treinos</a></li>				

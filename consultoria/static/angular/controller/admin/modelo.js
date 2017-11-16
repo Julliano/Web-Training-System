@@ -23,7 +23,7 @@
 			})
 			
 		}
-		
+
 		function modal(modelo) {
 			var modalInstance = $uibModal
 					.open({
