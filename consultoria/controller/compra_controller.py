@@ -57,6 +57,8 @@ class CompraController:
                 for treino in venda.treinos:
                     treino.data_entrega = date.today() + timedelta(days=(count*3+2))
                     count += 1
+            db.session.add(venda)
+            db.session.commit()
             return make_response("Pagamento atualizado", 200)
         return make_response("Erro no codigo 200", 500)
                 
