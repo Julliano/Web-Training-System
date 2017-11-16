@@ -132,5 +132,5 @@ class CompraController:
             venda.pagamento.referencia = resposta[2]
             db.session.add(venda)
             db.session.commit()
-            return make_response("Compra efetuada, assim que o pagamento for confirmado farei seu treino.", 200)
+            return jsonify(resposta[0])
     
