@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 
-	angular.module('consultoria', [ 'ngRoute', 'ui.bootstrap', 'ui.router', 'ui-notification', 'ui.mask', 'duScroll', 'textAngular', 'checklist-model', 'angular-bind-html-compile', 'ngAnimate', 'angular-loading-bar'])
+	angular.module('consultoria', [ 'ngRoute', 'ui.bootstrap', 'ui.router', 'ui-notification', 'ui.mask', 'duScroll', 'textAngular', 'checklist-model', 'angular-bind-html-compile', 'ngAnimate', 'angular-loading-bar', 'ngSanitize'])
 
 	.config([ '$stateProvider', '$urlRouterProvider' , '$provide', '$uibTooltipProvider', 'cfpLoadingBarProvider', config ])
 
