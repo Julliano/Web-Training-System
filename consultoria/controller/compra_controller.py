@@ -33,7 +33,7 @@ class CompraController:
                 status = resp['transaction']['status']
                 referencia = resp['transaction']['reference']
             except Exception as e:
-                print(e.message)
+                return make_response(e.message, 500)
             try:
                 pagamento = Pagamento().query.filter(Pagamento.referencia == referencia).first()
                 if int(status) == 1:
@@ -57,7 +57,7 @@ class CompraController:
                 db.session.add(pagamento)
                 db.session.commit()
             except Exception:
-                pass
+                return make_response("Erro", 500)
         return make_response("Pagamento atualizado", 200)
                 
     
