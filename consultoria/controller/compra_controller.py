@@ -55,7 +55,7 @@ class CompraController:
             if venda:
                 count = 0
                 for treino in venda.treinos:
-                    treino.data_entrega = date.today() + timedelta(days=(count*3+2))
+                    treino.data_entrega = date.today() + timedelta(days=(count*3)+2)
                     count += 1
             db.session.add(venda)
             db.session.commit()
