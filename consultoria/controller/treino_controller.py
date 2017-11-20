@@ -14,6 +14,7 @@ from sqlalchemy.orm import joinedload, contains_eager
 from consultoria.models.treino import Treino, TreinoSchema
 from consultoria.models.formulario import Formulario
 from consultoria.models.usuario import Usuario
+from consultoria.models.pagamento import Pagamento
 from consultoria.models.venda import Venda
 from consultoria.modules import mail
 
@@ -40,7 +41,7 @@ class TreinoController:
                 pagina = int(dict(request.args).get('pagina')[0])
             if request.args.get('status'):
                 status = dict(request.args).get('status')[0]
-        stmt = Treino.query.options(joinedload('venda')).order_by(Treino.id).join(Treino.venda).join(Venda.formulario).filter(Formulario.status == "ativa", Treino.status == status)         
+        stmt = Treino.query.options(joinedload('venda')).order_by(Treino.id).join(Treino.venda).join(Venda.formulario).join(Venda.pagamento).filter(Pagamento.status == 'Paga', Formulario.status == "ativa", Treino.status == status)        
         if pagina:
             result = stmt.paginate(pagina, 10, False)
         else:
