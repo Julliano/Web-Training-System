@@ -2,6 +2,12 @@ navbar-main-collapse{
 	display: none;
 }
 
+#treinoDescricao{
+	text-align: justify; 
+	margin: 0px 40px; 
+	text-transform: uppercase;
+}
+
 .form-proprietario{
     background-color: #EAEAEA;
     padding: 5px;
