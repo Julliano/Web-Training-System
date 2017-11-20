@@ -1,3 +1,43 @@
+.btn-success {
+    color: #fff;
+    background-color: #28988a;
+    border-color: #28988a;
+}
+
+.btn-success:hover {
+    color: #fff;
+    background-color: #27796f;
+    border-color: #28988a;
+}
+
+.btn-success.active.focus, .btn-success.active:focus, .btn-success.active:hover, .btn-success:active.focus, .btn-success:active:focus, .btn-success:active:hover, .open>.dropdown-toggle.btn-success.focus, .open>.dropdown-toggle.btn-success:focus, .open>.dropdown-toggle.btn-success:hover {
+    color: #fff;
+    background-color: #28988a;
+    border-color: #255625;
+}
+
+.btn-success.focus, .btn-success:focus {
+    color: #fff;
+    background-color: #28988a;
+    border-color: #255625;
+}
+
+::-webkit-scrollbar
+{
+  width: 12px;  /* for vertical scrollbars */
+  height: 12px; /* for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track
+{
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb
+{
+  background: #009688;
+}
+
 .section-title span:before, .entry-title span:before {
     right: 100%;
     margin-right: 45px;
@@ -130,7 +170,7 @@
     padding: 10px 16px;
     width: 100%;
     color: black;
-    border: 1px solid #72af2c;
+    border: 1px solid #28988a;
 }
 
 .botaoDuvida{
