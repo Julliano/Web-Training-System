@@ -32,6 +32,7 @@
 							return '/templates/directives/modal-admin-modeloTreino/modal-admin-modeloTreino.html'
 						},
 						size : 'lg',
+						backdrop : 'static',
 						controller : "ModalModeloTreinoController",
 						controllerAs : "ModalModTreinoCtrl",
 						resolve : {
