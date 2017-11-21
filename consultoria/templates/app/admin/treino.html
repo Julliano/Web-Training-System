@@ -12,9 +12,6 @@
 				<p style="margin-bottom: 5px;"><strong>Data de liberação: </strong>
 					{{LibeTreinoAdmCtrl.treino.data_entrega | date:'dd/MM/yy'}}
 				</p>
-				<p style="margin-bottom: 5px;"><strong>Plano: </strong>
-					{{LibeTreinoAdmCtrl.treino.venda.formulario.plano.titulo}}
-				</p>
 				<p style="margin-bottom: 5px;">
 					<strong>Titulo: </strong>
 					<select ng-options="modelo as modelo.titulo for modelo in LibeTreinoAdmCtrl.modelos" 
