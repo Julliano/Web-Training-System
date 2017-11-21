@@ -29,6 +29,9 @@
 						</tr>
 					</tbody>
 				</table>
+				<div ng-if="TreinoAdmCtrl.treinosPendentes.length == 0" style=" text-align: center; margin: 35px;font-size: 20px;">
+					Não há treinos pendentes, melhore, venda mais!
+				</div>
 				<ul uib-pagination items-per-page="TreinoAdmCtrl.pagination.porPagina" total-items="TreinoAdmCtrl.pagination.totalItems" ng-model="TreinoAdmCtrl.pagination.paginaAtual" ng-change="TreinoAdmCtrl.filtrarPagina('pendente');" max-size="10" class="pagination-sm" boundary-link-numbers="true"></ul>
 			</div>
 		</uib-tab>
