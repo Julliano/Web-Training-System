@@ -47,6 +47,7 @@ class DuvidasController:
         with db.session.no_autoflush:
             schema = DuvidaSchema().load(data, instance=Duvida().query.get(data['id']), partial=True)        
             if schema.errors.__len__() > 0:
+                print(schema.errors[0])
                 return make_response(schema.errors[0], 500)        
             duvida = schema.data
             duvida.status = 'ativa'

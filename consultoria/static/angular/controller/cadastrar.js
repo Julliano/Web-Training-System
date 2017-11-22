@@ -19,7 +19,7 @@
 		
 		function httpSuccess(response) {
 			Notification.success(response.data);
-			$state.go("index/start")
+			$state.go("index.start")
 		}
 	
 		function httpFail(response) {
