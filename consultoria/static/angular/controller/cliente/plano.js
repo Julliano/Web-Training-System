@@ -32,7 +32,7 @@
 		}
 	
 		function confere(venda){
-			return venda.pagamento.status == 'Aguardando pagamento'
+			return venda.pagamento.status == 'Aguardando pagamento' || venda.pagamento.status == 'aguardando pagamento'
 		} 
 
 		function ajustaForm(form){

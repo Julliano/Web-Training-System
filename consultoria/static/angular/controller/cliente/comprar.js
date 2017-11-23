@@ -22,6 +22,8 @@
 		
 		function comprar(param) {
 			if(vm.usuario){
+				var popup = $window.open('https://ws.sandbox.pagseguro.uol.com.br', '_blank')
+				popup.document.write('Carregando tela de pagamento...');
 				var fd = new FormData();
 				fd.append('formulario', JSON.stringify(vm.formulario));
 				vm.submitPromise.promise = $http.post('/comprarConsultoria/' + param, fd, {
@@ -30,14 +32,20 @@
 					headers : {
 						'Content-Type' : undefined
 					}
-				}).then(httpSuccess, httpFail);
+				}).then(function httpSuccess(response, param) {
+					popup.location.href = response.data;
+//					$window.open(response.data, '_blank')
+					Notification.success("Compra realizada, assim que o pagamento for confirmado começarei a trabalhar no seu treino.");
+					$state.go('app.treinos')
+				}, httpFail);
 			} else {
 				Notification.error('Entre em contato pelo email: jullianoVolpato@gmail.com, e resolveremos seu problema.');
 			}
 		}
 		
-		function httpSuccess(response) {
-			$window.open(response.data)
+		function httpSuccess(response, param) {
+			param.location.href = response.data;
+//			$window.open(response.data, '_blank')
 			Notification.success("Compra realizada, assim que o pagamento for confirmado começarei a trabalhar no seu treino.");
 			$state.go('app.treinos')
 		}
