@@ -20,6 +20,12 @@ class Treino(db.Model):
     duvidas = db.relationship("Duvida", cascade="save-update, merge, delete", backref="treino")
     venda_id = db.Column(db.Integer, db.ForeignKey("venda.id"), nullable=False)
     
+    
+    
+    @property
+    def url(self):
+        return 'www.jullianovolpato.com.br/?#!/app/treino/'+self.id.__str__()
+    
 class TreinoSchema(BaseSchema):
     class Meta(BaseSchema.Meta):
         model = Treino
