@@ -18,7 +18,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="treino in TreinoAdmCtrl.treinosPendentes" ng-class="TreinoAdmCtrl.classTreino(treino)"
+						<tr ng-repeat="treino in TreinoAdmCtrl.treinosPendentes | orderBy:'data_entrega'" ng-class="TreinoAdmCtrl.classTreino(treino)"
 							ng-click="TreinoAdmCtrl.liberarTreino(treino)">
 							<td>{{treino.data_entrega}}</td>
 							<td>{{treino.venda.usuario.nome}}</td>
@@ -49,7 +49,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="treino in TreinoAdmCtrl.treinosAtivos">
+						<tr ng-repeat="treino in TreinoAdmCtrl.treinosAtivos | orderBy:'data_disponibilizado'">
 							<td>{{treino.data_disponibilizado}}</td>
 							<td>{{treino.venda.usuario.nome_completo}}</td>
 							<td>{{treino.venda.usuario.email}}</td>
