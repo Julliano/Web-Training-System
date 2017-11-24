@@ -92,8 +92,8 @@ class Usuario(db.Model):
 
     @property
     def treinos(self):
-        lista = db.session.query(Treino).order_by(desc(Treino.data_entrega)).join(Treino.venda).join(Venda.pagamento).filter(Venda.usuario_id == self.id, Pagamento.status == 'Paga').all()
-        return lista
+        return db.session.query(Treino).order_by(desc(Treino.data_entrega)).join(Treino.venda).join(Venda.pagamento).filter(Venda.usuario_id == self.id, Pagamento.status == 'Paga').first()
+#         return lista
 
     @property
     def password(self):

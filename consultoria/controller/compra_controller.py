@@ -56,10 +56,10 @@ class CompraController:
             if venda:
                 count = 0
                 if usua.treinos is not None:
-                    if usua.treinos[0].data_entrega is not None:
-                        data = usua.treinos[0].data_entrega 
+                    if usua.treinos.data_entrega is not None:
+                        data = usua.treinos.data_entrega 
                 for treino in venda.treinos:
-                    if data:
+                    if data is not None:
                         treino.data_entrega = data + timedelta(days=(count*30)+32)
                     else:
                         treino.data_entrega = date.today() + timedelta(days=(count*30)+2)
