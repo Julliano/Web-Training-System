@@ -16,7 +16,7 @@ class Venda(db.Model):
     plano_id = db.Column(db.Integer, db.ForeignKey("plano.id"), nullable=True)
     usuario_id = db.Column(db.Integer, db.ForeignKey("usuario.id"), nullable=True)
     formulario_id = db.Column(db.Integer, db.ForeignKey("formulario.id"), nullable=True)
-    treinos = db.relationship("Treino", cascade="save-update, merge, delete", backref="venda")
+    treinos = db.relationship("Treino", cascade="save-update, merge, delete", backref="venda", order_by="Treino.id")
     
 
 class VendaSchema(BaseSchema):
