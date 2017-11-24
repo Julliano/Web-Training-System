@@ -55,6 +55,7 @@ class CompraController:
             db.session.commit()
             if venda:
                 count = 0
+                data = None
                 if usua.treinos is not None:
                     if usua.treinos.data_entrega is not None:
                         data = usua.treinos.data_entrega 
