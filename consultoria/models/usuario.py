@@ -91,7 +91,7 @@ class Usuario(db.Model):
         return lista
 
     @property
-    def treinos(self):
+    def ultimoTreino(self):
         return db.session.query(Treino).join(Treino.venda).join(Venda.pagamento).filter(Venda.usuario_id == self.id, Pagamento.status == 'Paga').order_by(desc(Treino.data_entrega)).first()
 #         return lista
 
