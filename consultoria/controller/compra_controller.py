@@ -38,7 +38,7 @@ class CompraController:
             if int(status) == 3:
                 pagamento.status = 'Paga'
                 venda = Venda().query.filter(Venda.pagamento_id == pagamento.id).first()
-                usua = Usuario.query.get(venda.usuario_id)
+                usu = Usuario().query.get(venda.usuario_id)
             if int(status) == 4:
                 pagamento.status = 'Disponível'
             if int(status) == 5:
@@ -55,13 +55,13 @@ class CompraController:
             db.session.commit()
             if venda:
                 count = 0
-                data = None
-                if usua.treinos is not None:
-                    if usua.treinos.data_entrega is not None:
-                        data = usua.treinos.data_entrega 
+                ultimaData = None
+                if usu.treinos:
+                    if usu.treinos.data_entrega is not None:
+                        ultimaData = usu.treinos.data_entrega
                 for treino in venda.treinos:
-                    if data is not None:
-                        treino.data_entrega = data + timedelta(days=(count*30)+32)
+                    if ultimaData is not None:
+                        treino.data_entrega = ultimaData + timedelta(days=(count*30)+32)
                     else:
                         treino.data_entrega = date.today() + timedelta(days=(count*30)+2)
                     count += 1
