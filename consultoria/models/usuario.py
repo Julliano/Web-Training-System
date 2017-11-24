@@ -30,7 +30,7 @@ class Usuario(db.Model):
     email = db.Column(db.String(60), nullable=False, unique=True)
     endereco = db.Column(db.String(155), nullable=False)
     complemento = db.Column(db.String(155), nullable=True)
-    cep = db.Column(db.String(45), nullable=False)
+    cep = db.Column(db.String(45), nullable=True)
     bairro = db.Column(db.String(45), nullable=False)
     cidade = db.Column(db.String(45), nullable=False)
     uf = db.Column(db.String(45), nullable=False)
