@@ -92,7 +92,7 @@ class Usuario(db.Model):
 
     @property
     def ultimoTreino(self):
-        return db.session.query(Treino).join(Treino.venda).join(Venda.pagamento).filter(Venda.usuario_id == self.id, Pagamento.status == 'Paga').order_by(desc(Treino.data_entrega)).first()
+        return db.session.query(Treino).join(Treino.venda).join(Venda.pagamento).filter(Venda.usuario_id == self.id, Pagamento.status == 'Paga', Treino.data_entrega != None).order_by(desc(Treino.data_entrega)).first()
 #         return lista
 
     @property
