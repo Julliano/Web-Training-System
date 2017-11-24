@@ -59,10 +59,12 @@ class CompraController:
                 if usu.ultimoTreino:
                     if usu.ultimoTreino.data_entrega is not None:
                         ultimaData = usu.ultimoTreino.data_entrega
-                for treino in sorted(venda.treinos):
-                    if ultimaData is not None:
+                if ultimaData is not None:
+                    for treino in sorted(venda.treinos):
                         treino.data_entrega = ultimaData + timedelta(days=(count*30)+32)
-                    else:
+                    count += 1
+                else:
+                    for treino in sorted(venda.treinos):
                         treino.data_entrega = date.today() + timedelta(days=(count*30)+2)
                     count += 1
             db.session.add(venda)
