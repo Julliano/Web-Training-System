@@ -3,8 +3,9 @@ from flask.helpers import url_for
 from flask_login import make_secure_token
 from flask_security.utils import encrypt_password, verify_password
 from marshmallow import fields
+from sqlalchemy.orm import joinedload
 from marshmallow.decorators import pre_load
-from sqlalchemy import DateTime
+from sqlalchemy import DateTime, desc
 
 from consultoria.models.duvida import Duvida
 from usuario_grupo import usuario_grupo
@@ -14,6 +15,8 @@ from ..modules import admin_permission
 from ..modules import db, ma
 from .grupo import GrupoSchema
 from .venda import Venda
+from .pagamento import Pagamento
+from .treino import Treino, TreinoSchema
 
 
 class Usuario(db.Model):
@@ -85,6 +88,11 @@ class Usuario(db.Model):
     @property
     def contaDuvidas(self):
         lista = db.session.query(Duvida).filter(Duvida.status == 'pendente').all()
+        return lista
+
+    @property
+    def treinos(self):
+        lista = db.session.query(Treino).order_by(desc(Treino.data_entrega)).join(Treino.venda).join(Venda.pagamento).filter(Venda.usuario_id == self.id, Pagamento.status == 'Paga').all()
         return lista
 
     @property
