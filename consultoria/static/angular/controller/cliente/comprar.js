@@ -22,7 +22,7 @@
 		
 		function comprar(param) {
 			if(vm.usuario){
-				var popup = $window.open('https://www.google.com', '_blank')
+				var popup = $window.open('', '_blank')
 				popup.document.write('Carregando tela de pagamento...');
 				var fd = new FormData();
 				fd.append('formulario', JSON.stringify(vm.formulario));
