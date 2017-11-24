@@ -62,11 +62,11 @@ class CompraController:
                 if ultimaData is not None:
                     for treino in sorted(venda.treinos):
                         treino.data_entrega = ultimaData + timedelta(days=(count*30)+32)
-                    count += 1
+                        count += 1
                 else:
                     for treino in sorted(venda.treinos):
                         treino.data_entrega = date.today() + timedelta(days=(count*30)+2)
-                    count += 1
+                        count += 1
             db.session.add(venda)
             db.session.commit()
             return make_response("Pagamento atualizado", 200)
