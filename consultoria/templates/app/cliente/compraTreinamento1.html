@@ -20,7 +20,7 @@
 							<input type="text" class="form-control" placeholder="Ex: 24%" ng-model="CompraCtrl.formulario.bf">
 						</div>
 						<div class="form-group">
-							<label class="text-form">Cardápio atual:</label>
+							<label class="text-form">Cardápio atual *</label>
 							<textarea type="text" class="form-control" placeholder="Ex: Café da manha... / Almoço..." ng-model="CompraCtrl.formulario.cardapio" required></textarea>
 						</div>
 						<div class="form-group">
@@ -158,8 +158,18 @@
 							</select>
 						</div>
 						<div class="form-group">
+							<p style="font-size: 18px; margin-bottom: 25px; line-height: 30px; text-align:justify;">
+								Para responder a questão sobre treino, <a ui-sref="app.faq" style="color:black;" target="_blank">clique aqui</a> se achar necessário, existe um tópico com descrições no setor de "Dúvidas Frequentes"
+							</p>
+						</div>
+						<div class="form-group">
 							<label class="text-form">Melhor treino até o momento:</label>
 							<textarea type="text" class="form-control" placeholder="Ex: Treino de força, com método Piramidal 12/10/8" ng-model="CompraCtrl.formulario.melhorTreino"></textarea>
+						</div>
+						<div class="form-group">
+							<p style="font-size: 18px; margin-bottom: 25px; line-height: 30px; text-align:justify;">
+								Para responder as questões sobre exercícios, <a ui-sref="app.faq" style="color:black;" target="_blank">clique aqui</a> se achar necessário, existe um tópico com exemplos ilustrativos no setor de "Dúvidas Frequentes"
+							</p>
 						</div>
 						<div class="form-group">
 							<label class="text-form">Exercícios preferidos: *</label>

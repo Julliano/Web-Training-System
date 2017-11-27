@@ -1,3 +1,63 @@
+.giff{
+	height: 155px;
+    width: 205px;
+    position: relative;
+    display: block;
+    margin: 0 auto;
+}
+
+.gifAgachamento{
+	background: url('/media/giffs/agachamento.gif') no-repeat center center;
+}
+.gifTerra{
+	background: url('/media/giffs/terra.gif') no-repeat scroll center center;
+}
+.gifFlexora{
+	background: url('/media/giffs/flexora.gif') no-repeat scroll center center;
+}
+.gif45{
+	background: url('/media/giffs/45.gif') no-repeat center center;
+}
+.gifInclinado{
+	background: url('/media/giffs/inclinado.gif') no-repeat scroll center center;
+}
+.gifInvertido{
+	background: url('/media/giffs/invertido.gif') no-repeat scroll center center;
+}
+.gifLombar{
+	background: url('/media/giffs/lombar.gif') no-repeat center center;
+}
+.gifParalela{
+	background: url('/media/giffs/paralela.gif') no-repeat scroll center center;
+}
+.gifPuxada{
+	background: url('/media/giffs/puxada.gif') no-repeat scroll center center;
+}
+.gifRemada{
+	background: url('/media/giffs/remada.gif') no-repeat center center;
+}
+.gifReto{
+	background: url('/media/giffs/reto.gif') no-repeat scroll center center;
+}
+.gifRosca{
+	background: url('/media/giffs/rosca.gif') no-repeat scroll center center;
+}
+.gifScott{
+	background: url('/media/giffs/scott.gif') no-repeat scroll center center;
+}
+.gifSupinada{
+	background: url('/media/giffs/supinada.gif') no-repeat scroll center center;
+}
+.gifTerra{
+	background: url('/media/giffs/terra.gif') no-repeat center center;
+}
+.gifTriangulo{
+	background: url('/media/giffs/triangulo.gif') no-repeat scroll center center;
+}
+.gifTesta{
+	background: url('/media/giffs/testa.gif') no-repeat scroll center center;
+}
+
 .btn-success {
     color: #fff;
     background-color: #28988a;

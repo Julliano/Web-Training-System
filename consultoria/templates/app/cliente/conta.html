@@ -13,7 +13,7 @@
 				</div>
 				<div class="col-md-3">
 					<label style="font-weight: 500;">CPF: *</label>
-					<input type="text" class="form-control form-group" ng-model="CliContaCtrl.usuario.cpf" required>
+					<input type="text" class="form-control form-group" ui-mask="999.999.999-99" ng-model="CliContaCtrl.usuario.cpf" disabled>
 				</div>
 				<div class="col-md-2">
 					<label class="col-md-12 col-lg-12" style="font-weight: 500;">Sexo *</label>
@@ -34,7 +34,7 @@
 				</div>
 				<div class="col-md-3">
 					<label style="font-weight: 500;">Nascimento: *</label>
-					<input type="text" class="form-control form-group" ng-model="CliContaCtrl.usuario.nascimento" required>
+					<input type="text" class="form-control form-group" ui-mask="99/99/9999" ng-model="CliContaCtrl.usuario.nascimento" required>
 				</div>
 				<div class="col-md-3">
 					<label style="font-weight: 500;">Telefone: *</label>

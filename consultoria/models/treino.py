@@ -17,14 +17,18 @@ class Treino(db.Model):
     alteracao = db.Column(db.Text) 
     fisio = db.Column(db.Boolean, default=False)
     explicacao = db.Column(db.Text)
+    ver = db.Column(db.String(45), nullable=True)
     duvidas = db.relationship("Duvida", cascade="save-update, merge, delete", backref="treino")
     venda_id = db.Column(db.Integer, db.ForeignKey("venda.id"), nullable=False)
-    
     
     
     @property
     def url(self):
         return 'www.jullianovolpato.com.br/?#!/app/treino/'+self.id.__str__()
+
+    @property
+    def urlDescricao(self):
+        return 'www.jullianovolpato.com.br/?#!/app/'+self.ver.__str__()
     
 class TreinoSchema(BaseSchema):
     class Meta(BaseSchema.Meta):

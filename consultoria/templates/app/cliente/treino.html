@@ -16,6 +16,7 @@
 		<p style="margin-bottom: 5px;"><strong>Explicação: </strong>
 			<div id="treinoDescricao" bind-html-compile="AceTreinoCtrl.treino.explicacao"></div>
 		</p>
+		<h4 style="color: red; margin: 40px;">Para maiores informações sobre seu treino, <a ui-sref="app.{{AceTreinoCtrl.treino.ver}}" target="_blank" style="color: red;">clique aqui</a>.</h4>
 		<div>
 			<button class="btn btn-default" ui-sref="app.treinos">Voltar a listagem</button>
 			<button class="btn btn-primary" id="cmd" onclick="printJS({printable:'treinoDescricao', type:'html', honorColor:'True', font:'TimesNewRoman', font_size:'14pt', documentTitle:'Treino.pdf'})">PDF</button>

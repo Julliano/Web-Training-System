@@ -112,6 +112,27 @@
 			resolve : {
 				treino : treino
 			}
+		}).state('app.biset', {
+			url : '/Biset',
+			templateUrl : '/app/treinos/biset.html'
+		}).state('app.circuito', {
+			url : '/Circuito',
+			templateUrl : '/app/treinos/circuito.html'
+		}).state('app.metabolico', {
+			url : '/Metabolico',
+			templateUrl : '/app/treinos/metabolico.html'
+		}).state('app.oclusao', {
+			url : '/Oclusao',
+			templateUrl : '/app/treinos/oclusaoVascular.html'
+		}).state('app.piramidalDes', {
+			url : '/PiramidalDecrescente',
+			templateUrl : '/app/treinos/piramidalDecrescente.html'
+		}).state('app.tensional', {
+			url : '/Tensional',
+			templateUrl : '/app/treinos/tensional.html'
+		}).state('app.triset', {
+			url : '/Triset',
+			templateUrl : '/app/treinos/triset.html'
 		}).state('app.duvidas', {
 			url : '/duvidas',
 			templateUrl : '/app/cliente/duvidas.html',

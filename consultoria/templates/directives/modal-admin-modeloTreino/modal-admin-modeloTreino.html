@@ -12,6 +12,20 @@
 			<input class="form-control" type="text" ng-model="ModalModTreinoCtrl.modelo.titulo" required/>
 		</div>
 		<div class="form-group">
+			<label class="text-form">Url</label>
+			<select class="texto-info analise form-control" ng-model="ModalModTreinoCtrl.modelo.ver">
+				<option value=""></option>
+				<option value="circuito">Circuito</option>
+				<option value="biset">Biset</option>
+				<option value="triset">Triset</option>
+				<option value="metabolico">Metabólico</option>
+				<option value="oclusao">Oclusão</option>
+				<option value="piramidalDes">Piramidal Decrescente</option>
+				<option value="tensional">Tensional</option>
+			</select>
+			<!-- <input class="form-control" type="text" ng-model="ModalModTreinoCtrl.modelo.ver" required/> -->
+		</div>
+		<div class="form-group">
 			<label class="text-form">Explicação</label>
 			<text-angular ng-model="ModalModTreinoCtrl.modelo.explicacao"></text-angular>
 		</div>

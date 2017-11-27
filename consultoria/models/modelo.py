@@ -10,6 +10,7 @@ class ModeloTreino(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     data_cadastro = db.Column(db.Date, default=date.today)
     titulo = db.Column(db.String(255), nullable=False)
+    ver = db.Column(db.String(255), nullable=True)
     explicacao = db.Column(db.Text)  
 
 

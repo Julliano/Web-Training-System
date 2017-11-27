@@ -25,6 +25,7 @@
 		function salvar(){
 			vm.treino.nome = vm.modelo.titulo
 			vm.treino.explicacao = vm.modelo.explicacao
+			vm.treino.ver = vm.modelo.ver
 			$http.put('/admin/treinos/', vm.treino).then(httpSuccess, httpFail)
 		}
 		
