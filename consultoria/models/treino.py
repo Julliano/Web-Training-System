@@ -24,7 +24,7 @@ class Treino(db.Model):
     
     @property
     def url(self):
-        return 'www.jullianovolpato.com.br/?#!/app/treino/'+self.id.__str__()
+        return 'www.jullianovolpato.com.br/'
 
     @property
     def urlDescricao(self):
