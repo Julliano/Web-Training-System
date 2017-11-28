@@ -1,5 +1,6 @@
 from os import urandom
 
+INDEX = 'dist/index.html'
 RUN_DEBUG = True
 RUN_USE_RELOADER = False
 RUN_HOST = '0.0.0.0'
