@@ -75,7 +75,8 @@ def unauthorized(arg=None):
 
 @consultoria_app.route('/', methods=['GET', 'POST'])
 def hello_user(): 
-    return render_template('index.html')
+    return render_template(current_app.config['INDEX'])
+#     return render_template('index.html')
 
 # @consultoria_app.route('/pdf/<int:id>', methods=['GET','POST'])
 # def get_pdf(id): 

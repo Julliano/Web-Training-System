@@ -14,7 +14,7 @@ from consultoria.modules import mail
 from modules import db, ma, migrate, manager, login_manager, csrf
 
 
-def create_app(mode="development"):
+def create_app(mode="production"):
     from models.grupo import Grupo
     from models.usuario import Usuario
     instance_path = path.join(
