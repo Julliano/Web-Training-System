@@ -27,5 +27,13 @@ gulp.task('usemin', function() {
         .pipe(gulp.dest('./consultoria/templates/dist'));
 });
 
+gulp.task('build-assets', function() {
+    return gulp.src(paths.bower_fonts)
+        .pipe(rename({
+            dirname: '/fonts'
+        }))
+        .pipe(gulp.dest('./consultoria/static/dist'));
+});
 
-gulp.task('default', ['usemin']);
+
+gulp.task('default', ['usemin','build-assets']);
