@@ -11,7 +11,8 @@ var paths = {
             styles: 'consultoria/static/*.*',
             images: 'consultoria/static/img/*.*',
             templates: 'consultoria/templates/**/*.html',
-            index: 'consultoria/templates/index.html'
+            index: 'consultoria/templates/index.html',
+            bower_fonts: ['consultoria/static/fonts/**/*.{ttf,woff,woff2,eof,eot,svg}' ],
         };
 
 gulp.task('usemin', function() {
