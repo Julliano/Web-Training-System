@@ -2,7 +2,7 @@ import sys
 
 from consultoria import create_app
 
-mode = 'development'
+mode = 'production'
 if (len(sys.argv) > 1) and (sys.argv[1] != 'db'):
     mode = sys.argv[1] 
     

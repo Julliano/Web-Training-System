@@ -10,7 +10,7 @@ SQLALCHEMY_ECHO = False
 DB_HOST = 'localhost'
 DB_USER = 'postgres'
 DB_PASS = '123'
-DB_NAME = 'consultoriaProd'
+DB_NAME = 'consultoria'
 SQLALCHEMY_DATABASE_URI = 'postgresql://%s:%s@%s/%s?client_encoding=utf8' % (DB_USER,DB_PASS,DB_HOST,DB_NAME)
 SECRET_KEY = '@Consultor14'
 SECURITY_PASSWORD_HASH = 'pbkdf2_sha512'
