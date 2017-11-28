@@ -27,13 +27,4 @@ gulp.task('usemin', function() {
 });
 
 
-gulp.task('build-assets', function() {
-    return gulp.src(paths.scripts)
-        .pipe(rename({
-            dirname: '/fonts'
-        }))
-        .pipe(gulp.dest('./consultoria/static/dist'));
-});
-
-
-gulp.task('default', ['usemin', 'build-assets']);
+gulp.task('default', ['usemin']);
