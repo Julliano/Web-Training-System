@@ -43,7 +43,7 @@ class TreinoController:
                 status = dict(request.args).get('status')[0]
         stmt = Treino.query.options(joinedload('venda')).order_by(Treino.data_entrega.asc()).join(Treino.venda).join(Venda.formulario).join(Venda.pagamento).filter(Pagamento.status == 'Paga', Formulario.status == "ativa", Treino.status == status)        
         if pagina:
-            result = stmt.paginate(pagina, 10, False)
+            result = stmt.paginate(pagina, 15, False)
         else:
             result = stmt.all()
         return jsonify(por_pagina=result.per_page, total_items = result.total, pagina_atual=result.page, total_paginas=result.pages,items=TreinoSchema().dump(result.items,True))
