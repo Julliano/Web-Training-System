@@ -41,7 +41,7 @@ class TreinoController:
                 pagina = int(dict(request.args).get('pagina')[0])
             if request.args.get('status'):
                 status = dict(request.args).get('status')[0]
-        stmt = Treino.query.options(joinedload('venda')).order_by(Treino.data_entrega.desc()).join(Treino.venda).join(Venda.formulario).join(Venda.pagamento).filter(Pagamento.status == 'Paga', Formulario.status == "ativa", Treino.status == status)        
+        stmt = Treino.query.options(joinedload('venda')).order_by(Treino.data_entrega.asc()).join(Treino.venda).join(Venda.formulario).join(Venda.pagamento).filter(Pagamento.status == 'Paga', Formulario.status == "ativa", Treino.status == status)        
         if pagina:
             result = stmt.paginate(pagina, 10, False)
         else:
