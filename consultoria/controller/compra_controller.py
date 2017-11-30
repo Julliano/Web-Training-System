@@ -22,9 +22,11 @@ class CompraController:
     
     def retornoPagSeguro(self):
         notificacao = request.json or request.form
-        url = 'https://ws.sandbox.pagseguro.uol.com.br/v3/transactions/notifications/%s' % notificacao['notificationCode']
-#         header = {'Content-Type': 'application/xml; charset=ISO-8859-1'}
-        parametros = {'email':'jullianovosorio@gmail.com', 'token':"1DF98935374845F2B18992B39A1B8B0F"}
+        
+        url = 'https://ws.pagseguro.uol.com.br/v2/checkout/%s' % notificacao['notificationCode']
+#         url = 'https://ws.sandbox.pagseguro.uol.com.br/v3/transactions/notifications/%s' % notificacao['notificationCode']
+        parametros = {'email':'jullianovosorio@gmail.com', 'token':"51E9D7E8918A4DB1B718EE9D017F4EFE"}
+#         parametros = {'email':'jullianovosorio@gmail.com', 'token':"1DF98935374845F2B18992B39A1B8B0F"}
         response = requests.get(url, params=parametros, verify=True, timeout=120)
         if response.status_code == 200:
             resp = xmltodict.parse(response.content)
@@ -81,19 +83,16 @@ class CompraController:
         elif venda.plano.n_treinos == 3:
             xml = """<?xml version="1.0"?> <checkout> <currency>BRL</currency> <items> <item> <id>01</id> <description>Plano de consultoria Trimestral</description> <amount>%s0</amount> <quantity>1</quantity> </item> </items> <reference>Plano3%s</reference> <receiver> <email>jullianovosorio@gmail.com</email> </receiver> </checkout>""" % (float(venda.plano.valor), venda.pagamento.id)
             referencia = 'Plano3%s' % venda.pagamento.id
-#       substituir pelo token verdadeiro depois (está no sandBox)
-#         url = 'https://ws.pagseguro.uol.com.br/v2/checkout?email=jullianovosorio@gmail.com&token=51E9D7E8918A4DB1B718EE9D017F4EFE'
-        url = 'https://ws.sandbox.pagseguro.uol.com.br/v2/checkout?email=jullianovosorio@gmail.com&token=1DF98935374845F2B18992B39A1B8B0F'
+        url = 'https://ws.pagseguro.uol.com.br/v2/checkout?email=jullianovosorio@gmail.com&token=51E9D7E8918A4DB1B718EE9D017F4EFE'
+#         url = 'https://ws.sandbox.pagseguro.uol.com.br/v2/checkout?email=jullianovosorio@gmail.com&token=1DF98935374845F2B18992B39A1B8B0F'
         header = {'Content-Type': 'application/xml; charset=ISO-8859-1'}
         response = requests.post(url, data=xml, headers=header, verify=True, timeout=120)
         if response.status_code == 200:
             resp = xmltodict.parse(response.content)
             codigo = resp['checkout']['code']
-#             urlPagamento = 'https://pagseguro.uol.com.br/v2/checkout/payment.html?code=%s' % codigo
-            urlPagamento = 'https://sandbox.pagseguro.uol.com.br/v2/checkout/payment.html?code=%s' % codigo
+            urlPagamento = 'https://pagseguro.uol.com.br/v2/checkout/payment.html?code=%s' % codigo
+#             urlPagamento = 'https://sandbox.pagseguro.uol.com.br/v2/checkout/payment.html?code=%s' % codigo
         return [urlPagamento, codigo, referencia]
-#         else:
-#             return make_response("Erro na conexão com o PagSeguro, tente realizar o pagamento novamente mais tarde.", 500)
     
     @login_required
     def planoMes(self):
@@ -101,14 +100,13 @@ class CompraController:
             venda = Venda()
             venda.usuario_id = current_user.id
             venda.plano = Plano().query.filter(Plano.n_treinos == 1).first()
-            venda.pagamento = Pagamento() #Incluir logica de pagamento;
+            venda.pagamento = Pagamento()
             formulario , errors = FormularioSchema().loads(request.form['formulario'])
             formulario.status = 'ativa'
             formulario.preenchido = True
             venda.formulario = formulario
             for treino in range(0,int(venda.plano.n_treinos)):
                 treino = Treino()
-#                 treino.data_entrega = date.today() + timedelta(days=2) #mudar para ser preenchido na confirmação do pagamento.
                 treino.sessao = '1/1'
                 venda.treinos.append(treino)
             db.session.add(venda)
@@ -134,13 +132,10 @@ class CompraController:
             for index in range(0,int(venda.plano.n_treinos)):
                 treino = Treino()
                 if index == 0:
-#                     treino.data_entrega = date.today() + timedelta(days=2) #mudar para ser preenchido na confirmação do pagamento.
                     treino.sessao = '1/3'
                 if index == 1:
-#                     treino.data_entrega = date.today() + timedelta(days=32) #mudar para ser preenchido na confirmação do pagamento.
                     treino.sessao = '2/3'
                 if index == 2:
-#                     treino.data_entrega = date.today() + timedelta(days=62) #mudar para ser preenchido na confirmação do pagamento.
                     treino.sessao = '3/3'
                 venda.treinos.append(treino)
             db.session.add(venda)
