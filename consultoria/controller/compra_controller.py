@@ -23,10 +23,10 @@ class CompraController:
     def retornoPagSeguro(self):
         notificacao = request.json or request.form
         
-#         url = 'https://ws.pagseguro.uol.com.br/v2/checkout/%s' % notificacao['notificationCode']
-        url = 'https://ws.sandbox.pagseguro.uol.com.br/v3/transactions/notifications/%s' % notificacao['notificationCode']
-#         parametros = {'email':'jullianovosorio@gmail.com', 'token':"51E9D7E8918A4DB1B718EE9D017F4EFE"}
-        parametros = {'email':'jullianovosorio@gmail.com', 'token':"1DF98935374845F2B18992B39A1B8B0F"}
+        url = 'https://ws.pagseguro.uol.com.br/v2/checkout/%s' % notificacao['notificationCode']
+#         url = 'https://ws.sandbox.pagseguro.uol.com.br/v3/transactions/notifications/%s' % notificacao['notificationCode']
+        parametros = {'email':'jullianovosorio@gmail.com', 'token':"51E9D7E8918A4DB1B718EE9D017F4EFE"}
+#         parametros = {'email':'jullianovosorio@gmail.com', 'token':"1DF98935374845F2B18992B39A1B8B0F"}
         response = requests.get(url, params=parametros, verify=True, timeout=120)
         if response.status_code == 200:
             resp = xmltodict.parse(response.content)
@@ -83,15 +83,15 @@ class CompraController:
         elif venda.plano.n_treinos == 3:
             xml = """<?xml version="1.0"?> <checkout> <currency>BRL</currency> <items> <item> <id>01</id> <description>Plano de consultoria Trimestral</description> <amount>%s0</amount> <quantity>1</quantity> </item> </items> <reference>Plano3%s</reference> <receiver> <email>jullianovosorio@gmail.com</email> </receiver> </checkout>""" % (float(venda.plano.valor), venda.pagamento.id)
             referencia = 'Plano3%s' % venda.pagamento.id
-#         url = 'https://ws.pagseguro.uol.com.br/v2/checkout?email=jullianovosorio@gmail.com&token=51E9D7E8918A4DB1B718EE9D017F4EFE'
-        url = 'https://ws.sandbox.pagseguro.uol.com.br/v2/checkout?email=jullianovosorio@gmail.com&token=1DF98935374845F2B18992B39A1B8B0F'
+        url = 'https://ws.pagseguro.uol.com.br/v2/checkout?email=jullianovosorio@gmail.com&token=51E9D7E8918A4DB1B718EE9D017F4EFE'
+#         url = 'https://ws.sandbox.pagseguro.uol.com.br/v2/checkout?email=jullianovosorio@gmail.com&token=1DF98935374845F2B18992B39A1B8B0F'
         header = {'Content-Type': 'application/xml; charset=ISO-8859-1'}
         response = requests.post(url, data=xml, headers=header, verify=True, timeout=120)
         if response.status_code == 200:
             resp = xmltodict.parse(response.content)
             codigo = resp['checkout']['code']
-#             urlPagamento = 'https://pagseguro.uol.com.br/v2/checkout/payment.html?code=%s' % codigo
-            urlPagamento = 'https://sandbox.pagseguro.uol.com.br/v2/checkout/payment.html?code=%s' % codigo
+            urlPagamento = 'https://pagseguro.uol.com.br/v2/checkout/payment.html?code=%s' % codigo
+#             urlPagamento = 'https://sandbox.pagseguro.uol.com.br/v2/checkout/payment.html?code=%s' % codigo
         return [urlPagamento, codigo, referencia]
     
     @login_required
