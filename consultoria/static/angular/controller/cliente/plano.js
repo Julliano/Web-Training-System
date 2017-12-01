@@ -3,16 +3,17 @@
 
 	angular.module("consultoria").controller("ClientePlanoController", ClientePlanoController);
 
-	ClientePlanoController.$inject = [ "$http", "LoginService", "Notification", "$window", "$state"];
+	ClientePlanoController.$inject = [ "$http", "LoginService", "Notification", "$window", "$state", "$uibModal"];
 
 	/* @ngInject */
-	function ClientePlanoController($http, LoginService, Notification, $window, $state) {
+	function ClientePlanoController($http, LoginService, Notification, $window, $state, $uibModal) {
 		var vm = this;
 		vm.usuario = LoginService.getUsuario();
 		vm.pagar = pagar;
 		vm.confere = confere;
 		vm.ajustaForm = ajustaForm;
 		vm.classVenda = classVenda;
+		vm.modalPlano = modalPlano;
 		
 		init();
 		
@@ -25,6 +26,24 @@
 			$http.get('/planosCliente').then(function(response) {
 				vm.vendas = response.data;
 			})
+		}
+		
+		function modalPlano(modelo) {
+			var modalInstance = $uibModal
+					.open({
+						animation : true,
+						templateUrl : function() {
+							return '/templates/directives/modal-app-escolhePlano/modal-app-escolhePlano.html'
+						},
+						size : 'lg',
+//						backdrop : 'static',
+						controller : "ModalEscolhaPlanoController",
+						controllerAs : "ModalEscPlanoCtrl"
+					});
+
+			modalInstance.result.then(function(selectedItem) {
+				init();
+			});
 		}
 		
 		function pagar(venda){

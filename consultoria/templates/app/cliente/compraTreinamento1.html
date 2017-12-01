@@ -1,10 +1,16 @@
 <div class="container">
 	<p class="tituloPagina">Finalização de compra</p>
-	<div class="fundoBranco text-center" ng-if="!CompraCtrl.quest">
+	<div class="fundoBranco text-center col-md-12 col-sm-12" ng-if="!CompraCtrl.quest">
 		<h4 style="font-weight: 300;">Olá, obrigado por confiar na minha dedicação com o seu objetivo, prometo te entregar o meu máximo nesse planejamento personalizado.</h4>
 		<h4 style="font-weight: 300;">Você tem um formulário novo para preencher.</h4>
-		<button class="btn btn-success botaoComprar" ng-click="CompraCtrl.formularioAntigo(false)">Preencher</button>
-		<button class="btn btn-success botaoComprar" ng-if="CompraCtrl.ultimoForm.preenchido" ng-click="CompraCtrl.formularioAntigo(true)">Utilizar relatorio antigo como base</button>
+		<div class="col-md-12 col-sm-12">
+			<button class="btn btn-success botaoComprar" ng-click="CompraCtrl.formularioAntigo(false)">Preencher</button>
+			<button class="btn btn-success botaoComprar" ng-if="CompraCtrl.ultimoForm.preenchido" ng-click="CompraCtrl.formularioAntigo(true)">Utilizar relatorio antigo como base</button>
+		</div>
+		<div class="form-group col-md-offset-4 col-sm-offset-4 col-md-4 col-sm-4">
+			<label class="text-form">Cupom de desconto:</label>
+			<input type="text" class="form-control" ng-model="CompraCtrl.formulario.cupom">
+		</div>
 	</div>
 	<div class="fundoBranco" ng-if="CompraCtrl.quest">
 		<div class="row">
@@ -198,6 +204,10 @@
 						<div class="form-group">
 							<label class="text-form">Observações:</label>
 							<textarea type="text" class="form-control" placeholder="Ex: Algo que queira acrescentar, além das perguntas fornecidas." ng-model="CompraCtrl.formulario.obj"></textarea>
+						</div>
+						<div class="form-group col-md-offset-4 col-sm-offset-4 col-md-4 col-sm-4">
+							<label class="text-form">Cupom de desconto:</label>
+							<input type="text" class="form-control" ng-model="CompraCtrl.formulario.cupom">
 						</div>
 					</div>
 				</div>

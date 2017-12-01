@@ -25,12 +25,14 @@
 		<div ng-if="CliPlanoCtrl.vendas.length == 0" style=" text-align: center; margin: 35px;font-size: 20px;">
 			Você não possue planos, vá até a tela inicial e adquira um.
 			<div>
-				<button class="btn btn-success botaoComprar" ui-sref="index.start">Adquirir Plano</button>
+				<button class="btn btn-success botaoComprar" ng-click="CliPlanoCtrl.modalPlano()">Adquirir Plano</button>
+<!-- 				<button class="btn btn-success botaoComprar" ui-sref="index.start">Adquirir Plano</button> -->
 			</div>
 		</div>		
 		<div ng-if="CliPlanoCtrl.vendas.length > 0" style=" text-align: center; margin: 35px;font-size: 20px;">
 			<div>
-				<button class="btn btn-success botaoComprar" ui-sref="index.start">Adquirir novo plano</button>
+				<!-- <button class="btn btn-success botaoComprar" ui-sref="index.start">Adquirir novo plano</button> -->
+				<button class="btn btn-success botaoComprar" ng-click="CliPlanoCtrl.modalPlano()">Adquirir Plano</button>
 			</div>
 		</div>		
 	</div>

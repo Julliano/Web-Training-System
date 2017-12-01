@@ -1,0 +1,36 @@
+<div>	
+	<div class="fundo-braco container-fluid">
+		<div class="modal-header" style="padding:0">
+			<button ng-click="ModalEscPlanoCtrl.cancelar()" class="btn botaoFechar" style="float: right; background: white;"><span style="font-size: 2em;" class="marLeft1">&times;</span></button>
+		</div>
+		<form name="form" class="marBot10" method="post" style="padding-bottom: 30px; text-align: center;">
+		    <h5 style="padding-bottom: 10px;">Escolha seu plano</h5>
+		    <div class="col-md-10 col-md-offset-1">
+				<div class="col-md-6">
+					<h3>Planejamento de treino mensal</h3>
+					<h3 style="margin-top: 5px; color: #28988a;">1 mês de consultoria</h3>
+					<div style="color: #828284;">
+			            <span>R$</span>
+			            <span class="valorRiscado">149,00</span>
+			            <span class="moeda">R$</span>
+			            <span class="valor">99,00</span>
+		          	</div>
+		          	<h6 style="color: grey;"> por mês </h6>
+		            <button class="btn btn-success botaoComprar" ng-click="ModalEscPlanoCtrl.comprar('1')">Comprar</button>
+				</div>
+				<div class="col-md-6">
+					<h3>Planejamento de treino trimestral</h3>
+					<h3 style="margin-top: 5px; color: #28988a;">3 meses de consultoria</h3>
+					<div style="color: #828284;">
+			            <span>R$</span>
+			            <span class="valorRiscado">349,00</span>
+			            <span class="moeda">R$</span>
+			            <span class="valor">229,00</span>
+		          	</div>
+		            <h6 style="color: grey;"> R$76,30 por mês </h6>
+		          	<button class="btn btn-success botaoComprar" ng-click="ModalEscPlanoCtrl.comprar('3')">Comprar</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

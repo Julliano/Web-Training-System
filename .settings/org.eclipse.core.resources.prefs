@@ -11,6 +11,7 @@ encoding//consultoria/controller/plano_controller.py=utf-8
 encoding//consultoria/controller/session_controller.py=utf-8
 encoding//consultoria/controller/treino_controller.py=utf-8
 encoding//consultoria/controller/usuario_controller.py=utf-8
+encoding//consultoria/models/cupom.py=utf-8
 encoding//consultoria/models/duvida.py=utf-8
 encoding//consultoria/models/formulario.py=utf-8
 encoding//consultoria/models/grupo.py=utf-8

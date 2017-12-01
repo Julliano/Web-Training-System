@@ -1,17 +1,19 @@
 # coding: utf-8
 from datetime import date, timedelta
+
+from flask import jsonify
+from flask.globals import request, current_app
+from flask.helpers import make_response
+from flask_login import fresh_login_required, current_user, login_required
 import requests
 import xmltodict
 
-from flask import jsonify
-from flask.helpers import make_response
-from flask.globals import request, current_app
-from flask_login import fresh_login_required, current_user, login_required
 
 from ..models.formulario import Formulario, FormularioSchema
 from ..models.pagamento import Pagamento, PagamentoSchema
 from ..models.pagamento import Pagamento, PagamentoSchema
 from ..models.plano import Plano, PlanoSchema
+from ..models.cupom import Cupom
 from ..models.treino import Treino, TreinoSchema
 from ..models.usuario import Usuario, UsuarioSchema
 from ..models.venda import Venda, VendaSchema
@@ -76,12 +78,18 @@ class CompraController:
                 
     
     @login_required
-    def pagSeguro(self, venda):
+    def pagSeguro(self, venda, cupom):
+        if cupom is not None:
+            desconto = cupom.valor
+            cupomUsado = cupom.cupom
+        else:
+            desconto = 0
+            cupomUsado = None
         if venda.plano.n_treinos == 1:
-            xml = """<?xml version="1.0"?> <checkout> <currency>BRL</currency> <items> <item> <id>01</id> <description>Plano de consultoria Mensal</description> <amount>%s0</amount> <quantity>1</quantity> </item> </items> <reference>Plano1%s</reference> <receiver> <email>jullianovosorio@gmail.com</email> </receiver> </checkout>""" % (float(venda.plano.valor), venda.pagamento.id)
+            xml = """<?xml version="1.0"?> <checkout> <currency>BRL</currency> <items> <item> <id>01</id> <description>Plano de consultoria Mensal</description> <amount>%s0</amount> <quantity>1</quantity> </item> </items> <reference>Plano1%s</reference> <receiver> <email>jullianovosorio@gmail.com</email> </receiver> </checkout>""" % (float(venda.plano.valor) - desconto, venda.pagamento.id)
             referencia = 'Plano1%s' % venda.pagamento.id
         elif venda.plano.n_treinos == 3:
-            xml = """<?xml version="1.0"?> <checkout> <currency>BRL</currency> <items> <item> <id>01</id> <description>Plano de consultoria Trimestral</description> <amount>%s0</amount> <quantity>1</quantity> </item> </items> <reference>Plano3%s</reference> <receiver> <email>jullianovosorio@gmail.com</email> </receiver> </checkout>""" % (float(venda.plano.valor), venda.pagamento.id)
+            xml = """<?xml version="1.0"?> <checkout> <currency>BRL</currency> <items> <item> <id>01</id> <description>Plano de consultoria Trimestral</description> <amount>%s0</amount> <quantity>1</quantity> </item> </items> <reference>Plano3%s</reference> <receiver> <email>jullianovosorio@gmail.com</email> </receiver> </checkout>""" % (float(venda.plano.valor) - desconto, venda.pagamento.id)
             referencia = 'Plano3%s' % venda.pagamento.id
 #         url = 'https://ws.pagseguro.uol.com.br/v2/checkout?email=jullianovosorio@gmail.com&token=51E9D7E8918A4DB1B718EE9D017F4EFE'
         url = 'https://ws.sandbox.pagseguro.uol.com.br/v2/checkout?email=jullianovosorio@gmail.com&token=1DF98935374845F2B18992B39A1B8B0F'
@@ -92,7 +100,7 @@ class CompraController:
             codigo = resp['checkout']['code']
 #             urlPagamento = 'https://pagseguro.uol.com.br/v2/checkout/payment.html?code=%s' % codigo
             urlPagamento = 'https://sandbox.pagseguro.uol.com.br/v2/checkout/payment.html?code=%s' % codigo
-        return [urlPagamento, codigo, referencia]
+        return [urlPagamento, codigo, referencia, cupomUsado]
     
     @login_required
     def planoMes(self):
@@ -111,9 +119,14 @@ class CompraController:
                 venda.treinos.append(treino)
             db.session.add(venda)
             db.session.commit()
-            resposta = self.pagSeguro(venda)
+            cupom = Cupom().query.filter(Cupom.cupom == formulario.cupom).first()
+            if cupom is not None:
+                resposta = self.pagSeguro(venda, cupom)
+            else:
+                resposta = self.pagSeguro(venda, None)
             venda.pagamento.codigo = resposta[1]
             venda.pagamento.referencia = resposta[2]
+            venda.pagamento.cupom = resposta[3]
             db.session.add(venda)
             db.session.commit()
             return jsonify(resposta[0])
@@ -140,6 +153,11 @@ class CompraController:
                 venda.treinos.append(treino)
             db.session.add(venda)
             db.session.commit()
+            cupom = Cupom().query.filter(Cupom.cupom == request.form['formulario']['cupom']).first()
+            if cupom is not None:
+                resposta = self.pagSeguro(venda, cupom)
+            else:
+                resposta = self.pagSeguro(venda, None)
             resposta = self.pagSeguro(venda)
             venda.pagamento.codigo = resposta[1]
             venda.pagamento.referencia = resposta[2]
