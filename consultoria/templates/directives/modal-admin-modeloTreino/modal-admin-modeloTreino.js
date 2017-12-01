@@ -4,6 +4,7 @@
 
 	ModalModeloTreinoController.$inject = ["filterFilter", "$uibModalInstance", "$http", "modelo", "Notification"];
 
+	/* @ngInject */
 	function ModalModeloTreinoController(filterFilter, $uibModalInstance, $http, modelo, Notification) {
 		var vm = this;	
 		vm.salvar = salvar;

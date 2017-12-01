@@ -4,6 +4,7 @@
 
 	ModalAdminPlanoController.$inject = ["filterFilter", "$uibModalInstance", "$http", "plano", "Notification"];
 
+	/* @ngInject */
 	function ModalAdminPlanoController(filterFilter, $uibModalInstance, $http, plano, Notification) {
 		var vm = this;	
 		vm.salvar = salvar;

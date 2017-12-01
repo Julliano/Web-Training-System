@@ -5,7 +5,7 @@
 
 	NavbarController.$inject = ["filterFilter", "$state", "LoginService", "$http", "$scope", "OperacaoService"];
 
-	/** @ngInject */
+	/* @ngInject */
 	function NavbarController(filterFilter, $state, LoginService, $http, $scope, OperacaoService) {
 		var vm = this;
 		vm.usuario = LoginService.getUsuario();

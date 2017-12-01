@@ -4,6 +4,7 @@
 
 	PresentationController.$inject = [ "LoginService"]
 
+	/* @ngInject */
 	function PresentationController(LoginService) {
 		var vm = this;
 		vm.slide = 1;

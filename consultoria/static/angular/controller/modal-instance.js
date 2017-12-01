@@ -4,6 +4,7 @@
 
 	ModalInstanceController.$inject = [ "$uibModalInstance", "$http", "model", "obj" ];
 
+	/* @ngInject */
 	function ModalInstanceController($uibModalInstance, $http, model, obj) {
 		var vm = this;
 		vm.objeto = {};

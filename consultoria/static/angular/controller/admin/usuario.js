@@ -4,7 +4,7 @@
 	angular.module('consultoria').controller("AdminUsuarioController",
 			AdminUsuarioController)
 
-	/** @ngInject */
+	/* @ngInject */
 	AdminUsuarioController.$inject = [ "$http", "$uibModal", "Notification" ];
 
 	function AdminUsuarioController($http, $uibModal, Notification) {

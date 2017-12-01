@@ -5,6 +5,7 @@
 
 	ModalLoginController.$inject = ["$uibModalInstance", "LoginService", "$window", "$state", "compra"];
 
+	/* @ngInject */
 	function ModalLoginController($uibModalInstance, LoginService, $window, $state, compra) {
 		var vm = this;
 		vm.trendy = "OK";
