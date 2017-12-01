@@ -31,6 +31,7 @@ from ..models.grupo import Grupo
 from ..models.modelo import ModeloTreino
 from ..models.pagamento import Pagamento
 from ..models.plano import Plano
+from ..models.cupom import Cupom
 from ..models.resposta import Resposta
 from ..models.treino import Treino
 from ..models.usuario import Usuario, UsuarioSchema
