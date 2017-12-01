@@ -18,6 +18,7 @@ class Formulario(db.Model):
     disponibilidade = db.Column(db.ARRAY(db.String), default=[])
     extra = db.Column(db.Boolean, nullable=False, default=False)
     extra_disponibilidade = db.Column(db.ARRAY(db.String), default=[])
+    extra_descricao = db.Column(db.Text)
     treinando = db.Column(db.Boolean, nullable=False, default=False)
     experiencia = db.Column(db.String(25))
     fumante = db.Column(db.Boolean, nullable=False, default=False)

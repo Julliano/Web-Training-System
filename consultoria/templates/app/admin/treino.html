@@ -117,6 +117,11 @@
 						</label>
 					</div>
 				</div>
+				<div class="form-group" ng-if="LibeTreinoAdmCtrl.treino.venda.formulario.extra == true">
+					<p style="margin-bottom: 5px;"><strong>Descreva sua ativade extra: </strong>
+						<div>{{LibeTreinoAdmCtrl.treino.venda.formulario.extra_descricao}}</div>
+					</p>
+				</div>
 				<div class="weekDays-selector form-group" style="display: grid;" ng-if="LibeTreinoAdmCtrl.treino.venda.formulario.extra == true">
 					<label class="text-form">Frequência: *</label>
 					<input type="checkbox" id="weekday-mon" class="weekday" checklist-model="LibeTreinoAdmCtrl.treino.venda.formulario.extra_disponibilidade" checklist-value="'segunda'"/>

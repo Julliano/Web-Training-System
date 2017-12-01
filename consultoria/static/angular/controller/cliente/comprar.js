@@ -22,6 +22,21 @@
 		
 		function comprar(param) {
 			if(vm.usuario){
+				if(vm.formulario.cardapio1){
+					vm.formulario.cardapio = 'Manha: ' + vm.formulario.cardapio1
+				}
+				if(vm.formulario.cardapio2){
+					vm.formulario.cardapio += '. Almoço: ' + vm.formulario.cardapio2
+				}
+				if(vm.formulario.cardapio3){
+					vm.formulario.cardapio = '. Tarde: ' + vm.formulario.cardapio3
+				}
+				if(vm.formulario.cardapio4){
+					vm.formulario.cardapio += '. Jantar: ' + vm.formulario.cardapio4
+				}
+				if(vm.formulario.cardapio5){
+					vm.formulario.cardapio += '. Extra: ' + vm.formulario.cardapio5
+				}
 				var popup = $window.open('', '_blank')
 				popup.document.write('Carregando tela de pagamento...');
 				var fd = new FormData();
@@ -58,6 +73,9 @@
 		function buscarFormulario(){
 			FormService.buscarUltimo(vm.usuario.id).then(function(response) {
 				vm.ultimoForm = response;
+				if(vm.ultimoForm){
+					vm.ultimoForm.cupom = null;
+				}
 			})
 		}
 		

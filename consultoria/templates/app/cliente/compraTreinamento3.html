@@ -26,10 +26,28 @@
 							<input type="text" class="form-control" placeholder="Ex: 24%" ng-model="CompraCtrl.formulario.bf">
 						</div>
 						<div class="form-group">
-							<label class="text-form">Cardápio atual:</label>
-							<textarea type="text" class="form-control" placeholder="Ex: Café da manha... / Almoço..." ng-model="CompraCtrl.formulario.cardapio" required></textarea>
+							<div class="col-md-6">
+								<label class="text-form">Café da manhã: </label>
+								<textarea type="text" class="form-control" placeholder="Ex: 3 ovos com café" ng-model="CompraCtrl.formulario.cardapio1"></textarea>
+							</div>
+							<div class="col-md-6">
+								<label class="text-form">Almoço: </label>
+								<textarea type="text" class="form-control" placeholder="Ex: 150 gramas de proteina, 200 de arroz" ng-model="CompraCtrl.formulario.cardapio2"></textarea>
+							</div>
+							<div class="col-md-6">
+								<label class="text-form">Lanche da tarde: </label>
+								<textarea type="text" class="form-control" placeholder="Ex: Sanduiche natural" ng-model="CompraCtrl.formulario.cardapio3"></textarea>
+							</div>
+							<div class="col-md-6">
+								<label class="text-form">Jantar: </label>
+								<textarea type="text" class="form-control" placeholder="Ex: 100 gramas de proteina, 100 de macarrão" ng-model="CompraCtrl.formulario.cardapio4"></textarea>
+							</div>
+							<div class="col-md-12">
+								<label class="text-form">Refeições extras: </label>
+								<textarea type="text" class="form-control" placeholder="Ex: Faço um lanche entre café da manhã e almoço, como duas frutas..." ng-model="CompraCtrl.formulario.cardapio5"></textarea>
+							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group" style="margin-top: 5px;">
 							<div>
 								<label class="text-form">Está treinando: *</label>
 							</div>
@@ -113,6 +131,10 @@
 							  		Não
 								</label>
 							</div>
+						</div>
+						<div class="form-group" ng-if="CompraCtrl.formulario.extra == true">
+							<label class="text-form">Descreva sua atividade extra: </label>
+							<textarea type="text" class="form-control" placeholder="Ex: Pratico muay thai 2 vezes por semana, como hobbie..." ng-model="CompraCtrl.formulario.extra_descricao"></textarea>
 						</div>
 						<div class="weekDays-selector form-group" style="display: grid;" ng-if="CompraCtrl.formulario.extra == true">
 							<label class="text-form">Frequência: *</label>
