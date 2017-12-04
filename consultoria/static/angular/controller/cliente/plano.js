@@ -47,8 +47,8 @@
 		}
 		
 		function pagar(venda){
-//			$window.open('https://pagseguro.uol.com.br/v2/checkout/payment.html?code='+venda.pagamento.codigo)
-			$window.open('https://sandbox.pagseguro.uol.com.br/v2/checkout/payment.html?code='+venda.pagamento.codigo)
+			$window.open('https://pagseguro.uol.com.br/v2/checkout/payment.html?code='+venda.pagamento.codigo)
+//			$window.open('https://sandbox.pagseguro.uol.com.br/v2/checkout/payment.html?code='+venda.pagamento.codigo)
 		}
 	
 		function confere(venda){
