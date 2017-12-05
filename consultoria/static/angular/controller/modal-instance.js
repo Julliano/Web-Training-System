@@ -2,9 +2,8 @@
 	"use strict";
 	angular.module("consultoria").controller("ModalInstanceController", ModalInstanceController);
 
-	ModalInstanceController.$inject = [ "$uibModalInstance", "$http", "model", "obj" ];
+	ModalInstanceController.$inject = ['$uibModalInstance', '$http', 'model', 'obj'];
 
-	/** @ngInject */
 	function ModalInstanceController($uibModalInstance, $http, model, obj) {
 		var vm = this;
 		vm.objeto = {};

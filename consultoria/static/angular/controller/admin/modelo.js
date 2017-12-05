@@ -3,9 +3,8 @@
 
 	angular.module("consultoria").controller("ModeloAdminController", ModeloAdminController);
 
-	ModeloAdminController.$inject = [ "$http", "LoginService", "Notification", "$uibModal", "ModeloService"];
+	ModeloAdminController.$inject = ['$http', 'LoginService', 'Notification', '$uibModal', 'ModeloService'];
 
-	/** @ngInject */
 	function ModeloAdminController($http, LoginService, Notification, $uibModal, ModeloService) {
 		var vm = this;
 		vm.usuario = LoginService.getUsuario();

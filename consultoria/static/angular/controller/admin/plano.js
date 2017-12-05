@@ -3,9 +3,8 @@
 
 	angular.module("consultoria").controller("PlanoAdminController", PlanoAdminController);
 
-	PlanoAdminController.$inject = [ "$http", "LoginService", "Notification", "$uibModal" ];
+	PlanoAdminController.$inject = ['$http', 'LoginService', 'Notification', '$uibModal'];
 
-	/** @ngInject */
 	function PlanoAdminController($http, LoginService, Notification, $uibModal) {
 		var vm = this;
 		vm.usuario = LoginService.getUsuario();

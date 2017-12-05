@@ -3,10 +3,9 @@
 
 	angular.module("consultoria").service("FormService", FormService)
 
-	FormService.$inject = [ "$rootScope", "$http", "$q", "$state", "Notification" ];
+	FormService.$inject = ['$rootScope', '$http', '$q', '$state', 'Notification'];
 
-	/** @ngInject */
-	function FormService($rootScope, $http, $q, $state , Notification) {
+	function FormService($rootScope, $http, $q, $state, Notification) {
 		var _observers = [];
 		var service = {
 			buscar : buscar,

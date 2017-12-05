@@ -3,10 +3,9 @@
 
 	angular.module("consultoria").service("TreinoService", TreinoService)
 
-	TreinoService.$inject = [ "$rootScope", "$http", "$q", "$state", "Notification" ];
+	TreinoService.$inject = [ '$rootScope', '$http', '$q', '$state', 'Notification' ];
 
-	/** @ngInject */
-	function TreinoService($rootScope, $http, $q, $state , Notification) {
+	function TreinoService($rootScope, $http, $q, $state, Notification) {
 		var _observers = [];
 		var service = {
 			buscar : buscar,

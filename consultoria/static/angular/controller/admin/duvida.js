@@ -3,9 +3,8 @@
 
 	angular.module("consultoria").controller("DuvidaAdminController", DuvidaAdminController);
 
-	DuvidaAdminController.$inject = [ "$http", "LoginService", "Notification", "DuvidaService", "$state"];
+	DuvidaAdminController.$inject = ['$http', 'LoginService', 'Notification', 'DuvidaService', '$state'];
 
-	/** @ngInject */
 	function DuvidaAdminController($http, LoginService, Notification, DuvidaService, $state) {
 		var vm = this;
 		vm.usuario = LoginService.getUsuario();

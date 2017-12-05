@@ -5,6 +5,7 @@
 
 	.config([ '$stateProvider', '$urlRouterProvider' , '$provide', '$uibTooltipProvider', 'cfpLoadingBarProvider', config ])
 
+	/* @ngInject */
 	.run(function($http, $rootScope) {
 		init();
 
@@ -13,6 +14,7 @@
 		}
 	});
 
+	/* @ngInject */
 	function config($stateProvider, $urlRouterProvider, $provide, $uibTooltipProvider, cfpLoadingBarProvider) {
 		
 		var session = function(LoginService, $stateParams, $state) {

@@ -2,9 +2,8 @@
 	"use strict";
 	angular.module("consultoria").controller("ModalDuvidaController", ModalDuvidaController);
 
-	ModalDuvidaController.$inject = ["filterFilter", "$uibModalInstance", "$http", "Notification", "usuario"];
+	ModalDuvidaController.$inject = ['filterFilter', '$uibModalInstance', '$http', 'Notification', 'usuario'];
 
-	/** @ngInject */
 	function ModalDuvidaController(filterFilter, $uibModalInstance, $http, Notification, usuario) {
 		var vm = this;
 		vm.usuario = usuario;

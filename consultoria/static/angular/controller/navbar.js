@@ -3,9 +3,8 @@
 
 	angular.module("consultoria").controller("NavbarController", NavbarController);
 
-	NavbarController.$inject = ["$state", "LoginService", "$http", "$scope"];
+	NavbarController.$inject = ['$state', 'LoginService', '$http', '$scope'];
 
-	/** @ngInject */
 	function NavbarController($state, LoginService, $http, $scope) {
 		var vm = this;
 		vm.usuario = LoginService.getUsuario();
@@ -26,10 +25,10 @@
 
 		function init() {			
 //			LoginService.addObserver('total_change',usuario_observer);
-			if($state.includes('admin')){
+//			if($state.includes('admin')){
 //				getTotalDuvidas();
 //				OperacaoService.addObserver(getTotalDuvidas)
-			}
+//			}
 		}
 		
 		function getTotalPendencias(){			
@@ -41,6 +40,5 @@
 //		function usuario_observer(total){
 //			vm.usuario.total_notificacoes = total; 
 //		}
-
 	}
 })();

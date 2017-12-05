@@ -3,9 +3,8 @@
 
 	angular.module("consultoria").controller("RecuperarSenhaController", RecuperarSenhaController);
 
-	RecuperarSenhaController.$inject = [ "$http", "LoginService", "Notification" ];
+	RecuperarSenhaController.$inject = ['$http', 'LoginService', 'Notification'];
 
-	/** @ngInject */
 	function RecuperarSenhaController($http, LoginService, Notification) {
 		var vm = this;
 		vm.salvar = salvar;
@@ -24,7 +23,6 @@
 		function httpFail(response) {
 			Notification.error(response.data);
 		}
-		
 		
 	}
 

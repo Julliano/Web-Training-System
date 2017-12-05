@@ -1,11 +1,9 @@
 ;(function() {
 	'use strict';
 
-	angular.module('consultoria').controller("AdminUsuarioController",
-			AdminUsuarioController)
+	angular.module('consultoria').controller("AdminUsuarioController", AdminUsuarioController);
 
-	/** @ngInject */
-	AdminUsuarioController.$inject = [ "$http", "$uibModal", "Notification" ];
+	AdminUsuarioController.$inject = ['$http', '$uibModal', 'Notification'];
 
 	function AdminUsuarioController($http, $uibModal, Notification) {
 		var configModalConfirma = configModalConfirma();

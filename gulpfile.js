@@ -9,7 +9,6 @@ ngAnnotate = require('gulp-ng-annotate');
 var paths = {
             scripts: 'consultoria/static/angular/**/*.*',
             styles: 'consultoria/static/*.*',
-            images: 'consultoria/static/img/*.*',
             templates: 'consultoria/templates/**/*.html',
             index: 'consultoria/templates/index.html',
             bower_fonts: ['consultoria/static/fonts/**/*.{ttf,woff,woff2,eof,eot,svg}' ],
@@ -20,8 +19,8 @@ gulp.task('usemin', function() {
         .pipe(usemin({
             js: [ngAnnotate(), minifyJs(), 'concat'],
             css: [minifyCss({keepSpecialComments: 0}), 'concat'],
-            simfazjs: [ngAnnotate(),minifyJs(),'concat'],
-            simfazcss: [minifyCss({keepSpecialComments: 0}), 'concat'],
+            consultoriajs: [ngAnnotate(), minifyJs(), 'concat'],
+            consultoriacss: [minifyCss({keepSpecialComments: 0}), 'concat'],
             outputRelativePath : '../../'
         }))
         .pipe(gulp.dest('./consultoria/templates/dist'));

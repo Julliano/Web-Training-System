@@ -1,11 +1,10 @@
-(function() {
+;(function() {
 	"use strict";
 
 	angular.module("consultoria").controller("ClienteDuvidaUnitariaController", ClienteDuvidaUnitariaController);
 
-	ClienteDuvidaUnitariaController.$inject = [ "$http", "LoginService", "Notification", "$uibModal", "DuvidaService", "$state", "duvida"];
+	ClienteDuvidaUnitariaController.$inject = ['$http', 'LoginService', 'Notification', '$uibModal', 'DuvidaService', '$state', 'duvida'];
 
-	/* @ngInject */
 	function ClienteDuvidaUnitariaController($http, LoginService, Notification, $uibModal, DuvidaService, $state, duvida) {
 		var vm = this;
 		vm.usuario = LoginService.getUsuario();

@@ -1,11 +1,10 @@
-(function() {
+;(function() {
 	"use strict";
 
 	angular.module("consultoria").controller("ClienteFormularioController", ClienteFormularioController);
 
-	ClienteFormularioController.$inject = [ "$http", "LoginService", "Notification", "form", "$state"];
+	ClienteFormularioController.$inject = ['$http', 'LoginService', 'Notification', 'form', '$state'];
 
-	/* @ngInject */
 	function ClienteFormularioController($http, LoginService, Notification, form, $state) {
 		var vm = this;
 		vm.formulario = form;

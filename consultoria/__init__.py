@@ -42,10 +42,6 @@ def create_app(mode="production"):
     ctx = app.app_context()
     ctx.push()
     db.create_all()
-#     usuario, errors = UsuarioSchema().load({'nome':'Admin', 'grupo_id':1, 'sobrenome':'Agrosatélite', 'email':'admin@agrosatelite.com.br','atividade':'Admin','logado':False, 'senha':123}, partial=True)
-#     usuario.senha = usuario.hash_pass(123)
-#     db.session.add(usuario) 
-#     db.session.commit()
     login_manager.init_app(app)
     login_manager.login_view = "login"    
     ma.init_app(app)

@@ -3,9 +3,8 @@
 
 	angular.module("consultoria").controller("NavbarController", NavbarController);
 
-	NavbarController.$inject = ["filterFilter", "$state", "LoginService", "$http", "$scope", "OperacaoService"];
+	NavbarController.$inject = ['filterFilter', '$state', 'LoginService', '$http', '$scope', 'OperacaoService'];
 
-	/** @ngInject */
 	function NavbarController(filterFilter, $state, LoginService, $http, $scope, OperacaoService) {
 		var vm = this;
 		vm.usuario = LoginService.getUsuario();

@@ -3,9 +3,8 @@
 
 	angular.module("consultoria").controller("RecuperarEmailController", RecuperarEmailController);
 
-	RecuperarEmailController.$inject = [ "$http", "LoginService", "Notification" ];
+	RecuperarEmailController.$inject = ['$http', 'LoginService', 'Notification'];
 
-	/** @ngInject */
 	function RecuperarEmailController($http, LoginService, Notification) {
 		var vm = this;
 		vm.salvar = salvar;
@@ -22,7 +21,6 @@
 		function httpFail(response) {
 			Notification.error(response.data);
 		}
-		
 		
 	}
 

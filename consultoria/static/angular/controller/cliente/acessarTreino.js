@@ -1,11 +1,10 @@
-(function() {
+;(function() {
 	"use strict";
 
 	angular.module("consultoria").controller("AcessarTreinoController", AcessarTreinoController);
 
-	AcessarTreinoController.$inject = [ "$http", "LoginService", "Notification", "treino", "$uibModal", "$state"];
+	AcessarTreinoController.$inject = ['$http', 'LoginService', 'Notification', 'treino', '$uibModal', '$state'];
 
-	/* @ngInject */
 	function AcessarTreinoController($http, LoginService, Notification, treino, $uibModal, $state) {
 		var vm = this;
 		vm.usuario = LoginService.getUsuario();

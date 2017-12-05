@@ -2,9 +2,8 @@
 	'use strict'
 	angular.module('consultoria').controller('PresentationController', PresentationController)
 
-	PresentationController.$inject = [ "LoginService"]
+	PresentationController.$inject = ['LoginService']
 
-	/** @ngInject */
 	function PresentationController(LoginService) {
 		var vm = this;
 		vm.slide = 1;
@@ -21,4 +20,4 @@
 			LoginService.login(vm.usuario)
 		}
 	}
-})()
+})();

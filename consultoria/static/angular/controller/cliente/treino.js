@@ -1,11 +1,10 @@
-(function() {
+;(function() {
 	"use strict";
 
 	angular.module("consultoria").controller("ClienteTreinoController", ClienteTreinoController);
 
-	ClienteTreinoController.$inject = [ "$http", "LoginService", "Notification", "TreinoService", "$state"];
+	ClienteTreinoController.$inject = ['$http', 'LoginService', 'Notification', 'TreinoService', '$state'];
 
-	/* @ngInject */
 	function ClienteTreinoController($http, LoginService, Notification, TreinoService, $state) {
 		var vm = this;
 		vm.usuario = LoginService.getUsuario();
@@ -28,7 +27,6 @@
 			$state.go("app.treino", {id:treino.id })
 		}		
 
-		
 	}
 
 })();

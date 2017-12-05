@@ -3,10 +3,9 @@
 
 	angular.module("consultoria").service("DuvidaService", DuvidaService)
 
-	DuvidaService.$inject = [ "$rootScope", "$http", "$q", "$state", "Notification" ];
+	DuvidaService.$inject = ['$rootScope', '$http', '$q', '$state', 'Notification'];
 
-	/** @ngInject */
-	function DuvidaService($rootScope, $http, $q, $state , Notification) {
+	function DuvidaService($rootScope, $http, $q, $state, Notification) {
 		var _observers = [];
 		var service = {
 			buscar : buscar,

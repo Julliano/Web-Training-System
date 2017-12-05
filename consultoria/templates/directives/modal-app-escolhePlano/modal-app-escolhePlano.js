@@ -3,9 +3,8 @@
 
 	angular.module("consultoria").controller("ModalEscolhaPlanoController", ModalEscolhaPlanoController);
 
-	ModalEscolhaPlanoController.$inject = ["$uibModalInstance", "LoginService", "$state"];
+	ModalEscolhaPlanoController.$inject = ['$uibModalInstance', 'LoginService', '$state'];
 
-	/** @ngInject */
 	function ModalEscolhaPlanoController($uibModalInstance, LoginService, $state) {
 		var vm = this;
 		vm.cancelar = cancelar;

@@ -3,9 +3,8 @@
 
 	angular.module("consultoria").controller("StartController", StartController);
 
-	StartController.$inject = [ "$http", "Notification", "$scope", "LoginService", "$state"];
+	StartController.$inject = [ '$http', 'Notification', '$scope', 'LoginService', '$state'];
 
-	/** @ngInject */
 	function StartController($http, Notification, $scope, LoginService, $state) {
 		var vm = this;
 		vm.usuario = LoginService.getUsuario();
@@ -33,7 +32,6 @@
 		function httpFail(response) {
 			Notification.error(response.data);
 		}
-		
 		
 	}
 

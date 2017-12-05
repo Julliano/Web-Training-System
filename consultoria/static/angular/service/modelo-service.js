@@ -3,10 +3,9 @@
 
 	angular.module("consultoria").service("ModeloService", ModeloService)
 
-	ModeloService.$inject = [ "$rootScope", "$http", "$q", "$state", "Notification" ];
+	ModeloService.$inject = ['$rootScope', '$http', '$q', '$state', 'Notification'];
 
-	/** @ngInject */
-	function ModeloService($rootScope, $http, $q, $state , Notification) {
+	function ModeloService($rootScope, $http, $q, $state, Notification) {
 		var _observers = [];
 		var service = {
 //			buscar : buscar,
