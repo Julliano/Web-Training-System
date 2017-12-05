@@ -2,7 +2,7 @@
  * Globals
  */
 
-@font-face {
+/* @font-face {
     font-family: 'daysregular';
     src: url('/static/fonts/Days-webfont.eot');
     src: url('/static/fonts/Days-webfont.eot?#iefix') format('embedded-opentype'),
@@ -12,7 +12,7 @@
     font-weight: normal;
     font-style: normal;
 
-}
+} */
 
 .arquivo{
 	display: inline-flex;
