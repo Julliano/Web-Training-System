@@ -1,10 +1,10 @@
-(function() {
+;(function() {
 	"use strict";
 	angular.module("consultoria").controller("ModalDuvidaController", ModalDuvidaController);
 
 	ModalDuvidaController.$inject = ["filterFilter", "$uibModalInstance", "$http", "Notification", "usuario"];
 
-	/* @ngInject */
+	/** @ngInject */
 	function ModalDuvidaController(filterFilter, $uibModalInstance, $http, Notification, usuario) {
 		var vm = this;
 		vm.usuario = usuario;

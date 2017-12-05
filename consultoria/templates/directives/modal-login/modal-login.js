@@ -1,11 +1,11 @@
-(function() {
+;(function() {
 	"use strict";
 
 	angular.module("consultoria").controller("ModalLoginController", ModalLoginController);
 
 	ModalLoginController.$inject = ["$uibModalInstance", "LoginService", "$window", "$state", "compra"];
 
-	/* @ngInject */
+	/** @ngInject */
 	function ModalLoginController($uibModalInstance, LoginService, $window, $state, compra) {
 		var vm = this;
 		vm.trendy = "OK";

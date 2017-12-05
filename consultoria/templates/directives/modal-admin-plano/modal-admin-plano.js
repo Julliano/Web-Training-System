@@ -1,10 +1,10 @@
-(function() {
+;(function() {
 	"use strict";
 	angular.module("consultoria").controller("ModalAdminPlanoController", ModalAdminPlanoController);
 
 	ModalAdminPlanoController.$inject = ["filterFilter", "$uibModalInstance", "$http", "plano", "Notification"];
 
-	/* @ngInject */
+	/** @ngInject */
 	function ModalAdminPlanoController(filterFilter, $uibModalInstance, $http, plano, Notification) {
 		var vm = this;	
 		vm.salvar = salvar;

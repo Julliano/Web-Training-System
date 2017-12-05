@@ -1,11 +1,11 @@
-(function() {
+;(function() {
 	"use strict";
 
 	angular.module("consultoria").controller("ModalEscolhaPlanoController", ModalEscolhaPlanoController);
 
 	ModalEscolhaPlanoController.$inject = ["$uibModalInstance", "LoginService", "$state"];
 
-	/* @ngInject */
+	/** @ngInject */
 	function ModalEscolhaPlanoController($uibModalInstance, LoginService, $state) {
 		var vm = this;
 		vm.cancelar = cancelar;

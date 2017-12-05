@@ -1,4 +1,4 @@
-(function() {
+;(function() {
 	"use sctrict";
 
 	angular.module("consultoria").directive("sfCpf", sfCpf);
