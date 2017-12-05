@@ -1,11 +1,11 @@
-(function() {
+;(function() {
 	"use strict";
 
 	angular.module("consultoria").controller("RecuperarSenhaController", RecuperarSenhaController);
 
 	RecuperarSenhaController.$inject = [ "$http", "LoginService", "Notification" ];
 
-	/* @ngInject */
+	/** @ngInject */
 	function RecuperarSenhaController($http, LoginService, Notification) {
 		var vm = this;
 		vm.salvar = salvar;

@@ -1,11 +1,11 @@
-(function() {
+;(function() {
 	"use strict";
 
 	angular.module("consultoria").controller("NavbarController", NavbarController);
 
 	NavbarController.$inject = ["$state", "LoginService", "$http", "$scope"];
 
-	/* @ngInject */
+	/** @ngInject */
 	function NavbarController($state, LoginService, $http, $scope) {
 		var vm = this;
 		vm.usuario = LoginService.getUsuario();

@@ -5,6 +5,7 @@
 
 	TreinoService.$inject = [ "$rootScope", "$http", "$q", "$state", "Notification" ];
 
+	/** @ngInject */
 	function TreinoService($rootScope, $http, $q, $state , Notification) {
 		var _observers = [];
 		var service = {

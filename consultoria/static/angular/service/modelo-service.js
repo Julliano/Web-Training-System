@@ -5,6 +5,7 @@
 
 	ModeloService.$inject = [ "$rootScope", "$http", "$q", "$state", "Notification" ];
 
+	/** @ngInject */
 	function ModeloService($rootScope, $http, $q, $state , Notification) {
 		var _observers = [];
 		var service = {

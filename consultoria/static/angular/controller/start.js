@@ -1,11 +1,11 @@
-(function() {
+;(function() {
 	"use strict";
 
 	angular.module("consultoria").controller("StartController", StartController);
 
 	StartController.$inject = [ "$http", "Notification", "$scope", "LoginService", "$state"];
 
-	/* @ngInject */
+	/** @ngInject */
 	function StartController($http, Notification, $scope, LoginService, $state) {
 		var vm = this;
 		vm.usuario = LoginService.getUsuario();

@@ -1,10 +1,10 @@
-(function() {
+;(function() {
 	'use strict'
 	angular.module('consultoria').controller('PresentationController', PresentationController)
 
 	PresentationController.$inject = [ "LoginService", "$uibModal" ]
 
-	/* @ngInject */
+	/** @ngInject */
 	function PresentationController(LoginService, $uibModal) {
 		var vm = this;
 		vm.slide = 1;
@@ -42,4 +42,4 @@
 		
 		
 	}
-})()
+})();

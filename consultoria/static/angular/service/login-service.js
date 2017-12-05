@@ -1,10 +1,11 @@
-(function() {
+;(function() {
 	"use strict";
 
 	angular.module("consultoria").service("LoginService", LoginService);
 
 	LoginService.$inject = [ "$q", "$rootScope", "$state", "$http", "Notification" ];
 
+	/** @ngInject */
 	function LoginService($q, $rootScope, $state, $http, Notification) {
 		var _usuario;
 		var _compra;
@@ -120,4 +121,4 @@
 		}
 
 	}
-})()
+})();

@@ -5,6 +5,7 @@
 
 	FormService.$inject = [ "$rootScope", "$http", "$q", "$state", "Notification" ];
 
+	/** @ngInject */
 	function FormService($rootScope, $http, $q, $state , Notification) {
 		var _observers = [];
 		var service = {

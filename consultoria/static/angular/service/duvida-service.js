@@ -5,6 +5,7 @@
 
 	DuvidaService.$inject = [ "$rootScope", "$http", "$q", "$state", "Notification" ];
 
+	/** @ngInject */
 	function DuvidaService($rootScope, $http, $q, $state , Notification) {
 		var _observers = [];
 		var service = {
