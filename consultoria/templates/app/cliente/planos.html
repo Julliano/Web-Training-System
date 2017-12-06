@@ -1,19 +1,19 @@
 <div class="container">
 	<p class="tituloPagina">Planos adquiridos</p>
-	<div class="fundoBranco">
+	<div class="fundoBranco" style="overflow-x: auto;">
 		<table class="table table-striped" id="table-usuarios">
 			<thead>
 				<tr>
-					<th class="col-md-2">Data aquisição</th>
-					<th class="col-md-6">Descrição</th>
-					<th class="col-md-1 text-center">Valor</th>
-					<th class="col-md-2 text-center">Status</th>
-					<th class="col-md-1 text-center">Formulário</th>
+					<th class="text-center">Data aquisição</th>
+					<th class="text-center">Descrição</th>
+					<th class="text-center">Valor</th>
+					<th class="text-center">Status</th>
+					<th class="text-center">Formulário</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="venda in CliPlanoCtrl.vendas" class="odd gradeX" ng-class="CliPlanoCtrl.classVenda(venda)">
-					<td>{{venda.data_compra}}</td>
+					<td>{{venda.data_compra | date : 'dd/MM/yy'}}</td>
 					<td>{{venda.plano.titulo}}</td>
 					<td class="text-center">R${{venda.plano.valor}}</td>
 					<td ng-if="CliPlanoCtrl.confere(venda)" ng-click="CliPlanoCtrl.pagar(venda)" style="color: blue;" class="text-center">{{venda.pagamento.status}}</td>

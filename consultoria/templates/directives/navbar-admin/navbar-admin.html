@@ -8,11 +8,11 @@
         </div>
 		<div class="navbar-collapse collapse" uib-collapse="!isCollapsed">
 			<ul class="nav navbar-nav" style="margin-left: 10px;">				
-				<li ui-sref-active="active" ><a ui-sref="admin.planos">Planos</a></li>				
-				<li ui-sref-active="active"><a ui-sref="admin.treinos">Treinos</a></li>				
-				<li ui-sref-active="active"><a ui-sref="admin.duvidas">Dúvidas<span class="badge" style="background: transparent;">{{NavbarCtrl.usuario.totalDuvidas}}</span></a></li>
-				<li ui-sref-active="active"><a ui-sref="admin.usuarios">Usuarios</a></li>
-				<li ui-sref-active="active"><a ui-sref="admin.modelos">Modelos</a></li>
+				<li ui-sref-active="active" ><a ui-sref="admin.planos" ng-click="isCollapsed = !isCollapsed">Planos</a></li>				
+				<li ui-sref-active="active"><a ui-sref="admin.treinos" ng-click="isCollapsed = !isCollapsed">Treinos</a></li>				
+				<li ui-sref-active="active"><a ui-sref="admin.duvidas" ng-click="isCollapsed = !isCollapsed">Dúvidas<span class="badge" style="background: transparent;">{{NavbarCtrl.usuario.totalDuvidas}}</span></a></li>
+				<li ui-sref-active="active"><a ui-sref="admin.usuarios" ng-click="isCollapsed = !isCollapsed">Usuarios</a></li>
+				<li ui-sref-active="active"><a ui-sref="admin.modelos" ng-click="isCollapsed = !isCollapsed">Modelos</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right" role="tablist">
 				<li uib-dropdown uib-dropdown-toggle>

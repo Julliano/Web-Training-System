@@ -5,7 +5,7 @@
 	</div> -->
 	<uib-tabset active="activeJustified">
     	<uib-tab index="0" heading="Pendentes" ng-click="TreinoAdmCtrl.listar('pendente')">
-			<div class="fundoBranco">
+			<div class="fundoBranco" style="overflow-x: auto;">
 				<table class="table table-striped" id="table-usuarios" style="text-align:center;">
 					<thead>
 						<tr>
@@ -36,7 +36,7 @@
 			</div>
 		</uib-tab>
 		<uib-tab index="1" heading="Entregues" ng-click="TreinoAdmCtrl.listar('ativa')">
-			<div class="fundoBranco">
+			<div class="fundoBranco" style="overflow-x: auto;">
 				<table class="table table-striped" id="table-usuarios" style="text-align:center;">
 					<thead>
 						<tr>

@@ -5,12 +5,12 @@
 		<h4 style="font-weight: 300;">Você tem um formulário novo para preencher.</h4>
 		<div class="col-md-12 col-sm-12">
 			<button class="btn btn-success botaoComprar" ng-click="CompraCtrl.formularioAntigo(false)">Preencher</button>
-			<button class="btn btn-success botaoComprar" ng-if="CompraCtrl.ultimoForm.preenchido" ng-click="CompraCtrl.formularioAntigo(true)">Utilizar relatorio antigo como base</button>
+			<button class="btn btn-success botaoComprar" ng-if="CompraCtrl.ultimoForm.preenchido" ng-click="CompraCtrl.formularioAntigo(true)">Utilizar relatorio antigo</button>
 		</div>
-		<div class="form-group col-md-offset-4 col-sm-offset-4 col-md-4 col-sm-4">
+		<!-- <div class="form-group col-md-offset-4 col-sm-offset-4 col-md-4 col-sm-4">
 			<label class="text-form">Cupom de desconto:</label>
 			<input type="text" class="form-control" ng-model="CompraCtrl.formulario.cupom">
-		</div>
+		</div> -->
 	</div>
 	<div class="fundoBranco" ng-if="CompraCtrl.quest">
 		<div class="row">
@@ -240,7 +240,7 @@
 				<div style="margin-top: 25px" class="text-center">
 					<h4>Clique no botão abaixo para concluir a sua compra. Até já!</h4>
 					<button class="btn btn-success botaoComprar" ng-disabled="!formVenda.$valid" ng-click="CompraCtrl.comprar(3)">Finalizar compra - 3 Consultorias</button>
-					<button type="submit" ui-sref="index.start" class="btn btn-primary botaoComprar">Voltar</button>
+					<button type="submit" ui-sref="app.planos" class="btn btn-primary botaoComprar">Voltar</button>
 				</div>			
 			</form>
 		</div>

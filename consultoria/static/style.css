@@ -235,7 +235,7 @@
 
 .botaoDuvida{
 	float: right;
-    margin: 20px;
+    padding: 20px;
     width: 44px;
     height: 44px;
     outline: none !important;

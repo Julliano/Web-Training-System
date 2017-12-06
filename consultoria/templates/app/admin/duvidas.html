@@ -5,7 +5,7 @@
 	</div> -->
 	<uib-tabset active="activeJustified">
     	<uib-tab index="0" heading="Ativas" ng-click="DuvidaAdmCtrl.filtrar('ativa')">
-			<div class="fundoBranco">
+			<div class="fundoBranco" style="overflow-x: auto;">
 				<table class="table table-striped" id="table-usuarios">
 					<thead>
 						<tr>
@@ -18,14 +18,14 @@
 						<tr ng-repeat="duvida in DuvidaAdmCtrl.duvidas | filter:DuvidaAdmCtrl.filtroDuvida" ng-class="{'danger':duvida.status == 'pendente', 'success':duvida.status == 'ativa'}">
 							<td ng-click="DuvidaAdmCtrl.verDuvida(duvida.id)" style="white-space: nowrap;color:blue;">{{duvida.titulo}}</td>
 							<td style="white-space: nowrap;">{{duvida.descricao}}</td>
-							<td class="text-center">{{duvida.data}}</td>
+							<td class="text-center">{{duvida.data | date : 'dd/MM/yy'}}</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 		</uib-tab>
     	<uib-tab index="1" heading="Pendentes" ng-click="DuvidaAdmCtrl.filtrar('pendente')">
-			<div class="fundoBranco">
+			<div class="fundoBranco" style="overflow-x: auto;">
 				<table class="table table-striped" id="table-usuarios">
 					<thead>
 						<tr>
@@ -38,7 +38,7 @@
 						<tr ng-repeat="duvida in DuvidaAdmCtrl.duvidas | filter:DuvidaAdmCtrl.filtroDuvida" ng-class="{'danger':duvida.status == 'pendente', 'success':duvida.status == 'ativa'}">
 							<td ng-click="DuvidaAdmCtrl.verDuvida(duvida.id)" style="white-space: nowrap;color:blue;">{{duvida.titulo}}</td>
 							<td style="white-space: nowrap;">{{duvida.descricao}}</td>
-							<td class="text-center">{{duvida.data}}</td>
+							<td class="text-center">{{duvida.data | date : 'dd/MM/yy'}}</td>
 						</tr>
 					</tbody>
 				</table>

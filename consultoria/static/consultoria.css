@@ -1,4 +1,18 @@
-navbar-main-collapse{
+@media (max-width: 768px){
+	.intro img{
+	    width: 340px;
+    	height: 200px !important;
+	}
+	#sobre img{
+		height: 385px !important;
+	}
+	.table-responsive{
+		border: none !important;
+	}
+	
+}
+
+.navbar-main-collapse{
 	display: none;
 }
 

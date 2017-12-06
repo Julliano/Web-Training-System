@@ -1,27 +1,31 @@
 <div class="container">
 	<p class="tituloPagina">DÚVIDAS</p>
 	<div ng-if="CliDuvidaCtrl.show" class="alert alert-info" style="float: left;margin: 20px;margin-left: 20px;" role="alert">Existem {{CliDuvidaCtrl.usuario.totalDuvidas}} dúvidas na sua frente, responderei assim que possível.</div>
-	<button class="btn btn-success botaoDuvida" type="button" ng-click="CliDuvidaCtrl.modal(null)">
-			<span class="glyphicon glyphicon-plus" style="top: 1.5px; right: 0.5px;"></span>
-	</button>
-	<div class="fundoBranco">
-		<table class="table table-striped" id="table-usuarios">
-			<thead>
-				<tr>
-					<th class="col-md-2">Data</th>
-					<th class="col-md-3">Tópico</th>
-					<th class="col-md-6">Descrição</th>
-					<th class="col-md-1 text-center">Status</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="duvida in CliDuvidaCtrl.duvidas">
-					<td style="color:blue;" ng-click="CliDuvidaCtrl.verDuvida(duvida.id)">{{duvida.data}}</td>
-					<td style="white-space: nowrap;">{{duvida.titulo}}</td>
-					<td style="white-space: nowrap;">{{duvida.descricao}}</td>
-					<td class="text-center"><i ng-class="{'fa fa-clock-o':duvida.status == 'pendente', 'fa fa-check':duvida.status == 'ativa'}"></i></td>
-				</tr>
-			</tbody>
-		</table>
+	<div class="fundoBranco" style="overflow-x: auto; border: none;">
+		<div style="height: 65px; background: white;">
+			<button class="btn btn-success botaoDuvida" type="button" ng-click="CliDuvidaCtrl.modal(null)">
+				<span class="glyphicon glyphicon-plus" style="top: 1.5px; right: 0.5px;"></span>
+			</button>
+		</div>
+		<div class="table-responsive">
+			<table class="table table-striped" id="table-usuarios">
+				<thead>
+					<tr>
+						<th class="col-md-2">Data</th>
+						<th class="col-md-3">Tópico</th>
+						<th class="col-md-6">Descrição</th>
+						<th class="col-md-1 text-center">Status</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="duvida in CliDuvidaCtrl.duvidas">
+						<td style="color:blue;" ng-click="CliDuvidaCtrl.verDuvida(duvida.id)">{{duvida.data | date : 'dd/MM/yy'}}</td>
+						<td style="white-space: nowrap;">{{duvida.titulo}}</td>
+						<td style="white-space: nowrap;">{{duvida.descricao}}</td>
+						<td class="text-center"><i ng-class="{'fa fa-clock-o':duvida.status == 'pendente', 'fa fa-check':duvida.status == 'ativa'}"></i></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </div>

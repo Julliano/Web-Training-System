@@ -1,4 +1,4 @@
-INDEX = 'dist/index.html'
+INDEX = 'index.html'
 RUN_DEBUG = True
 RUN_USE_RELOADER = True
 RUN_HOST = '0.0.0.0'
