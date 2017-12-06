@@ -1,3 +1,5 @@
 /env/
 /migrations/
 /.settings/
+/node_modules/
+/package.json
