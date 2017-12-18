@@ -151,7 +151,7 @@ a:focus {
     min-height: 780px;
     text-align: center;
     color: #fff;
-    background: url('/media/banner.jpg') no-repeat bottom center scroll;
+    background: url('/media/banner.jpg');
     background-position: center;
     background-repeat: no-repeat;
     -webkit-background-size: cover;
