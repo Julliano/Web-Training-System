@@ -117,6 +117,9 @@
 		}).state('app.biset', {
 			url : '/Biset',
 			templateUrl : '/app/treinos/biset.html'
+		}).state('app.dropset', {
+			url : '/Dropset',
+			templateUrl : '/app/treinos/dropset.html'
 		}).state('app.circuito', {
 			url : '/Circuito',
 			templateUrl : '/app/treinos/circuito.html'
