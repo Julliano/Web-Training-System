@@ -155,7 +155,7 @@ class CompraController:
                 venda.treinos.append(treino)
             db.session.add(venda)
             db.session.commit()
-            cupom = Cupom().query.filter(Cupom.cupom == request.form['formulario']['cupom']).first()
+            cupom = Cupom().query.filter(Cupom.cupom == formulario.cupom).first()
             if cupom.quantidade > 0:
                 cupom.quantidade -=1
                 db.session.add(cupom)
