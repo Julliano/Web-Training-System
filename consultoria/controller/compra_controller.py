@@ -163,7 +163,6 @@ class CompraController:
                 resposta = self.pagSeguro(venda, cupom)
             else:
                 resposta = self.pagSeguro(venda, None)
-            resposta = self.pagSeguro(venda)
             venda.pagamento.codigo = resposta[1]
             venda.pagamento.referencia = resposta[2]
             db.session.add(venda)
