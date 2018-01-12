@@ -9,3 +9,4 @@ class Cupom(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     cupom = db.Column(db.String(255))
     valor = db.Column(db.Float) 
+    quantidade = db.Column(db.Integer) 
