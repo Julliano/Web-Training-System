@@ -12,6 +12,15 @@
 	
 }
 
+#treinoDescricao h4 span{
+	font-size: 15px !important;
+}
+
+#treinoDescricao h4{
+	margin-top: 10px !important;
+	margin-bottom: 10px !important;
+}
+
 #treinoDescricao h3 span{
 	font-size: 15px !important;
 }
