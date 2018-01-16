@@ -1,22 +1,24 @@
 # coding: utf-8
 from datetime import date
+from os import path, makedirs
 
 from flask import jsonify
-from flask.globals import request
-from flask.helpers import make_response
+from flask.globals import request, current_app
+from flask.helpers import make_response, send_from_directory
 from flask.templating import render_template
-from sqlalchemy.sql.elements import and_
 from flask_login import fresh_login_required, current_user, login_required
 from flask_mail import Message
 from flask_security.decorators import roles_required
 from sqlalchemy.orm import joinedload, contains_eager
+from sqlalchemy.sql.elements import and_
 
-from consultoria.models.treino import Treino, TreinoSchema
 from consultoria.models.formulario import Formulario
-from consultoria.models.usuario import Usuario
 from consultoria.models.pagamento import Pagamento
+from consultoria.models.treino import Treino, TreinoSchema
+from consultoria.models.usuario import Usuario
 from consultoria.models.venda import Venda
 from consultoria.modules import mail
+import pdfkit
 
 from ..modules import db, admin_permission
 
@@ -55,6 +57,17 @@ class TreinoController:
         return schema.jsonify(lista, True)
     
     @login_required
+    def downloadTreino(self, id):
+        treino = Treino().query.get(id)
+        if treino is not None:
+            caminho = path.join(current_app.config.get('MEDIA_ROOT'), str(treino.venda.usuario.nome), str(treino.id))
+            if not path.exists(caminho):
+                return make_response('Pasta ou arquivo inexistente.', 404)
+            return send_from_directory(caminho, 'treino'+str(id)+'.pdf')
+        else:
+            return make_response('Treino não encontrado.', 404)
+
+    @login_required
     def buscar(self, id):
         return TreinoSchema().jsonify(Treino.query.get(id))
     
@@ -67,6 +80,12 @@ class TreinoController:
             treino = schema.data
             treino.data_disponibilizado = date.today()
             treino.status = 'ativa'
+            caminho = path.join(current_app.config.get('MEDIA_ROOT'), str(treino.venda.usuario.nome), str(treino.id))
+            if not path.exists(caminho):
+                makedirs(caminho)
+            config = r'C:\Python27\wkhtmltopdf\bin\wkhtmltopdf.exe'
+            config = pdfkit.configuration(wkhtmltopdf=config)
+            pdfkit.from_string('<meta http-equiv="Content-type" content="text/html; charset=utf-8" />'+treino.explicacao, path.join(caminho, 'treino'+str(treino.id)+'.pdf'), configuration=config)
             db.session.add(treino)
             db.session.commit()
             self.emailLiberacaoTreino(treino)
