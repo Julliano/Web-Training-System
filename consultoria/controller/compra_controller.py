@@ -125,6 +125,8 @@ class CompraController:
                     db.session.add(cupom)
                     db.session.commit()
                     resposta = self.pagSeguro(venda, cupom)
+                else:
+                    resposta = self.pagSeguro(venda, None)
             else:
                 resposta = self.pagSeguro(venda, None)
             venda.pagamento.codigo = resposta[1]
@@ -163,6 +165,8 @@ class CompraController:
                     db.session.add(cupom)
                     db.session.commit()
                     resposta = self.pagSeguro(venda, cupom)
+                else:
+                    resposta = self.pagSeguro(venda, None)
             else:
                 resposta = self.pagSeguro(venda, None)
             venda.pagamento.codigo = resposta[1]
