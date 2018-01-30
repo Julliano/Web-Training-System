@@ -119,11 +119,12 @@ class CompraController:
             db.session.add(venda)
             db.session.commit()
             cupom = Cupom().query.filter(Cupom.cupom == formulario.cupom).first()
-            if cupom.quantidade > 0:
-                cupom.quantidade -=1;
-                db.session.add(cupom)
-                db.session.commit()
-                resposta = self.pagSeguro(venda, cupom)
+            if cupom is not None:
+                if cupom.quantidade > 0:
+                    cupom.quantidade -=1;
+                    db.session.add(cupom)
+                    db.session.commit()
+                    resposta = self.pagSeguro(venda, cupom)
             else:
                 resposta = self.pagSeguro(venda, None)
             venda.pagamento.codigo = resposta[1]
@@ -156,11 +157,12 @@ class CompraController:
             db.session.add(venda)
             db.session.commit()
             cupom = Cupom().query.filter(Cupom.cupom == formulario.cupom).first()
-            if cupom.quantidade > 0:
-                cupom.quantidade -=1
-                db.session.add(cupom)
-                db.session.commit()
-                resposta = self.pagSeguro(venda, cupom)
+            if cupom is not None:
+                if cupom.quantidade > 0:
+                    cupom.quantidade -=1
+                    db.session.add(cupom)
+                    db.session.commit()
+                    resposta = self.pagSeguro(venda, cupom)
             else:
                 resposta = self.pagSeguro(venda, None)
             venda.pagamento.codigo = resposta[1]
