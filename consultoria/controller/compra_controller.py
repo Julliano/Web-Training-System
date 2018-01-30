@@ -171,6 +171,7 @@ class CompraController:
                 resposta = self.pagSeguro(venda, None)
             venda.pagamento.codigo = resposta[1]
             venda.pagamento.referencia = resposta[2]
+            venda.pagamento.cupom = resposta[3]
             db.session.add(venda)
             db.session.commit()
             return jsonify(resposta[0])
