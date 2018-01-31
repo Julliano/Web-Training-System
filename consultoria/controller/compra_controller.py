@@ -29,6 +29,7 @@ class CompraController:
         parametros = {'email':'jullianovosorio@gmail.com', 'token':"51E9D7E8918A4DB1B718EE9D017F4EFE"}
 #         parametros = {'email':'jullianovosorio@gmail.com', 'token':"1DF98935374845F2B18992B39A1B8B0F"}
         response = requests.get(url, params=parametros, verify=True, timeout=120)
+        venda = None
         if response.status_code == 200:
             resp = xmltodict.parse(response.content)
             status = resp['transaction']['status']
