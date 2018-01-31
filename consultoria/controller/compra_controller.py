@@ -56,7 +56,7 @@ class CompraController:
                 pagamento.status = 'Retenção temporária'
             db.session.add(pagamento)
             db.session.commit()
-            if venda:
+            if venda is not None:
                 count = 0
                 ultimaData = None
                 if usu.ultimoTreino:
@@ -70,8 +70,10 @@ class CompraController:
                     for treino in venda.treinos:
                         treino.data_entrega = date.today() + timedelta(days=(count*30)+2)
                         count += 1
-            db.session.add(venda)
-            db.session.commit()
+                db.session.add(venda)
+                db.session.commit()
+            else:
+                return make_response("Status" + pagamento.status, 200)
             return make_response("Pagamento atualizado", 200)
         return make_response("Erro no codigo 200", 500)
                 
