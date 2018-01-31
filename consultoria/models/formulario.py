@@ -26,6 +26,7 @@ class Formulario(db.Model):
     preenchido = db.Column(db.Boolean, default=False)
     bebe_frequencia = db.Column(db.String(25))
     cupom = db.Column(db.String(55))
+    motivo = db.Column(db.String(55))
     melhorTreino = db.Column(db.Text)
     exerGosta = db.Column(db.Text)
     exerOdeia = db.Column(db.Text)
