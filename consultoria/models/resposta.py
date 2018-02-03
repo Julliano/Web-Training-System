@@ -10,7 +10,7 @@ from ..modules import db, ma
 class Resposta(db.Model):
     __tablename__ = "resposta"
     id = db.Column(db.Integer, primary_key=True)
-    descricao = db.Column(db.String(45), nullable=False)  
+    descricao = db.Column(db.Text, nullable=False)
     data = db.Column(db.Date, default=date.today)
     usuario_id = db.Column(db.Integer, db.ForeignKey("usuario.id"), nullable=False)
     duvida_id = db.Column(db.Integer, db.ForeignKey("duvida.id"), nullable=False)
