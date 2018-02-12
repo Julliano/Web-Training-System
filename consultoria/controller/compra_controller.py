@@ -44,7 +44,8 @@ class CompraController:
                 venda = Venda().query.filter(Venda.pagamento_id == pagamento.id).first()
                 usu = Usuario().query.get(venda.usuario_id)
             if int(status) == 4:
-                pagamento.status = 'Disponível'
+            	pagamento.status = 'Paga'
+                #pagamento.status = 'Disponível'
             if int(status) == 5:
                 pagamento.status = 'Em disputa'
             if int(status) == 6:
