@@ -47,9 +47,9 @@
 						'Content-Type' : undefined
 					}
 				}).then(function httpSuccess(response, param) {
-					var popup = $window.open(response.data)
+					$window.location.href = response.data
+//					var popup = $window.open(response.data)
 //					popup.location.href = response.data;
-//					$window.open(response.data, '_blank')
 					Notification.success("Compra realizada, assim que o pagamento for confirmado começarei a trabalhar no seu treino.");
 					$state.go('app.treinos')
 				}, httpFail);
