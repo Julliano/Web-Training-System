@@ -122,7 +122,7 @@ class CompraController:
                 venda.treinos.append(treino)
             db.session.add(venda)
             db.session.commit()
-            cupom = Cupom().query.filter(Cupom.cupom == formulario.cupom).first()
+            cupom = Cupom().query.filter(Cupom.cupom == formulario.cupom, Cupom.plano == 1).first()
             if cupom is not None:
                 if cupom.quantidade > 0:
                     cupom.quantidade -=1;
@@ -163,7 +163,7 @@ class CompraController:
                 venda.treinos.append(treino)
             db.session.add(venda)
             db.session.commit()
-            cupom = Cupom().query.filter(Cupom.cupom == formulario.cupom).first()
+            cupom = Cupom().query.filter(Cupom.cupom == formulario.cupom, Cupom.plano == 3).first()
             if cupom is not None:
                 if cupom.quantidade > 0:
                     cupom.quantidade -=1

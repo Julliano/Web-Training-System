@@ -10,3 +10,4 @@ class Cupom(db.Model):
     cupom = db.Column(db.String(255))
     valor = db.Column(db.Float) 
     quantidade = db.Column(db.Integer) 
+    plano = db.Column(db.Integer)
