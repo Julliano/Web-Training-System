@@ -9,7 +9,8 @@
 		var vm = this;
 		vm.usuario = LoginService.getUsuario();
 		vm.modal = modal;
-
+		vm.gerarPdf = gerarPdf;
+		
 		init();
 		
 		function init(){
@@ -23,6 +24,15 @@
 			
 		}
 
+		function gerarPdf(modelo){
+			$http.get('/modeloPdf/'+ modelo.id,{
+				responseType: 'arraybuffer'
+			}).then(function(response) {
+				var file = new Blob([response.data], {type : 'application/pdf'});
+				saveAs(file, modelo.titulo+'.pdf')
+			})
+		}
+		
 		function modal(modelo) {
 			var modalInstance = $uibModal
 					.open({

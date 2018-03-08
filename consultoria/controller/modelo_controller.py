@@ -1,8 +1,12 @@
 # coding: utf-8
+from os import path, makedirs
+
 from flask import jsonify
-from flask.helpers import make_response
+from flask.globals import current_app
+from flask.helpers import make_response, send_from_directory
 from flask_login import fresh_login_required, current_user, login_required
 from flask_security.decorators import roles_required
+import pdfkit
 
 from consultoria.models.modelo import ModeloTreino, ModeloTreinoSchema
 
@@ -25,6 +29,18 @@ class ModeloTreinoController:
         schema = ModeloTreinoSchema()
         lista = ModeloTreino().query.filter().all()        
         return schema.jsonify(lista, True)
+    
+    def downloadPdf(self, id):
+        config = r'C:\Python27\wkhtmltopdf\bin\wkhtmltopdf.exe'
+        config = pdfkit.configuration(wkhtmltopdf=config)
+        modelo = ModeloTreino().query.get(id)
+        caminho = path.join(current_app.config.get('MEDIA_ROOT'))
+        if not path.exists(caminho):
+            makedirs(caminho)
+        pdfkit.from_string('<meta http-equiv="Content-type" content="text/html; charset=utf-8" />'+modelo.explicacao, path.join(caminho, 'modelo'+str(modelo.id)+'.pdf'), configuration=config)
+        if not path.exists(caminho):
+            return make_response('Pasta ou arquivo inexistente.', 404)
+        return send_from_directory(caminho, 'modelo'+str(modelo.id)+'.pdf')
     
     @login_required
     def buscar(self, id):

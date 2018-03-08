@@ -99,6 +99,11 @@ def check_session():
 def media(filename):
     return send_from_directory(current_app.config.get('MEDIA_ROOT'), filename)
 
+@consultoria_app.route('/modeloPdf/<int:id>', methods=['GET'])
+@login_required
+def modeloPdf(id):
+    return ModeloTreinoController().downloadPdf(id)
+
 @consultoria_app.route('/treinoPdf/<int:id>', methods=['GET'])
 @login_required
 def treinoPdf(id):
