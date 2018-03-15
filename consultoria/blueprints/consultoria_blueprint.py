@@ -16,6 +16,7 @@ from werkzeug import redirect
 
 from consultoria.controller.modelo_controller import ModeloTreinoController
 from consultoria.controller.treino_controller import TreinoController
+from consultoria.models.listaEmail import Lista
 from consultoria.modules import mail
 
 from ..controller.compra_controller import CompraController
@@ -25,18 +26,19 @@ from ..controller.grupo_controller import GrupoController
 from ..controller.plano_controller import PlanoController
 from ..controller.session_controller import SessionController
 from ..controller.usuario_controller import UsuarioController
+from ..models.cupom import Cupom
 from ..models.duvida import Duvida
 from ..models.formulario import Formulario
 from ..models.grupo import Grupo
 from ..models.modelo import ModeloTreino
 from ..models.pagamento import Pagamento
 from ..models.plano import Plano
-from ..models.cupom import Cupom
 from ..models.resposta import Resposta
 from ..models.treino import Treino
 from ..models.usuario import Usuario, UsuarioSchema
 from ..models.venda import Venda
 from ..modules import login_manager, db, admin_permission
+from consultoria.controller.ebook_controller import EbookController
 
 
 consultoria_app = Blueprint('consultoria_app', __name__)
@@ -162,6 +164,14 @@ def emailContato(id=None):
 def emailRecuperacao(id=None):
     if request.method == "POST":
         return UsuarioController().emailRecuperacao(request.json or request.form)
+
+@consultoria_app.route('/emailEbook/', methods=["POST"])
+def emailEbook():
+        return EbookController().salvarNaLista(request.json or request.form)
+
+@consultoria_app.route('/enviarEbook/', methods=["POST"])
+def enviarEbook():
+        return EbookController().enviarEbook(request.json or request.form)
 
 @consultoria_app.route('/formulariosUltimo/<int:id>', methods=["GET"])
 @login_required

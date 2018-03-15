@@ -12,6 +12,21 @@
 	
 }
 
+.botaoEbook{
+	height: 55px;
+	border-radius: 0px;
+	width: 100%;
+	margin-top: 10px; 
+	background: rgb(225, 64, 37);
+}
+
+.spanEbook{
+	color: rgb(255, 255, 255); 
+	background-color: rgb(225, 64, 37); 
+	font-size: 22px; 
+	font-weight: bold
+}
+
 #treinoDescricao h4 span{
 	font-size: 15px !important;
 }
