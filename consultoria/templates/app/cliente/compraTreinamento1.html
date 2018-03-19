@@ -234,12 +234,17 @@
 						<div class="form-group" ng-if="!CompraCtrl.ultimoForm.preenchido">
 							<label class="text-form">Como ficou sabendo da consultoria: *</label>
 							<select class="texto-info analise form-control" ng-model="CompraCtrl.formulario.motivo" required>
+								<option label="" value=""></option>
 								<option label="" value="indicação">Indicação</option>
 								<option label="" value="instagram">Instagram</option>
 								<option label="" value="facebook">Facebook</option>
 								<option label="" value="outro">Outro</option>
 							</select>
 						</div>
+						<!-- <div class="form-group " style="padding: 0px;">
+							<label class="text-form">Agendar data de entrega: <sub style="vertical-align: text-top;">(preencha apenas se você não quiser o treino para daqui a 2 dias)</sub></label>
+							<input type="date" class="form-control col-md-6 col-lg-6 col-xs-12" placeholder="Caso queira o treino para uma data futura" ng-min="CompraCtrl.todayDate()" ng-model="CompraCtrl.formulario.data_entrega" required>
+						</div> -->
 						<div class="form-group col-md-offset-4 col-sm-offset-4 col-md-4 col-sm-4">
 							<label class="text-form">Cupom de desconto:</label>
 							<input type="text" class="form-control" ng-model="CompraCtrl.formulario.cupom" maxlength="30">

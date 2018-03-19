@@ -12,11 +12,28 @@
 		vm.quest = false;
 		vm.submitPromise = { message : "Aguarde..."	};
 		vm.formularioAntigo = formularioAntigo;
-
+		vm.today = new Date();
+		vm.todayDate = todayDate;
+		
 		init();
 		
 		function init(){
 			buscarFormulario();
+		}
+
+		var dd = vm.today.getDate();
+		var mm = vm.today.getMonth()+1; //January is 0!
+		var yyyy = vm.today.getFullYear();
+		if(dd<10){
+	        dd='0'+dd
+	    } 
+	    if(mm<10){
+	        mm='0'+mm
+	    } 
+		vm.today = yyyy+'-'+mm+'-'+dd;
+		
+		function todayDate(){
+			return vm.today;
 		}
 		
 		function comprar(param) {
@@ -83,6 +100,10 @@
 			if(param){
 				vm.ultimoForm.id = undefined;
 				vm.formulario = vm.ultimoForm
+				if(vm.formulario.data_entrega){
+					vm.formulario.data_entrega = new Date(vm.today);
+//					vm.formulario.data_entrega = new Date(vm.formulario.data_entrega)
+				}
 				vm.quest = true;
 			}else{
 				vm.quest = true;

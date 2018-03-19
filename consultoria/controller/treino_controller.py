@@ -21,6 +21,7 @@ from consultoria.modules import mail
 import pdfkit
 
 from ..modules import db, admin_permission
+from werkzeug.utils import secure_filename
 
 
 class TreinoController:
@@ -60,7 +61,7 @@ class TreinoController:
     def downloadTreino(self, id):
         treino = Treino().query.get(id)
         if treino is not None:
-            caminho = path.join(current_app.config.get('MEDIA_ROOT'), str(treino.venda.usuario.nome), str(treino.id))
+            caminho = path.join(current_app.config.get('MEDIA_ROOT'), str(secure_filename(treino.venda.usuario.nome)), str(treino.id))
             if not path.exists(caminho):
                 return make_response('Pasta ou arquivo inexistente.', 404)
             return send_from_directory(caminho, 'treino'+str(id)+'.pdf')
@@ -80,7 +81,7 @@ class TreinoController:
             treino = schema.data
             treino.data_disponibilizado = date.today()
             treino.status = 'ativa'
-            caminho = path.join(current_app.config.get('MEDIA_ROOT'), str(treino.venda.usuario.nome), str(treino.id))
+            caminho = path.join(current_app.config.get('MEDIA_ROOT'), str(secure_filename(treino.venda.usuario.nome)), str(treino.id))
             if not path.exists(caminho):
                 makedirs(caminho)
             config = r'C:\Python27\wkhtmltopdf\bin\wkhtmltopdf.exe'
