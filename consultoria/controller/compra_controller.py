@@ -66,15 +66,12 @@ class CompraController:
                         ultimaData = usu.ultimoTreino.data_entrega
                 if ultimaData is not None:
                     for treino in venda.treinos:
-                        if count == 0:
-                            treino.data_entrega = ultimaData + timedelta(days=(count*30)+32)
-                        else:
-                            treino.data_entrega = ultimaData + timedelta(days=(count*30)+30)
+                        treino.data_entrega = ultimaData + timedelta(days=(count*30)+30)
                         count += 1
                 else:
                     for treino in venda.treinos:
                         if count == 0:
-                            treino.data_entrega = date.today() + timedelta(days=(count*30)+2)
+                            treino.data_entrega = date.today() + timedelta(2)
                         else:
                             treino.data_entrega = date.today() + timedelta(days=(count*30))
                         count += 1

@@ -6,6 +6,12 @@
     margin: 0 auto;
 }
 
+.tituloCaixa{
+	color: #4b71fc;
+	font-size: 45px;
+	
+}
+
 .gifAgachamento{
 	background: url('/media/giffs/agachamento.gif') no-repeat center center;
 }

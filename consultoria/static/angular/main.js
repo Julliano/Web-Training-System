@@ -79,6 +79,11 @@
 			templateUrl : '/templates/app/emailRecuperar.html',
 			controller : 'RecuperarEmailController',
 			controllerAs : 'RecEmailCtrl'
+		}).state('ebook', {
+			url : '/ebookEmagrecimento',
+			templateUrl : '/templates/app/ebookEmagrecimento.html',
+			controller : 'EbookController',
+			controllerAs : 'EbookCtrl'
 		}).state('app', {
 			url : '/app',
 			templateUrl : '/app/cliente/base.html',

@@ -10,6 +10,7 @@ class Formulario(db.Model):
     __tablename__ = 'formulario'    
     id = db.Column(db.Integer, primary_key=True)
     data_cadastro = db.Column(db.Date, default=date.today)
+    data_entrega = db.Column(db.Date, default=date.today)
     status = db.Column(db.String(45), default="pendente")
     peso = db.Column(db.String(15))
     ajuste = db.Column(db.String(255))
