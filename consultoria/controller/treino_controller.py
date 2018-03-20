@@ -84,6 +84,7 @@ class TreinoController:
             caminho = path.join(current_app.config.get('MEDIA_ROOT'), str(secure_filename(treino.venda.usuario.nome)), str(treino.id))
             if not path.exists(caminho):
                 makedirs(caminho)
+#             config = r'/usr/local/bin/wkhtmltopdf'
             config = r'C:\Python27\wkhtmltopdf\bin\wkhtmltopdf.exe'
             config = pdfkit.configuration(wkhtmltopdf=config)
             pdfkit.from_string('<meta http-equiv="Content-type" content="text/html; charset=utf-8" />'+treino.explicacao, path.join(caminho, 'treino'+str(treino.id)+'.pdf'), configuration=config)

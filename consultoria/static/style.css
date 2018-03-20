@@ -113,7 +113,7 @@
     margin-left: 45px;
 }
 
-.section-title span:before, .entry-title span:before, .section-title span:after, .entry-title span:after {
+/* .section-title span:before, .entry-title span:before, .section-title span:after, .entry-title span:after {
     content: "";
     position: absolute;
     height: 4px;
@@ -121,7 +121,7 @@
     width: 400%;
     border-bottom: 1px solid #ccc;
     border-top: 1px solid #ccc;
-}
+} */
 
 .section-title span, .entry-title span {
     display: inline-block;
