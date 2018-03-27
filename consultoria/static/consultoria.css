@@ -9,7 +9,12 @@
 	.table-responsive{
 		border: none !important;
 	}
-	
+}
+
+@media (max-width: 600px){
+	#imagemEbook{
+	    width: 320px !important;
+    }	
 }
 
 .botaoEbook{
