@@ -1,19 +1,24 @@
 # coding: utf-8
 from datetime import date, timedelta
+from os import path, makedirs
 
 from flask import jsonify
 from flask.globals import request, current_app
 from flask.helpers import make_response
+from flask.templating import render_template
 from flask_login import fresh_login_required, current_user, login_required
+from flask_mail import Message
 import requests
+from werkzeug.utils import secure_filename
 import xmltodict
 
+from consultoria.modules import mail
 
+from ..models.cupom import Cupom
 from ..models.formulario import Formulario, FormularioSchema
 from ..models.pagamento import Pagamento, PagamentoSchema
 from ..models.pagamento import Pagamento, PagamentoSchema
 from ..models.plano import Plano, PlanoSchema
-from ..models.cupom import Cupom
 from ..models.treino import Treino, TreinoSchema
 from ..models.usuario import Usuario, UsuarioSchema
 from ..models.venda import Venda, VendaSchema
@@ -118,6 +123,10 @@ class CompraController:
             formulario , errors = FormularioSchema().loads(request.form['formulario'])
             formulario.status = 'ativa'
             formulario.preenchido = True
+            if 'dietaFile' in request.files:
+                formulario.dietaFile = request.files['dietaFile']
+            else:
+                formulario.dietaFile = None
             venda.formulario = formulario
             for treino in range(0,int(venda.plano.n_treinos)):
                 treino = Treino()
@@ -125,6 +134,11 @@ class CompraController:
                 venda.treinos.append(treino)
             db.session.add(venda)
             db.session.commit()
+            if formulario.dietaFile:
+                caminho = path.join(current_app.config.get('MEDIA_ROOT'), 'Arquivos' ,str(venda.id))
+                if not path.exists(caminho):
+                    makedirs(caminho)
+                formulario.dietaFile.save(path.join(caminho, secure_filename(formulario.dietaFile.filename)))
             try:
                 cupom = Cupom().query.filter(Cupom.cupom == formulario.cupom.upper(), Cupom.plano == 1).first()
             except:
@@ -145,6 +159,7 @@ class CompraController:
             venda.pagamento.motivo = formulario.motivo
             db.session.add(venda)
             db.session.commit()
+            self.emailCompraFinalizada(venda)
             return jsonify(resposta[0])
 
     @login_required
@@ -158,6 +173,10 @@ class CompraController:
             formulario.status = 'ativa'
             formulario.preenchido = True
             venda.formulario = formulario
+            if 'dietaFile' in request.files:
+                formulario.dietaFile = request.files['dietaFile']
+            else:
+                formulario.dietaFile = None
             for index in range(0,int(venda.plano.n_treinos)):
                 treino = Treino()
                 if index == 0:
@@ -169,6 +188,11 @@ class CompraController:
                 venda.treinos.append(treino)
             db.session.add(venda)
             db.session.commit()
+            if formulario.dietaFile:
+                caminho = path.join(current_app.config.get('MEDIA_ROOT'), 'Arquivos' ,str(venda.id))
+                if not path.exists(caminho):
+                    makedirs(caminho)
+                formulario.dietaFile.save(path.join(caminho, secure_filename(formulario.dietaFile.filename)))
             try:
                 cupom = Cupom().query.filter(Cupom.cupom == formulario.cupom.upper(), Cupom.plano == 3).first()
             except:
@@ -189,5 +213,16 @@ class CompraController:
             venda.pagamento.motivo = formulario.motivo
             db.session.add(venda)
             db.session.commit()
+            self.emailCompraFinalizada(venda)
             return jsonify(resposta[0])
+        
+    def emailCompraFinalizada(self, venda):
+        try:
+            msg = Message('Solicitação de plano.', recipients=[venda.usuario.email])
+            msg.html = render_template('app/emailConfirmacaoCompra.html', enviado='Plano', email='jullianoVolpato@gmail.com' , venda=venda) 
+            mail.send(msg)
+            return make_response("E-mail enviado com sucesso", 200)
+        except Exception:
+            pass
+            return make_response("Erro no envio do e-mail", 500)
     

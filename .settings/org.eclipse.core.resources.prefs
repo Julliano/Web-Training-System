@@ -27,6 +27,7 @@ encoding//consultoria/modules.py=utf-8
 encoding//consultoria/templates/presentation/start.html=UTF-8
 encoding//env/Lib/site-packages/flask/app.py=utf-8
 encoding//env/Lib/site-packages/flask/blueprints.py=utf-8
+encoding//env/Lib/site-packages/flask/helpers.py=utf-8
 encoding//env/Lib/site-packages/flask_login.py=utf-8
 encoding//env/Lib/site-packages/flask_mail.py=utf-8
 encoding//env/Lib/site-packages/flask_principal.py=utf-8

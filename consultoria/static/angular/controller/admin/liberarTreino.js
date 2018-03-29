@@ -12,12 +12,35 @@
 		vm.salvar = salvar;
 		vm.ajusteFormulario = ajusteFormulario;
 		vm.submitPromise = { message : "Aguarde..."	};
+		vm.baixarArquivo = baixarArquivo;
 		
 		init();
 		
 		function init(){
 			$http.get('/admin/modeloTreino/').then(function(response){
 				vm.modelos = response.data
+			})
+			$http.get('/admin/arquivos/' + vm.treino.venda.id).then(function(response){
+				vm.arquivos = response.data
+			})
+		}
+		
+		function baixarArquivo(nome){
+			var fd = new FormData();
+			fd.append('id', vm.treino.venda.id);
+			fd.append('nome', nome);
+			$http.put('/arquivosInternos/', fd, {
+				timeout : 50400000,
+				transformRequest : angular.identity,
+				responseType: 'arraybuffer',
+				headers : {
+					'Content-Type' : undefined
+				}
+			}).then(function(response){
+				var blob = new Blob([response.data], {
+					 type: 'application/pdf'
+					});
+				saveAs(blob, nome);
 			})
 		}
 		

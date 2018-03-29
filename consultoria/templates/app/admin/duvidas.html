@@ -17,7 +17,7 @@
 					<tbody>
 						<tr ng-repeat="duvida in DuvidaAdmCtrl.duvidas | filter:DuvidaAdmCtrl.filtroDuvida" ng-class="{'danger':duvida.status == 'pendente', 'success':duvida.status == 'ativa'}">
 							<td ng-click="DuvidaAdmCtrl.verDuvida(duvida.id)" style="white-space: nowrap;color:blue;">{{duvida.titulo}}</td>
-							<td style="white-space: nowrap;">{{duvida.descricao}}</td>
+							<td style="white-space: nowrap;">{{duvida.descricao | limitTo: 100}}</td>
 							<td class="text-center">{{duvida.data | date : 'dd/MM/yy'}}</td>
 						</tr>
 					</tbody>
@@ -37,7 +37,7 @@
 					<tbody>
 						<tr ng-repeat="duvida in DuvidaAdmCtrl.duvidas | filter:DuvidaAdmCtrl.filtroDuvida" ng-class="{'danger':duvida.status == 'pendente', 'success':duvida.status == 'ativa'}">
 							<td ng-click="DuvidaAdmCtrl.verDuvida(duvida.id)" style="white-space: nowrap;color:blue;">{{duvida.titulo}}</td>
-							<td style="white-space: nowrap;">{{duvida.descricao}}</td>
+							<td style="white-space: nowrap;">{{duvida.descricao | limitTo: 100}}</td>
 							<td class="text-center">{{duvida.data | date : 'dd/MM/yy'}}</td>
 						</tr>
 					</tbody>

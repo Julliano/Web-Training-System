@@ -57,6 +57,7 @@
 //				popup.document.write('Carregando tela de pagamento...');
 				var fd = new FormData();
 				fd.append('formulario', JSON.stringify(vm.formulario));
+				fd.append('dietaFile', vm.dieta)
 				vm.submitPromise.promise = $http.post('/comprarConsultoria/' + param, fd, {
 					timeout : 50400000,
 					transformRequest : angular.identity,

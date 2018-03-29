@@ -1,27 +1,30 @@
 # coding: utf-8
 from datetime import date
+from os import listdir
 from os import path, makedirs
+from os.path import isfile, join
 
 from flask import jsonify
 from flask.globals import request, current_app
 from flask.helpers import make_response, send_from_directory
+from flask.json import dumps
 from flask.templating import render_template
 from flask_login import fresh_login_required, current_user, login_required
 from flask_mail import Message
 from flask_security.decorators import roles_required
+import pdfkit
 from sqlalchemy.orm import joinedload, contains_eager
 from sqlalchemy.sql.elements import and_
+from werkzeug.utils import secure_filename
 
 from consultoria.models.formulario import Formulario
 from consultoria.models.pagamento import Pagamento
 from consultoria.models.treino import Treino, TreinoSchema
 from consultoria.models.usuario import Usuario
-from consultoria.models.venda import Venda
+from consultoria.models.venda import Venda, VendaSchema
 from consultoria.modules import mail
-import pdfkit
 
 from ..modules import db, admin_permission
-from werkzeug.utils import secure_filename
 
 
 class TreinoController:
@@ -56,6 +59,18 @@ class TreinoController:
         schema = TreinoSchema()
         lista = Treino().query.join(Treino.venda).filter(Venda.usuario_id == current_user.id, Treino.status == 'ativa').all()        
         return schema.jsonify(lista, True)
+    
+    @login_required
+    def arquivos(self, data):
+        venda = Venda().query.get(data)
+        caminho = path.join(current_app.config.get('MEDIA_ROOT'), 'Arquivos' ,str(venda.id))
+        return dumps(listdir(caminho))
+
+    @login_required
+    def downloadArquivo(self):
+        data = request.form
+        caminho = path.join(current_app.config.get('MEDIA_ROOT'), 'Arquivos' ,request.form['id'])
+        return send_from_directory(caminho, request.form['nome'])
     
     @login_required
     def downloadTreino(self, id):

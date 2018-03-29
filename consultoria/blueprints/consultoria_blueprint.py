@@ -101,6 +101,10 @@ def check_session():
 def media(filename):
     return send_from_directory(current_app.config.get('MEDIA_ROOT'), filename)
 
+@consultoria_app.route('/arquivosInternos/', methods=['PUT'])
+def arquivosInternos():
+    return TreinoController().downloadArquivo()
+
 @consultoria_app.route('/modeloPdf/<int:id>', methods=['GET'])
 @login_required
 def modeloPdf(id):
@@ -183,6 +187,11 @@ def formulariosUltimo(id=None):
 @login_required
 def formularios(id=None):
     return crud_request(FormularioController(), id)
+
+@consultoria_app.route('/admin/arquivos/<int:id>', methods=["GET"])
+@admin_permission.require(http_exception=403)
+def arquivos(id=None):
+    return TreinoController().arquivos(id)
 
 @consultoria_app.route('/admin/formularios/', methods=['GET', "POST", "PUT", "DELETE"])
 @consultoria_app.route('/admin/formularios/<int:id>', methods=["GET", "PUT" "DELETE"])

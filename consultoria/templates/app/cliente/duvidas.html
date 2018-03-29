@@ -11,9 +11,9 @@
 			<table class="table table-striped" id="table-usuarios">
 				<thead>
 					<tr>
-						<th class="col-md-2">Data</th>
+						<th class="col-md-1">Data</th>
 						<th class="col-md-3">Tópico</th>
-						<th class="col-md-6">Descrição</th>
+						<th class="col-md-7">Descrição</th>
 						<th class="col-md-1 text-center">Status</th>
 					</tr>
 				</thead>
@@ -21,7 +21,7 @@
 					<tr ng-repeat="duvida in CliDuvidaCtrl.duvidas">
 						<td style="color:blue;" ng-click="CliDuvidaCtrl.verDuvida(duvida.id)">{{duvida.data | date : 'dd/MM/yy'}}</td>
 						<td style="white-space: nowrap;">{{duvida.titulo}}</td>
-						<td style="white-space: nowrap;">{{duvida.descricao}}</td>
+						<td style="white-space: nowrap;">{{duvida.descricao | limitTo: 65}}</td>
 						<td class="text-center"><i ng-class="{'fa fa-clock-o':duvida.status == 'pendente', 'fa fa-check':duvida.status == 'ativa'}"></i></td>
 					</tr>
 				</tbody>

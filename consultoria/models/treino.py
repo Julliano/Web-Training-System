@@ -4,6 +4,8 @@ from flask.globals import current_app
 from flask.helpers import send_from_directory, make_response
 from marshmallow_sqlalchemy.convert import field_for
 from sqlalchemy.orm import relationship
+from os import listdir
+from os.path import isfile, join
 
 from ..models import BaseSchema
 from ..modules import db, ma
@@ -40,6 +42,12 @@ class Treino(db.Model):
         if not path.exists(caminho):
             return make_response('Pasta ou arquivo inexistente.', 404)
         return send_from_directory(caminho, 'treino'+str(self.id)+'.pdf')
+    
+    @property
+    def arquivos(self):
+        caminho = path.join(current_app.config.get('MEDIA_ROOT'), 'Arquivos' ,str(self.venda_id))
+        return [f for f in listdir(caminho) if isfile(join(caminho, f))]
+    
     
 class TreinoSchema(BaseSchema):
     class Meta(BaseSchema.Meta):
