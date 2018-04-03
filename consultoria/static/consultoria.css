@@ -15,6 +15,10 @@
 	#imagemEbook{
 	    width: 320px !important;
     }	
+    #logoInicial{
+    	width: 320px !important;
+    	height: 195px !important;
+    }
 }
 
 .botaoEbook{
