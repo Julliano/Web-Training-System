@@ -62,7 +62,7 @@ class EbookController:
     def send_ebook(self, obj):
         try:
             msg = Message('Chegou o seu E-book', recipients=[obj.email])
-            msg.html = render_template('app/enviarEbook.html', enviado='Suporte', email='jullianoVolpato@gmail.com' , url='https://drive.google.com/file/d/1Hqik0LXhHwBzxqmonAikrzfVYTAKkI00/view?usp=sharing') 
+            msg.html = render_template('app/enviarEbook.html', enviado='Suporte', email='jullianoVolpato@gmail.com' , url='https://drive.google.com/open?id=1HlWLtdZ5f-CyYkQ6NNFDJvVNCIaRyfGq') 
             mail.send(msg)
             return make_response("E-mail com ebook foi enviado para você.", 200)
         except Exception:
