@@ -25,13 +25,13 @@ class EbookController:
             size = 50
             obj = Lista().query.filter(Lista.email == data['email']).first()
             if obj is not None:
-                obj.validarEmail = ''.join([choice(string.letters + string.digits) for i in range(size)])
+#                 obj.validarEmail = ''.join([choice(string.letters + string.digits) for i in range(size)])
                 obj.valido = False
             else:
                 obj = Lista()
                 obj.email = data['email']
                 obj.emagrecimento = True
-                obj.validarEmail = ''.join([choice(string.letters + string.digits) for i in range(size)]) 
+#                 obj.validarEmail = ''.join([choice(string.letters + string.digits) for i in range(size)]) 
             db.session.add(obj)
             db.session.commit()
 #             return self.send_email(obj)
