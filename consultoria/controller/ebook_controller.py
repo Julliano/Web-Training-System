@@ -34,7 +34,8 @@ class EbookController:
                 obj.validarEmail = ''.join([choice(string.letters + string.digits) for i in range(size)]) 
             db.session.add(obj)
             db.session.commit()
-            return self.send_email(obj)
+#             return self.send_email(obj)
+            return self.send_ebook(obj)
         except Exception:
             return make_response("Email não encontrado na base", 500)
     
