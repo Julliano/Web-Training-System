@@ -102,12 +102,6 @@ class Usuario(db.Model):
     def get_id(self):
         return self.id
     
-    #===========================================================================
-    # def get_auth_token(self):
-    #     print make_secure_token(str(self.id), self.senha)
-    #     return make_secure_token(str(self.id), self.senha)
-    #===========================================================================
-
     def is_active(self):
         """Returns `True` if the user is active."""
         return True

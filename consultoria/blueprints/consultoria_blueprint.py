@@ -212,6 +212,11 @@ def ajustarFormulario():
 def usuarios(id=None):
     return crud_request(UsuarioController(), id)
 
+@consultoria_app.route('/usu/treinos/<int:id>', methods=["GET", "DELETE"])
+@admin_permission.require(http_exception=403)
+def usuarios_treinos(id=None):
+    return UsuarioController().listarTreinos(id)
+
 @consultoria_app.route('/admin/usuarios/', methods=['GET', "POST", "PUT", "DELETE"])
 @consultoria_app.route('/admin/usuarios/<int:id>', methods=["GET", "DELETE"])
 @admin_permission.require(http_exception=403)

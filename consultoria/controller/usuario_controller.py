@@ -8,12 +8,15 @@ from flask.templating import render_template
 from flask_login import fresh_login_required, current_user, login_required
 from flask_mail import Message
 from flask_security.decorators import roles_required
+from sqlalchemy.sql.expression import desc
 
-from ..modules import mail
+from consultoria.models.treino import TreinoSchema, Treino
 
 from ..models.grupo import Grupo
 from ..models.usuario import Usuario, UsuarioSchema
+from ..models.venda import Venda
 from ..modules import db, admin_permission
+from ..modules import mail
 
 
 class UsuarioController:
@@ -37,6 +40,13 @@ class UsuarioController:
     def listar(self):
         schema = UsuarioSchema(only=('id','nome', 'sobrenome','email','grupos'))
         lista = Usuario().query.filter().all()        
+        return schema.jsonify(lista, True)
+
+    @admin_permission.require(http_exception=403)
+    def listarTreinos(self, id):
+        schema = TreinoSchema(only=('id','data_entrega', 'nome','status','sessao'))
+        usuario = Usuario.query.get(id)
+        lista = Treino().query.join(Treino.venda).filter(Venda.usuario_id == id).order_by(desc(Treino.data_entrega)).all()        
         return schema.jsonify(lista, True)
     
     @login_required

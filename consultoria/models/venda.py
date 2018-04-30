@@ -1,6 +1,7 @@
 # coding: utf-8
 from datetime import date
 
+from marshmallow import fields
 from marshmallow_sqlalchemy.convert import field_for
 
 from ..models import BaseSchema
@@ -18,7 +19,7 @@ class Venda(db.Model):
     formulario_id = db.Column(db.Integer, db.ForeignKey("formulario.id"), nullable=True)
     treinos = db.relationship("Treino", cascade="save-update, merge, delete", backref="venda", order_by="Treino.id")
     
-
+    
 class VendaSchema(BaseSchema):
     class Meta(BaseSchema.Meta):
         model = Venda

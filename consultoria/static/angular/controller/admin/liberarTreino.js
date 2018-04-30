@@ -23,6 +23,9 @@
 			$http.get('/admin/arquivos/' + vm.treino.venda.id).then(function(response){
 				vm.arquivos = response.data
 			})
+			$http.get('/usu/treinos/' + vm.treino.venda.usuario.id).then(function(response){
+				vm.treinosUsuario = response.data
+			})
 		}
 		
 		function baixarArquivo(nome){
