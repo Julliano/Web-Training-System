@@ -29,10 +29,8 @@ class CompraController:
     
     def retornoPagSeguro(self):
         notificacao = request.json or request.form
-        url = 'https://ws.pagseguro.uol.com.br/v3/transactions/notifications/%s' % notificacao['notificationCode']
-#         url = 'https://ws.sandbox.pagseguro.uol.com.br/v3/transactions/notifications/%s' % notificacao['notificationCode']
-        parametros = {'email':'jullianovosorio@gmail.com', 'token':"51E9D7E8918A4DB1B718EE9D017F4EFE"}
-#         parametros = {'email':'jullianovosorio@gmail.com', 'token':"1DF98935374845F2B18992B39A1B8B0F"}
+        url = 'https://ws.sandbox.pagseguro.uol.com.br/v3/transactions/notifications/%s' % notificacao['notificationCode']
+        parametros = {'email':'sample@gmail.com', 'token':"1DF98935374845F2B18992B39A1B8B0F"}
         response = requests.get(url, params=parametros, verify=True, timeout=120)
         venda = None
         if response.status_code == 200:
